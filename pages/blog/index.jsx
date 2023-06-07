@@ -4,7 +4,7 @@ import Heading from '@components/heading';
 /* import { supabase } from "../../lib/supabaseClient"; */
 import useSWR from 'swr';
 import { getPosts, cacheKey } from '../../api-routes/posts';
-import useSWRMutation from 'swr/mutation';
+import { convertDate } from '../../utils/convertDate';
 
 /* const mockData = [
   {
@@ -41,7 +41,7 @@ export default function Blog() {
         >
           <div className='w-full flex flex-col'>
             <p>{post.title}</p>
-            <time className={styles.date}>{post.createdAt}</time>
+            <time className={styles.date}>{convertDate(post.created_at)}</time>
           </div>
         </Link>
       ))}

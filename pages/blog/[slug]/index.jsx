@@ -7,6 +7,8 @@ import Heading from '@components/heading';
 import BlogImageBanner from '@components/blog-image-banner';
 import useSWR from 'swr';
 import { getPost, cacheKey } from '../../../api-routes/posts';
+import { convertDate } from '../../../utils/convertDate';
+import { timeAgo } from '../../../utils/timeAgo';
 
 const post = {
   id: '1234',
@@ -28,14 +30,17 @@ const post = {
 };
 
 export default function BlogPost() {
-  /*  const { data: { data = [] } = {} } = useSWR(cacheKey, getPost);
-
-  const post = data */
-
   const router = useRouter();
-
   /* Use this slug to fetch the post from the database */
   const { slug } = router.query;
+  console.log(slug);
+
+  const { data: { data = [] } = {} } = useSWR(
+    slug ? `${cacheKey}${slug}` : null,
+    () => getPost({ slug })
+  );
+
+  const { title, body, created_at } = data;
 
   const handleDeletePost = () => {
     console.log({ id: post.id });
@@ -48,13 +53,17 @@ export default function BlogPost() {
   return (
     <>
       <section className={styles.container}>
-        <Heading>{post.title}</Heading>
+        <Heading>{title}</Heading>
         {post?.image && <BlogImageBanner src={post.image} alt={post.title} />}
         <div className={styles.dateContainer}>
-          <time className={styles.date}>{post.createdAt}</time>
+          <time className={styles.date}>{convertDate(created_at)}</time>{' '}
+          <span>&nbsp;&nbsp;</span>
+          <time className={styles.date}>
+            Post created: {timeAgo(created_at)}
+          </time>
           <div className={styles.border} />
         </div>
-        <div dangerouslySetInnerHTML={{ __html: post.body }} />
+        <div dangerouslySetInnerHTML={{ __html: body }} />
         <span className={styles.author}>Author: {post.author}</span>
 
         {/* The Delete & Edit part should only be showed if you are authenticated and you are the author */}

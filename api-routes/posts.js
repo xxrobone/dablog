@@ -15,8 +15,9 @@ export const getPost = async ({ slug }) => {
   const { data, error, status } = await supabase
     .from('posts')
     .select()
-    .eq('slug', slug)
-    .single();
+    .single()
+    .eq('slug', slug);
+
   if (error) {
     console.log(error, status);
   }
@@ -24,12 +25,12 @@ export const getPost = async ({ slug }) => {
   return { data, error, status };
 };
 
-/*
 
-export const addPost = async (_, {arg: {title, slug, body}}) => {
+
+export const addPost = async (_, {arg: { title, body, slug }}) => {
   const { data, error, status } = await supabase
   .from('posts')
-  .insert({title, slug, body})
+  .insert({ title, body, slug })
   .select()
   .single()
   if (error) {
@@ -38,6 +39,8 @@ export const addPost = async (_, {arg: {title, slug, body}}) => {
   console.log({data})  
   return { data, error, status };
 };
+
+/*
 
 export const removePost = async ({ slug }) => {
   const { data, error, status } = await supabase

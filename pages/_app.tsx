@@ -21,7 +21,7 @@ export default function App({
     >
       <RootLayout>
         <Component {...pageProps} />
-        <div id='root '></div>
+        <div id='root'></div>
       </RootLayout>
     </SessionContextProvider>
   );
