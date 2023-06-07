@@ -10,12 +10,12 @@ export default function CreatePost() {
   const handleOnSubmit = ({ editorContent, titleInput, image }) => {
     const slug = createSlug(titleInput);
     const title = titleInput;
-    const body = editorContent;
+    const body = editorContent.replaceAll(/<\/?[^>]+(>|$)/gi, '');
 
-    const newPost = { title, body, slug }
-    console.log({ title, body, slug });
-    console.log('new Post:', newPost)
-    addTrigger({ newPost });
+    const newPost = { title, slug, body };
+    console.log({ title, slug, body });
+    console.log('new Post:', newPost);
+    addTrigger(newPost);
   };
 
   return (
