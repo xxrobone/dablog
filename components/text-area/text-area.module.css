@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  min-height: 80px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid black;
+  background: transparent;
+  padding: 2px 3px;
+  font-size: 0.875rem;
+  outline: none;
+  opacity: 1;
+  cursor: default;
+  font-size: 16px;
+  padding: 10px;
+  font-family: "Inter", sans-serif;
+}
+
+.container::placeholder {
+  color: lightgray;
+}

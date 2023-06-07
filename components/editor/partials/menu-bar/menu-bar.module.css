@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 5px;
+}
+
+.isActive {
+  background-color: #f5f5f5;
+}

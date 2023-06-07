@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.editor {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.uploadButton {
+  margin-top: 10px;
+  padding: 10px 10px !important;
+}
+
+.titleInput {
+  margin-bottom: 10px;
+  margin-top: 5px;
+}

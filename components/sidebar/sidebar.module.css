@@ -1,0 +1,114 @@
+.container {
+  margin-right: -1rem;
+  margin-left: -1rem;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 150px;
+    flex-shrink: 0;
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sticky {
+    position: sticky;
+    top: 5rem;
+  }
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  position: relative;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .navigation {
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
+    overflow: auto;
+    position: relative;
+  }
+}
+
+.navigationItemWrapper {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .navigationItemWrapper {
+    padding-right: 2.5rem;
+    flex-direction: column;
+    margin-top: 0;
+  }
+}
+
+.navBtn {
+  outline: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  font-size: inherit;
+  color: inherit;
+  align-items: middle;
+  align-items: middle;
+  margin-bottom: 0.5rem;
+  
+}
+
+.navBtn,
+.navigationItem {
+  display: flex;
+  align-items: middle;
+  margin-bottom: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+  background: transparent;
+  cursor: pointer;
+}
+.navBtn:hover,
+.navigationItem:hover {
+  color: #333;
+}
+
+.textNeutral {
+  color: #71717a;
+}
+
+.fontBold {
+  font-weight: 500;
+  background-color: #f5f5f5;
+}
+
+.navBtn,
+.linkName {
+  position: relative;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  white-space: nowrap;
+}
+
+.navBtn:hover,
+.linkName:hover {
+  transition: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  width: 100%;
+}

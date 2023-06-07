@@ -1,0 +1,49 @@
+.container {
+  padding-bottom: 20px;
+  border-bottom: 1px solid black;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  gap: 0.25rem;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.date {
+  display: block;
+  font-family: monospace;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  width: fit-content;
+}
+
+.author {
+  margin-top: 40px;
+  font-family: monospace;
+  display: block;
+  font-size: 14px;
+}
+
+.dateContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.border {
+  height: 1px;
+  background: black;
+  flex: 1 1 0;
+}
+
+.buttonContainer {
+  margin-top: 20px;
+  display: flex;
+  gap: 5px;
+}

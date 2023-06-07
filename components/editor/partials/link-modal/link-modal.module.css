@@ -1,0 +1,33 @@
+.container {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeModal {
+  display: flex;
+  border: 0;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+  gap: 5px;
+}
+
+.modalButtons {
+  display: flex;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.modalButton {
+  flex: 1 1 0;
+}
