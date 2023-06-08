@@ -26,7 +26,7 @@ const navItems = {
   '/logout': {
     name: 'Logout',
     requiresAuth: true,
-    onClick: async () => {
+    onClick: async (supabaseClient, router) => {
      await supabaseClient.auth.signOut()
       router.push('/')
     },
@@ -64,7 +64,7 @@ export default function Navbar() {
                         [styles.textNeutral]: !isActive,
                         [styles.fontBold]: isActive,
                       })}
-                      onClick={onClick}
+                      onClick={() => onClick(supabaseClient, router)}
                     >
                       {name}
                     </button>

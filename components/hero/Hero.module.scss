@@ -1,0 +1,58 @@
+.hero {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+            background-color: #fafafa;
+            color: #121212;
+    overflow: hidden;
+}
+
+.intro_head {
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.rob {
+    position: relative;
+    width: 80%;
+    height: auto;
+}
+
+
+.rob .eye {
+    cursor: pointer;
+}
+
+.rob > path {
+    stroke: black;
+    stroke-width: 1px;
+}
+
+
+.rob_png {
+    height: 60px;
+    width: 60px;
+    transition: all 0.4s ease;
+}
+
+@media (min-width: 768px) {
+    .rob {
+        width: 60%;
+    }
+}
