@@ -6,6 +6,7 @@ import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { getPost, updatePost, cacheKey } from '../../../../api-routes/posts';
 import { createSlug } from '@/utils/createSlug';
+import { removeHTML } from '../../../../utils/removeHTML';
 
 const mockData = {
   title: 'Community-Messaging Fit',
@@ -30,12 +31,17 @@ export default function EditBlogPost() {
     () => getPost({ slug })
   );
 
-  const handleOnSubmit = ({ editorContent, titleInput, image }) => {
-    const slug = createSlug(titleInput);
-    const title = titleInput;
-    const body = editorContent.replaceAll(/<\/?[^>]+(>|$)/gi, '');
+  const { title, body, id } = data;
 
-    console.log({ title, slug, body });
+  const handleOnSubmit = async ({ editorContent, titleInput, image }) => {
+    console.log('from submit', titleInput, editorContent, id);
+    const newSlug = await titleInput;
+    const slug = createSlug(newSlug);
+    const title = titleInput;
+    const newBody = await editorContent;
+    const body = removeHTML(newBody);
+
+    console.log({ title, slug, body, id });
     const editedPost = { title, slug, body, id };
     updateTrigger(editedPost);
     setMsg((prev) => !prev);
@@ -47,8 +53,7 @@ export default function EditBlogPost() {
     }, 2000);
   };
 
-  // for the inpust and id 
-  const { title, body, id } = data;
+  // for the inpust and id
 
   return (
     <>

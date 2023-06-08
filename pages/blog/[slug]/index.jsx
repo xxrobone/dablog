@@ -47,7 +47,6 @@ export default function BlogPost() {
 
   const handleDeletePost = (id) => {
     deletePost({ id });
-    setIsDelete((prev) => !prev);
     setMsg((prev) => !prev);
     setTimeout(() => {
       setMsg(false);

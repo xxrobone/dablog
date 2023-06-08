@@ -7,7 +7,7 @@ export const getPosts = async () => {
   if (error) {
     console.log(error, status);
   }
-  console.log({ data });
+  /* console.log({ data }); */
   return { data, error, status };
 };
 
@@ -21,7 +21,7 @@ export const getPost = async ({ slug }) => {
   if (error) {
     console.log(error, status);
   }
-  console.log({ data });
+  /* console.log({ data }); */
   return { data, error, status };
 };
 
@@ -33,7 +33,7 @@ export const addPost = async (_, { arg: { title, slug, body } }) => {
   if (error) {
     console.log(error, status);
   }
-  console.log({ data });
+  /* console.log({ data }); */
   return { data, error, status };
 };
 
@@ -45,15 +45,15 @@ export const deletePost = async ({ id }) => {
   if (error) {
     console.log(error, status);
   }
-  console.log({ data });
+  /* console.log({ data }); */
   return { data, error, status };
 };
 
-export const updatePost = async (_, {arg: {title, slug, body}}) => {
+export const updatePost = async (_, {arg: {title, slug, body, id}}) => {
 const { data, error, status } = await supabase
 .from('posts')
 .update({title, slug, body})
-.eq('slug', slug)
+.eq('id', id)
 .single()
   
 return { data, error, status}

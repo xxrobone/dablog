@@ -1,5 +1,6 @@
 import BlogEditor from '@/components/blog-editor';
 import { createSlug } from '@/utils/createSlug';
+import { removeHTML } from '@/utils/removeHTML';
 import { useState } from 'react';
 import useSWRMutation from 'swr/mutation';
 import { addPost, cacheKey } from '../../api-routes/posts';
@@ -14,7 +15,7 @@ export default function CreatePost() {
   const handleOnSubmit = ({ editorContent, titleInput, image }) => {
     const slug = createSlug(titleInput);
     const title = titleInput;
-    const body = editorContent.replaceAll(/<\/?[^>]+(>|$)/gi, '');
+    const body = removeHTML(editorContent);
 
     const newPost = { title, slug, body };
     console.log({ title, slug, body });
