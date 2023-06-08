@@ -4,9 +4,8 @@ import BlogEditor from '../../../../components/blog-editor';
 import Message from '@components/message';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
-import { getPost, updatePost } from '../../../../api-routes/posts';
-
-const editCacheKey = '/api/edit';
+import { getPost, updatePost, cacheKey } from '../../../../api-routes/posts';
+import { createSlug } from '@/utils/createSlug';
 
 const mockData = {
   title: 'Community-Messaging Fit',
@@ -19,7 +18,7 @@ export default function EditBlogPost() {
   const router = useRouter();
 
   const { trigger: updateTrigger, isMutating } = useSWRMutation(
-    editCacheKey,
+    cacheKey,
     updatePost
   );
 
@@ -27,19 +26,18 @@ export default function EditBlogPost() {
   const { slug } = router.query;
 
   const { data: { data = [] } = {} } = useSWR(
-    slug ? `${editCacheKey}${slug}` : null,
+    slug ? `${cacheKey}${slug}/edit` : null,
     () => getPost({ slug })
   );
 
-
   const handleOnSubmit = ({ editorContent, titleInput, image }) => {
-    console.log({ editorContent, titleInput, image, slug });
     const slug = createSlug(titleInput);
     const title = titleInput;
     const body = editorContent.replaceAll(/<\/?[^>]+(>|$)/gi, '');
 
-    const newPost = { title, slug, body };
-    updateTrigger(newPost);
+    console.log({ title, slug, body });
+    const editedPost = { title, slug, body, id };
+    updateTrigger(editedPost);
     setMsg((prev) => !prev);
     setTimeout(() => {
       setMsg(false);
@@ -49,6 +47,7 @@ export default function EditBlogPost() {
     }, 2000);
   };
 
+  // for the inpust and id 
   const { title, body, id } = data;
 
   return (
