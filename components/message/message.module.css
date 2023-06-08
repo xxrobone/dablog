@@ -1,0 +1,14 @@
+.message {
+    padding: 2rem;
+    max-width: 50%;
+    max-height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    background: linear-gradient(180deg, #111, #181818, #121212, #000);
+    border: 1px solid #888;
+    color: #f8f8f8;
+    display: grid;
+    place-content: center;
+}
