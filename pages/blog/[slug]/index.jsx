@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from './blog-post.module.css';
 import Comments from './partials/comments';
@@ -5,6 +6,7 @@ import AddComment from './partials/add-comment';
 import Button from '@components/button';
 import Heading from '@components/heading';
 import BlogImageBanner from '@components/blog-image-banner';
+import Message from '@components/message';
 import useSWR from 'swr';
 import { getPost, cacheKey, deletePost } from '../../../api-routes/posts';
 import { convertDate } from '../../../utils/convertDate';
@@ -30,6 +32,8 @@ const post = {
 };
 
 export default function BlogPost() {
+  const [msg, setMsg] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
   const router = useRouter();
   /* Use this slug to fetch the post from the database */
   const { slug } = router.query;
@@ -43,8 +47,15 @@ export default function BlogPost() {
   const { title, body, created_at, id } = data;
 
   const handleDeletePost = (id) => {
-    deletePost({ id })
-    router.push('/blog');
+    deletePost({ id });
+    setIsDelete((prev) => !prev);
+    setMsg((prev) => !prev);
+    setTimeout(() => {
+      setMsg(false);
+    }, 1990);
+    setTimeout(() => {
+      router.push('/blog');
+    }, 2000);
   };
 
   const handleEditPost = () => {
@@ -72,6 +83,13 @@ export default function BlogPost() {
           <Button onClick={() => handleDeletePost(id)}>Delete</Button>
           <Button onClick={handleEditPost}>Edit</Button>
         </div>
+        {msg ? (
+          <Message>
+            {isDelete
+              ? 'Post deleted successfully'
+              : 'Post updated successfully'}
+          </Message>
+        ) : null}
       </section>
 
       <Comments postId={post.id} />
