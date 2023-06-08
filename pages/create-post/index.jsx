@@ -4,12 +4,17 @@ import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { addPost, cacheKey } from '../../api-routes/posts';
 import { useRouter } from 'next/router';
+import Message
+
+const showMessage = () => (
+  <Message>
+
+  </Message>
+)
 
 export default function CreatePost() {
-
   const router = useRouter()
   const { trigger: addTrigger, isMutating } = useSWRMutation(cacheKey, addPost);
-
 
   const handleOnSubmit = ({ editorContent, titleInput, image }) => {
     const slug = createSlug(titleInput);
@@ -21,7 +26,9 @@ export default function CreatePost() {
     console.log('new Post:', newPost);
     addTrigger(newPost);
 
-    router.push('/blog')
+    setTimeout(() => {
+      router.push('/blog')
+    }, 2000)
   };
 
   return (
