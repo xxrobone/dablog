@@ -25,43 +25,37 @@ export const getPost = async ({ slug }) => {
   return { data, error, status };
 };
 
-
-
-export const addPost = async (_, {arg: {title, slug, body}}) => {
+export const addPost = async (_, { arg: { title, slug, body } }) => {
   const { data, error, status } = await supabase
-  .from('posts')
-  .insert([{title, slug, body}])
-  .single()
+    .from('posts')
+    .insert([{ title, slug, body }])
+    .single();
   if (error) {
-    console.log(error, status)
+    console.log(error, status);
   }
-  console.log({data})  
+  console.log({ data });
+  return { data, error, status };
+};
+
+export const deletePost = async ({ id }) => {
+  const { data, error, status } = await supabase
+    .from('posts')
+    .delete()
+    .eq('id', id);
+  if (error) {
+    console.log(error, status);
+  }
+  console.log({ data });
   return { data, error, status };
 };
 
 /*
-
-export const removePost = async ({ slug }) => {
-  const { data, error, status } = await supabase
-  .from('posts')
-  .delete()
-  .eq('slug', slug)
-  if (error) {
-    console.log(error, status)
-  }
-  console.log({data})  
-  return { data, error, status };
-};
-
-export const editPost = async (_, {arg: {title, body, image, slug} }) => {
-
+export const updatePost = async (_, {arg: {title, body, image, slug} }) => {
 const { data, error, status } = await supabase
-
 .from('posts')
-
 .update({title, body, image})
-
 .eq('slug', slug)
+.single()
 
 .select()
 return { data, error, status}

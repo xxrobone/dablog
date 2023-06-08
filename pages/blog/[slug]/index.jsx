@@ -6,7 +6,7 @@ import Button from '@components/button';
 import Heading from '@components/heading';
 import BlogImageBanner from '@components/blog-image-banner';
 import useSWR from 'swr';
-import { getPost, cacheKey } from '../../../api-routes/posts';
+import { getPost, cacheKey, deletePost } from '../../../api-routes/posts';
 import { convertDate } from '../../../utils/convertDate';
 import { timeAgo } from '../../../utils/timeAgo';
 
@@ -40,10 +40,11 @@ export default function BlogPost() {
     () => getPost({ slug })
   );
 
-  const { title, body, created_at } = data;
+  const { title, body, created_at, id } = data;
 
-  const handleDeletePost = () => {
-    console.log({ id: post.id });
+  const handleDeletePost = (id) => {
+    deletePost({ id })
+    router.push('/blog');
   };
 
   const handleEditPost = () => {
@@ -68,7 +69,7 @@ export default function BlogPost() {
 
         {/* The Delete & Edit part should only be showed if you are authenticated and you are the author */}
         <div className={styles.buttonContainer}>
-          <Button onClick={handleDeletePost}>Delete</Button>
+          <Button onClick={() => handleDeletePost(id)}>Delete</Button>
           <Button onClick={handleEditPost}>Edit</Button>
         </div>
       </section>
