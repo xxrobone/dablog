@@ -33,7 +33,6 @@ const post = {
 
 export default function BlogPost() {
   const [msg, setMsg] = useState(false);
-  const [isDelete, setIsDelete] = useState(false);
   const router = useRouter();
   /* Use this slug to fetch the post from the database */
   const { slug } = router.query;
@@ -83,13 +82,7 @@ export default function BlogPost() {
           <Button onClick={() => handleDeletePost(id)}>Delete</Button>
           <Button onClick={handleEditPost}>Edit</Button>
         </div>
-        {msg ? (
-          <Message>
-            {isDelete
-              ? 'Post deleted successfully'
-              : 'Post updated successfully'}
-          </Message>
-        ) : null}
+        {msg ? <Message>Post deleted successfully</Message> : null}
       </section>
 
       <Comments postId={post.id} />
