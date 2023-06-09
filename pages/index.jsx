@@ -1,5 +1,6 @@
 import Heading from '@components/heading';
 import Hero from '@components/hero/Hero';
+import LogoText from '@components/logo/LogoText'
 import HomeGrid from '@components/homecontent/HomeGrid';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
@@ -24,11 +25,12 @@ export default function Home() {
           transition={{ duration: 0.6, delay: 0.6, ease: 'easeInOut' }}
           exit={{ y: -500, x: -600, opacity: 0, scale: 0.5 }}
         >
-          <Hero isVisible={isVisible} setIsVisibe={setIsVisibe} />
+         {/*  <Hero isVisible={isVisible} setIsVisibe={setIsVisibe} /> */}
         </motion.div>
       ) : (
         ''
       )}
+      <LogoText />
     </AnimatePresence>
   );
 }
