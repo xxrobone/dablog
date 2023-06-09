@@ -89,7 +89,7 @@ export default function BlogPost() {
         {msg ? <Message>Post deleted successfully</Message> : null}
       </section>
 
-      <Comments slug={slug} />
+      <Comments slug={slug} id={id} />
       {/* <Comments postId={post.id} /> */}
      
       {/* This component should only be displayed if a user is authenticated */}
