@@ -1,3 +1,5 @@
+import { supabase } from '@lib/supabaseClient'
+
 export const getComments = () => {
   //Handle get all comments
 };

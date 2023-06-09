@@ -1,0 +1,19 @@
+.comment {
+    position: relative;
+    padding: 10px 20px;
+    background: #efefef;
+    border-radius: 10px;
+    margin-bottom: 15px;
+
+    .timestamp {
+      color: #777;
+      position: absolute;
+      right: 20px;
+      top: 10px;
+    }
+
+    h4, p {
+    margin: 10px;
+}
+}
+ 

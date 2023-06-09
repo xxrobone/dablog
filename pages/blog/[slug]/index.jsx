@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from './blog-post.module.css';
-import Comments from './partials/comments';
-import AddComment from './partials/add-comment';
+/* import Comments from './partials/comments';
+import AddComment from './partials/add-comment'; */
 import Button from '@components/button';
 import Heading from '@components/heading';
 import BlogImageBanner from '@components/blog-image-banner';
@@ -11,6 +11,8 @@ import useSWR from 'swr';
 import { getPost, cacheKey, deletePost } from '../../../api-routes/posts';
 import { convertDate } from '../../../utils/convertDate';
 import { timeAgo } from '../../../utils/timeAgo';
+
+import Comments from './commentsSection/comments/comments';
 
 const post = {
   id: '1234',
@@ -84,10 +86,10 @@ export default function BlogPost() {
         {msg ? <Message>Post deleted successfully</Message> : null}
       </section>
 
-      <Comments postId={post.id} />
-
+      {/* <Comments postId={post.id} /> */}
+        <Comments />
       {/* This component should only be displayed if a user is authenticated */}
-      <AddComment postId={post.id} />
+     {/*  <AddComment postId={post.id} /> */}
     </>
   );
 }
