@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from './blog-post.module.css';
 /* import Comments from './partials/comments';
@@ -35,6 +35,7 @@ const post = {
 
 export default function BlogPost() {
   const [msg, setMsg] = useState(false);
+  
   const router = useRouter();
   /* Use this slug to fetch the post from the database */
   const { slug } = router.query;
@@ -44,6 +45,8 @@ export default function BlogPost() {
     slug ? `${cacheKey}${slug}` : null,
     () => getPost({ slug })
   );
+
+  
 
   const { title, body, created_at, id } = data;
 
@@ -86,8 +89,9 @@ export default function BlogPost() {
         {msg ? <Message>Post deleted successfully</Message> : null}
       </section>
 
+      <Comments slug={slug} />
       {/* <Comments postId={post.id} /> */}
-        <Comments />
+     
       {/* This component should only be displayed if a user is authenticated */}
      {/*  <AddComment postId={post.id} /> */}
     </>

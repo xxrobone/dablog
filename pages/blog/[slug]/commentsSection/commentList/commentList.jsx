@@ -1,20 +1,10 @@
-import React from 'react'
+import React from 'react';
 
 // styles
-import styles from 'commmentList.module.scss'
+import styles from './commentList.module.scss';
 
-const commentList = ({children}) => {
-  return (
-      <ul>
-          {
-              props.map((props) => {
-                  <li key=''>
-                      {children}
-                  </li>
-              })
-          }
-     </ul>
-  )
-}
+const CommentList = (props) => {
+  return <ul className={styles.comment_list}>{props.children}</ul>;
+};
 
-export default commentList
+export default CommentList;

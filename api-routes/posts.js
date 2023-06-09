@@ -49,12 +49,12 @@ export const deletePost = async ({ id }) => {
   return { data, error, status };
 };
 
-export const updatePost = async (_, {arg: {title, slug, body, id}}) => {
-const { data, error, status } = await supabase
-.from('posts')
-.update({title, slug, body})
-.eq('id', id)
-.single()
-  
-return { data, error, status}
-}; 
+export const updatePost = async (_, { arg: { title, slug, body, id } }) => {
+  const { data, error, status } = await supabase
+    .from('posts')
+    .update({ title, slug, body })
+    .eq('id', id)
+    .single();
+
+  return { data, error, status };
+};

@@ -33,7 +33,7 @@ export default function Blog() {
   return (
     <section>
       <Heading>Blog</Heading>
-      {data.map((post) => (
+      {data && data.map((post) => (
         <Link
           key={post.slug}
           className={styles.link}
