@@ -25,7 +25,7 @@ const Comments = ({ slug, id }) => {
   );
 
   // gettind the comment by sending the id for the post as a parameter
-  // the post id is connected to the  comments done with the post_id in the comments 
+  // the post id is connected to the  comments done with the post_id in the comments
   const { data: { data = [] } = {} } = useSWR(
     slug ? `${cacheKey}${slug}` : null,
     () => getComments({ id })
@@ -46,7 +46,10 @@ const Comments = ({ slug, id }) => {
     const newComment = { username, comment, post_id: id };
     addTrigger(newComment);
     console.log('comment added to supabase, success: ', username, comment, id);
-    /*  setComment(''); */
+    setState({
+      username: '',
+      comment: '',
+    });
   };
 
   return (
