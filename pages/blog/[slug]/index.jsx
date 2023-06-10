@@ -9,7 +9,7 @@ import Heading from '@components/heading';
 import BlogImageBanner from '@components/blog-image-banner';
 import Message from '@components/message';
 import useSWR from 'swr';
-import { getPost, cacheKey, deletePost } from '@/api-routes/posts';s
+import { getPost, cacheKey, deletePost } from '@/api-routes/posts';
 import { convertDate } from '@/utils/convertDate';
 import { timeAgo } from '@/utils/timeAgo';
 import Comments from './commentsSection/comments/comments';
@@ -46,7 +46,7 @@ export default function BlogPost() {
     () => getPost({ slug })
   );
 
-  console.log(data)
+  console.log(data);
 
   const { title, body, created_at, id } = data;
 

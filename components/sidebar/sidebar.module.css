@@ -1,4 +1,7 @@
 .container {
+  position: sticky;
+  top: 0vh;
+  left: 10vw;
   margin-right: -1rem;
   margin-left: -1rem;
   padding-right: 0;
@@ -7,6 +10,7 @@
 
 @media (min-width: 768px) {
   .container {
+    top: 40vh;
     width: 150px;
     flex-shrink: 0;
     margin-right: 0;
@@ -14,12 +18,15 @@
   }
 }
 
-@media (min-width: 1024px) {
-  .sticky {
-    position: sticky;
-    top: 5rem;
+@media (min-width: 1125px) {
+  .container {
+    width: 150px;
+    flex-shrink: 0;
+    margin-right: 0;
+    margin-left: 0;
   }
 }
+
 
 .navigation {
   display: flex;

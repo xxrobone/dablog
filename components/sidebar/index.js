@@ -45,7 +45,6 @@ export default function Navbar() {
 
   return (
     <aside className={styles.container}>
-      <div className={styles.sticky}>
         <nav className={styles.navigation} id='nav'>
           <div className={styles.navigationItemWrapper}>
             {Object.entries(navItems).map(
@@ -86,7 +85,6 @@ export default function Navbar() {
             )}
           </div>
         </nav>
-      </div>
     </aside>
   );
 }

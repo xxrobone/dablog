@@ -2,32 +2,20 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
-  margin-bottom: 10rem;
   display: flex;
   flex-direction: column;
   margin-right: 1rem;
   margin-left: 1rem;
   margin-top: 2rem;
+
+  overflow-x: hidden;
 }
 
-@media (min-width: 768px) {
-  .container {
-    max-width: 64rem;    
-    flex-direction: row;
-    margin-top: 5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    margin-top: 8rem;
-   
-  }
-}
 
 .mainContent {
   flex: 1 1 auto;
-  min-width: 0;
+  width: 100%;
+  margin: 0 auto;
   margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -36,8 +24,7 @@
 
 @media (min-width: 768px) {
   .mainContent {
+    width: 65%;
     margin-top: 0;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
   }
 }
