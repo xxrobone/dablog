@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import CommentList from '../commentList/commentList';
-import { Comment } from '../comment/comment';
+import Comment from '../comment/comment';
 import { addComment, getComments, cacheKey } from '@/api-routes/comments';
 // styles
 import styles from './comments.module.scss';
