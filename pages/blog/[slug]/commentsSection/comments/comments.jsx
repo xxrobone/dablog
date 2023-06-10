@@ -1,12 +1,13 @@
-'use client';
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import CommentList from '../commentList/commentList';
 import Comment from '../comment/comment';
-import { addComment, getComments, cacheKey } from '@/api-routes/comments';
+import { addComment, getComments } from '@/api-routes/comments';
 // styles
 import styles from './comments.module.scss';
+
+const cacheKey = '/api/blog'
 
 const Comments = ({ slug, id }) => {
   // if adding typescript useState<string>("")

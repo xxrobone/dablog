@@ -1,7 +1,5 @@
 import { supabase } from '@/lib/supabaseClient';
 
-export const cacheKey = '/api/blogs';
-
 export const getComments = async ({ id }) => {
   // now just getting all the comments, then will have to get comments related to the post
   const { data, error } = await supabase

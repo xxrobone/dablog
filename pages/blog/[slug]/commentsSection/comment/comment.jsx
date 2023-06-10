@@ -8,4 +8,4 @@ const Comment = ({ username, comment, time }) => (
   </div>
 );
 
-export default Comment
+export default Comment;

@@ -46,6 +46,8 @@ export default function BlogPost() {
     () => getPost({ slug })
   );
 
+  console.log(data)
+
   const { title, body, created_at, id } = data;
 
   const handleDeletePost = (id) => {

@@ -1,7 +1,7 @@
 .container {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  max-width: 64rem;
+  width: 100%;
   margin-bottom: 10rem;
   display: flex;
   flex-direction: column;
@@ -12,6 +12,7 @@
 
 @media (min-width: 768px) {
   .container {
+    max-width: 64rem;    
     flex-direction: row;
     margin-top: 5rem;
   }
@@ -20,8 +21,7 @@
 @media (min-width: 1024px) {
   .container {
     margin-top: 8rem;
-    margin-right: auto;
-    margin-left: auto;
+   
   }
 }
 
@@ -31,14 +31,13 @@
   margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+ 
 }
 
 @media (min-width: 768px) {
   .mainContent {
     margin-top: 0;
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
