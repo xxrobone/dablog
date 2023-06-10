@@ -9,10 +9,10 @@ const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({ children }) {
   return (
-    <div className={classNames(styles.container, inter.className)}>
+    <main className={classNames(styles.container, inter.className)}>
       <Logo />
       <Sidebar />
-      <main className={styles.mainContent}>{children}</main>
-    </div>
+      {children}
+    </main>
   );
 }

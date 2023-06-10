@@ -4,9 +4,16 @@
 }
 
 .container {
+  margin: 0 auto;
   margin-top: 20vh;
+  width: 65%;
   padding-bottom: 40px;
   border-bottom: 1px solid #ccc;
+@media screen and (max-width: 768px) {
+  width: 100%;
+  padding: 2rem;
+}
+
 }
 
 .link {
