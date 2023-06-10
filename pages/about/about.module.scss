@@ -1,4 +1,5 @@
 .about {
+    
     padding: 2rem;
     width: 100%;
     min-height: 100vh;
@@ -6,11 +7,148 @@
     flex-direction: column;
 
     .content_wrapper {
-        margin-top: 20svh;
+        margin-top: 0svh;
         position: relative;
         z-index: 100;
         width: 100%;
-        height: 60%;
         pointer-events: none;
+
+        marquee {
+            color: #888;
+        }
       }
+
+      // hittade inget bättre sätt för att ha
+// bild som bakgrund, använda IMG är ju optimalt
+
+.about_hero {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 500px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    background-image: url('../../public/images/robertwagar.webp');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100%;
+    opacity: 1;
+  
+    @media(min-width: 768px) {
+      width: 100%;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
+              transform: translateX(-50%);    
+      }
+
+      .overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.651);
+      }
+  }
+  
+  .about_wrapper {
+      margin: 0 auto;
+      padding: 3rem 0;
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;   
+      color: #121212;
+
+      h2:first-of-type {
+        cursor: pointer;
+    position: relative;
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    margin: 1rem;
+    font-size: 1.125rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+    letter-spacing: 4px;
+    overflow: hidden;
+    background-color: transparent;
+        background: #db491cc7;
+        color: #ffffff;
+        box-shadow: 0 0 5px #eb9a7a,
+                    0 0 25px #eba37ab6,
+                    0 0 50px #eb9e7a6e,
+                    0 0 100px #eba37a34;
+         -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+
+         &:hover {
+            background: #ffffffc7;
+            color: #db491c;
+            box-shadow: 0 0 5px #fafafa,
+                        0 0 25px #fafafab6,
+                        0 0 50px #fafafa6e,
+                        0 0 100px #fafafa34;
+             -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+         }
+      }
+      
+      @media (min-width: 768px) {   
+          margin-top:0vh; 
+          padding: 6rem;
+          width: 60svw;        
+        }
+  
+        section {
+          padding: 4rem 0;
+        }
+
+        section:first-of-type {
+
+            h2 {
+                color: white;
+            }
+            p {
+                padding: 2rem;
+                margin-top: 4rem;
+                color: white;
+                background-color: black;
+            }
+        }
+  
+        h2 {
+          padding: 1rem 0;
+          font-size: clamp(2rem, 3vw, 4rem);       
+        }
+  
+        p {
+          padding: 1rem 0;
+        }
+
+        a {
+            text-decoration: underline;
+            font-weight: 600;
+            color: #db491c;
+        }
+  
+    }
+      
+   
+    
 }

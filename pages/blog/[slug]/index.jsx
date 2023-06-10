@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useUser } from '@supabase/auth-helpers-react';
 import styles from './blog-post.module.css';
 /* import Comments from './partials/comments';
 import AddComment from './partials/add-comment'; */
@@ -11,7 +12,6 @@ import useSWR from 'swr';
 import { getPost, cacheKey, deletePost } from '../../../api-routes/posts';
 import { convertDate } from '../../../utils/convertDate';
 import { timeAgo } from '../../../utils/timeAgo';
-
 import Comments from './commentsSection/comments/comments';
 
 const post = {
@@ -35,7 +35,7 @@ const post = {
 
 export default function BlogPost() {
   const [msg, setMsg] = useState(false);
-  
+  const user = useUser();
   const router = useRouter();
   /* Use this slug to fetch the post from the database */
   const { slug } = router.query;
@@ -45,8 +45,6 @@ export default function BlogPost() {
     slug ? `${cacheKey}${slug}` : null,
     () => getPost({ slug })
   );
-
-  
 
   const { title, body, created_at, id } = data;
 
@@ -82,18 +80,24 @@ export default function BlogPost() {
         <span className={styles.author}>Author: {post.author}</span>
 
         {/* The Delete & Edit part should only be showed if you are authenticated and you are the author */}
-        <div className={styles.buttonContainer}>
-          <Button onClick={() => handleDeletePost(id)}>Delete</Button>
-          <Button onClick={handleEditPost}>Edit</Button>
-        </div>
+
+        {user ? (
+          <div className={styles.buttonContainer}>
+            <Button onClick={() => handleDeletePost(id)}>Delete</Button>
+            <Button onClick={handleEditPost}>Edit</Button>
+          </div>
+        ) : (
+          ''
+        )}
+
         {msg ? <Message>Post deleted successfully</Message> : null}
       </section>
 
       <Comments slug={slug} id={id} />
       {/* <Comments postId={post.id} /> */}
-     
+
       {/* This component should only be displayed if a user is authenticated */}
-     {/*  <AddComment postId={post.id} /> */}
+      {/*  <AddComment postId={post.id} /> */}
     </>
   );
 }

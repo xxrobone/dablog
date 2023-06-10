@@ -5,7 +5,7 @@ import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-const LoginPage = () => {
+const Login = () => {
   const supabaseClient = useSupabaseClient();
   const user = useUser();
 
@@ -40,4 +40,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
