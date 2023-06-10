@@ -1,5 +1,13 @@
 .heading_text {
     position: absolute;
+
+    @media screen and (max-width: 768px) {
+      width: 380px;
+    }
+
+    @media screen and (max-width: 440px) {
+      width: 320px;
+    }
   }
 
   .dot {

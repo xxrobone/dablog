@@ -10,6 +10,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     overflow: hidden;
+    z-index: -1;
+    @media(max-width: 1100px) {
+      margin-top: 10vh;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
 
     h2 {
         margin-bottom: 2rem;
@@ -39,6 +46,12 @@
     overflow: hidden;
     transform: translateY(100%);
     animation: my-animation 50s linear infinite;
+
+    @media(max-width: 1100px) {
+      height: 220px;
+      transform: translateX(100%) translateY(100%);
+      flex-direction: row;
+    }
 
     &:hover {
       animation-play-state: paused;
@@ -142,5 +155,47 @@
     -moz-transform: translateY(-100%);
     -webkit-transform: translateY(-100%);
     transform: translateY(-100%);
+  }
+}
+
+@media(max-width: 1100px) {
+
+  @keyframes my-animation {
+    from {
+      -moz-transform: translateX(100%);
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+    }
+    to {
+      -moz-transform: translateX(-100%);
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+    }
+  }
+    
+  @keyframes my-animation-2 {
+    from {
+      -moz-transform: translateX(-100%);
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+    }
+    to {
+      -moz-transform: translateX(100%);
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+    }
+  }
+  
+  @keyframes my-animation-slow {
+    from {
+      -moz-transform: translateX(100%);
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+    }
+    to {
+      -moz-transform: translateX(-100%);
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+    }
   }
 }
