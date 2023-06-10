@@ -1,7 +1,7 @@
 .container {
   position: sticky;
   top: 0vh;
-  left: 10vw;
+  left: 0vw;
   margin-right: -1rem;
   margin-left: -1rem;
   padding-right: 0;
@@ -20,6 +20,7 @@
 
 @media (min-width: 1125px) {
   .container {
+    left: 5vw;
     width: 150px;
     flex-shrink: 0;
     margin-right: 0;
@@ -51,8 +52,7 @@
 .navigationItemWrapper {
   display: flex;
   flex-direction: row;
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
+  margin: 0.5rem;
 }
 
 @media (min-width: 768px) {
@@ -80,7 +80,7 @@
 .navigationItem {
   display: flex;
   align-items: middle;
-  margin-bottom: 0.5rem;
+  margin: 0.25rem 0.5rem 0.75rem;
   color: inherit;
   text-decoration: none;
   background: transparent;

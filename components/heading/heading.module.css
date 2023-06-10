@@ -1,4 +1,7 @@
 .container {
+  position: absolute;
+  top: 2rem;
+  left: 4rem;
   margin-bottom: 20px;
   font-size: 40px;
 }
