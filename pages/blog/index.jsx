@@ -5,6 +5,8 @@ import Heading from '@components/heading';
 import useSWR from 'swr';
 import { getPosts, cacheKey } from '../../api-routes/posts';
 import { convertDate } from '../../utils/convertDate';
+import BlogHeading from '../../components/pageHeadings/blogHeading';
+import { motion } from 'framer-motion';
 
 /* const mockData = [
   {
@@ -31,20 +33,32 @@ export default function Blog() {
   console.log(posts) */
 
   return (
-    <section>
-      <Heading>Blog</Heading>
-      {data && data.map((post) => (
-        <Link
-          key={post.slug}
-          className={styles.link}
-          href={`/blog/${post.slug}`}
-        >
-          <div className='w-full flex flex-col'>
-            <p>{post.title}</p>
-            <time className={styles.date}>{convertDate(post.created_at)}</time>
-          </div>
-        </Link>
-      ))}
-    </section>
+    <div className={styles.blog}>
+      <Heading>
+        <BlogHeading />
+      </Heading>
+      <motion.section
+        className={styles.container}
+        initial={{ y: 1000, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 2, duration: 2 }}
+      >
+        {data &&
+          data.map((post) => (
+            <Link
+              key={post.slug}
+              className={styles.link}
+              href={`/blog/${post.slug}`}
+            >
+              <div className='w-full flex flex-col'>
+                <p>{post.title}</p>
+                <time className={styles.date}>
+                  {convertDate(post.created_at)}
+                </time>
+              </div>
+            </Link>
+          ))}
+      </motion.section>
+    </div>
   );
 }

@@ -8,13 +8,9 @@
     h4 {
         position: absolute;
         left: 1rem;
-        top: -5px;
+        top: -2px;
         z-index: 2;   
         color: black;
-        
-        @media (min-width: 768px) {
-            top: -10px;
-        }
     }
 
     .img {

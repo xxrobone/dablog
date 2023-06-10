@@ -1,5 +1,10 @@
+.blog {
+  width: 100%;
+  min-height: 100svh;
+}
+
 .container {
-  margin-top: 5rem;
+  margin-top: 20vh;
   padding-bottom: 40px;
   border-bottom: 1px solid #ccc;
 }

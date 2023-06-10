@@ -1,7 +1,8 @@
-
-.content_wrapper {        
+.content_wrapper {   
+    margin-top: 20vh;     
     width: 100%;
-    height: 100svh;
+    padding: 2rem;
+    height: calc(100svh - 20svh);
     z-index: 10;
     color: black;
     background: linear-gradient(120deg, #fff 50%, #000 50%);
@@ -38,6 +39,11 @@
     overflow: hidden;
     transform: translateY(100%);
     animation: my-animation 50s linear infinite;
+
+    &:hover {
+      animation-play-state: paused;
+        cursor: pointer;
+    }
   
    
     h2:first-of-type {
@@ -51,16 +57,13 @@
          }
 
   .even {
-      transform: translateY(-50%);
+      transform: translateY(-30%);
       animation: my-animation-2 120s linear infinite;
 
       @media(min-width: 778px) {
         padding: 0.25rem;
       }
 
-      .even:hover {
-      animation-play-state: paused;
-      }
   }
 
   .slow {
@@ -69,18 +72,6 @@
     @media(min-width: 778px) {
       padding: 0.25rem;
     }
-  }
-
-
-
-  .article {
-    position: absolute;
-    z-index: 100;
-    left: 30%;
-    top: 40%;
-    width: 200px;
-    height: 400px;
-    pointer-events: none;
   }
 
   
@@ -103,9 +94,6 @@
                     only screen and (min-device-pixel-ratio: 2)
   {  
   
-   .section.top {
-    
-   }  
   }
 }
   
@@ -113,12 +101,12 @@
   from {
     -moz-transform: translateY(100%);
     -webkit-transform: translateY(100%);
-    transform: translateY(100%) translateX(0);
+    transform: translateY(100%);
   }
   to {
     -moz-transform: translateY(-100%);
     -webkit-transform: translateY(-100%);
-    transform: translateY(-100%) translateX(100px);
+    transform: translateY(-100%);
   }
 }
   
@@ -139,11 +127,11 @@
   from {
     -moz-transform: translateY(100%);
     -webkit-transform: translateY(100%);
-    transform: translateY(100%)  translateX(0);
+    transform: translateY(100%);
   }
   to {
     -moz-transform: translateY(-100%);
     -webkit-transform: translateY(-100%);
-    transform: translateY(-100%) translateX(-100px);
+    transform: translateY(-100%);
   }
 }

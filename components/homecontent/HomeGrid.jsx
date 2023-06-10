@@ -72,6 +72,8 @@ const imgData2 = [
   },
 ];
 
+// Tanken är att byta ut bilderna till blog posts, så man kan clicka sig till dom även från första sidan
+
 const HomeGrid = () => {
   return (
     <motion.div
@@ -108,20 +110,23 @@ const HomeGrid = () => {
       </section>
       <section className={`${styles.section} ${styles.clr}`}>
         <p>
-          I&apos;m a developer with focus on creating smart user interfaces &
-          useful interactions
+          I think the creative side of people is what will matter when we need
+          to solve our problems
           <br />
           <br />
-          My design is equally about what it does as much as how it attracts the
-          eye
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda
+          iusto quibusdam temporibus porro laboriosam culpa, eaque nemo nulla
+          corrupti soluta.
         </p>
         <p>
-          If you are looking for a developer to bring your ideas to life, You
-          have come to the right place <br />
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt, earum.{' '}
           <br />
-          As a developer I &apos; m focused on finding the best solutions for
-          you problems/ needs by developing rich web experiences & applications
-          for your users
+          <br />
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit
+          delectus inventore in assumenda minima ea quaerat, incidunt, excepturi
+          odit tempora, porro nam veritatis harum quam sequi enim earum
+          consequatur officia est voluptates molestias quidem sapiente saepe.
+          Enim quisquam consequuntur commodi.
           <br />
         </p>
       </section>
@@ -132,20 +137,6 @@ const HomeGrid = () => {
           </div>
         ))}
       </section>
-      <article className={styles.article}>
-        <marquee>Developer at your service</marquee>
-        <marquee direction='right'>
-          These animations are done with pure html
-        </marquee>
-        <marquee behavior='slide'>that is pretty cool right?</marquee>
-        <marquee scrollamount='10'>
-          the development goes fast forward now
-        </marquee>
-        <marquee scrolldelay='200'>so much to learn</marquee>
-        <marquee bgcolor='#ffbcac' width='50%'>
-          100% coffee & code
-        </marquee>
-      </article>
     </motion.div>
   );
 };

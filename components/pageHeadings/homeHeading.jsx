@@ -2,18 +2,18 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 //styles
-import styles from './logo.module.scss';
+import styles from './pageHeadings.module.scss';
 
 const pathVariants = {
   hidden: {
-        pathLength: 0,
-        stroke: 'transparent',
-        fill: 'none',
+    pathLength: 0,
+    stroke: 'transparent',
+    fill: 'none',
   },
   visible: {
     pathLength: 1,
     strokeWidth: 4,
-    stroke: '#F2E5D7',
+    stroke: '#ee5f0c6f',
     transition: {
       duration: 1,
       when: 'afterChildren',
@@ -34,11 +34,11 @@ const pathVariants = {
   },
 };
 
-const LogoText = () => {
+const HomeHeading = () => {
   return (
     <div>
       <motion.svg
-        className={styles.logo_text}
+        className={styles.heading_text}
         width='594'
         height='152'
         viewBox='0 0 594 152'
@@ -62,10 +62,16 @@ const LogoText = () => {
           variants={pathVariants}
           initial={{ y: -500 }}
           animate={{
-              y: [-500, -100, 15, 15, 15, 15, 15, 15, 15, 15, -20, -30, -30, -30, -20, 15,  0, 0],
-              x: [0, 0, 0, 0, 0, 0, -100, -230, -200, 335, 335, 325, 325, 325, 335, 0, 0],
+            y: [
+              -500, -100, 15, 15, 15, 15, 15, 15, 15, 15, -20, -30, -30, -30,
+              -20, 15, 0, 0,
+            ],
+            x: [
+              0, 0, 0, 0, 0, 0, -100, -230, -200, 335, 335, 325, 325, 325, 335,
+              0, 0,
+            ],
             fill: '#d6764d',
-            stroke: '#a97840',
+            stroke: '#fafafa',
           }}
           transition={{ duration: 2.8, delay: 1.2 }}
         />
@@ -90,4 +96,4 @@ const LogoText = () => {
   );
 };
 
-export default LogoText;
+export default HomeHeading;
