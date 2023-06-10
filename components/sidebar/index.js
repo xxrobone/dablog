@@ -59,7 +59,7 @@ export default function Navbar() {
                 if (path === '/logout') {
                   return (
                     <button
-                      key={path}
+                      key={name}
                       className={classNames(styles.navBtn, {
                         [styles.textNeutral]: !isActive,
                         [styles.fontBold]: isActive,
@@ -72,7 +72,7 @@ export default function Navbar() {
                 }
                 return (
                   <Link
-                    key={path}
+                    key={name}
                     href={path}
                     className={classNames(styles.navigationItem, {
                       [styles.textNeutral]: !isActive,

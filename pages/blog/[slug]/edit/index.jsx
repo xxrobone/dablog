@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import BlogEditor from '../../../../components/blog-editor';
+import BlogEditor from '@/components/blog-editor';
 import Message from '@components/message';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
-import { getPost, updatePost, cacheKey } from '../../../../api-routes/posts';
+import { getPost, updatePost, cacheKey } from '@/api-routes/posts';
 import { createSlug } from '@/utils/createSlug';
-import { removeHTML } from '../../../../utils/removeHTML';
+import { removeHTML } from '@/utils/removeHTML';
 
 const mockData = {
   title: 'Community-Messaging Fit',

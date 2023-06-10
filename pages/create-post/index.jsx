@@ -3,7 +3,7 @@ import { createSlug } from '@/utils/createSlug';
 import { removeHTML } from '@/utils/removeHTML';
 import { useState } from 'react';
 import useSWRMutation from 'swr/mutation';
-import { addPost, cacheKey } from '../../api-routes/posts';
+import { addPost, cacheKey } from '@/api-routes/posts';
 import { useRouter } from 'next/router';
 import Message from '@/components/message';
 

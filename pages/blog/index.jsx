@@ -3,9 +3,9 @@ import styles from './blog.module.css';
 import Heading from '@components/heading';
 /* import { supabase } from "../../lib/supabaseClient"; */
 import useSWR from 'swr';
-import { getPosts, cacheKey } from '../../api-routes/posts';
-import { convertDate } from '../../utils/convertDate';
-import BlogHeading from '../../components/pageHeadings/blogHeading';
+import { getPosts, cacheKey } from '@/api-routes/posts';
+import { convertDate } from '@/utils/convertDate';
+import BlogHeading from '@components/pageHeadings/blogHeading';
 import { motion } from 'framer-motion';
 
 /* const mockData = [

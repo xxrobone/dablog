@@ -103,7 +103,7 @@ const HomeGrid = () => {
       </section>
       <section className={`${styles.section} ${styles.even}`}>
         {imgData.map((img) => (
-          <div key={img.id}>
+          <div key={img.title}>
             <ImageWrapper {...img} />
           </div>
         ))}
@@ -131,9 +131,9 @@ const HomeGrid = () => {
         </p>
       </section>
       <section className={`${styles.section} ${styles.slow}`}>
-        {imgData2.map((img) => (
-          <div key={img.id}>
-            <ImageWrapper {...img} />
+        {imgData2.map((item) => (
+          <div key={item.title}>
+            <ImageWrapper {...item} />
           </div>
         ))}
       </section>

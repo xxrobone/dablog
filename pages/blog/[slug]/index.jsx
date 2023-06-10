@@ -9,9 +9,9 @@ import Heading from '@components/heading';
 import BlogImageBanner from '@components/blog-image-banner';
 import Message from '@components/message';
 import useSWR from 'swr';
-import { getPost, cacheKey, deletePost } from '../../../api-routes/posts';
-import { convertDate } from '../../../utils/convertDate';
-import { timeAgo } from '../../../utils/timeAgo';
+import { getPost, cacheKey, deletePost } from '@/api-routes/posts';
+import { convertDate } from '@/utils/convertDate';
+import { timeAgo } from '@/utils/timeAgo';
 import Comments from './commentsSection/comments/comments';
 
 const post = {
