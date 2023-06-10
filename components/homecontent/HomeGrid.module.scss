@@ -11,8 +11,9 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     overflow: hidden;
     z-index: -1;
-    @media(max-width: 1100px) {
-      margin-top: 10vh;
+
+    @media screen and (max-width: 1100px) {
+      margin-top: 5vh;
       height: 100%;
       display: grid;
       grid-template-columns: 1fr;

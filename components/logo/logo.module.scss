@@ -1,7 +1,7 @@
 .logo {
       position: absolute;
       top: 1rem;
-      left: 2rem;    
+      right: 2rem;    
       height: 125px;
       width: 125px;    
       -webkit-transition-delay: 0.5s;    
@@ -24,9 +24,10 @@
   
     @media screen and (max-width: 1125px) { 
       .logo {
-            bottom: 2rem;
+          top: auto;
+            bottom: 1rem;
           left: auto;
-          right: 2rem;
+          right: 0rem;
       }
     }
 
