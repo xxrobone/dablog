@@ -7,7 +7,7 @@ import { addComment, getComments } from '@/api-routes/comments';
 // styles
 import styles from './comments.module.scss';
 
-const cacheKey = '/api/blog'
+const cacheKey = '/api/blog';
 
 const Comments = ({ slug, id }) => {
   // if adding typescript useState<string>("")
@@ -74,12 +74,13 @@ const Comments = ({ slug, id }) => {
         <button type='submit'>Submit</button>
       </form>
       <ul>
-        {data &&
-          data.map((c) => (
-            <div key={c.id}>
-              <Comment {...c} />
-            </div>
-          ))}
+        {data
+          ? data.map((c) => (
+              <div key={c.id}>
+                <Comment {...c} />
+              </div>
+            ))
+          : ''}
       </ul>
     </div>
   );
