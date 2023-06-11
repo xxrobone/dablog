@@ -37,6 +37,7 @@ const AboutHeading = () => {
   return (
     <div>
       <motion.svg
+        className={styles.heading_text}
         width='477'
         height='119'
         viewBox='0 0 477 119'

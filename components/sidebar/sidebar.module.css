@@ -6,7 +6,7 @@
 
 @media screen and (min-width: 768px) {
   .container {
-    top: 40vh;
+    top: 30vh;
     left: 5vw;
     width: 150px;
     flex-shrink: 0;
