@@ -38,6 +38,27 @@ export const addComment = async (
   return { data, error, status };
 };
 
-export const removeComment = () => {
-  //Handle remove comment here
+export const editComment = async (_,
+  { arg: { editComment } }) => {
+  const { data, error } = await supabase
+      .from("comments")
+      .update({
+        comment: editComment.body,
+      })
+      .match({ id: editComment.id });
+    if (!error && data) {
+      window.alert("Edited Comment!");
+    } else {
+      window.alert(error?.message);
+    }
+}
+
+export const deleteComment = async ({ id }) => {
+  console.log('fram deleteComment in comments api:', id)
+      const { data, error } = await supabase.from("comments").delete().eq({ 'id': id });
+      if (!error && data) {
+        window.alert("Deleted Comment :)");
+      } else {
+        window.alert(error?.message);
+      }
 };
