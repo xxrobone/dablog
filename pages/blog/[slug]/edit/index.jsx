@@ -7,6 +7,7 @@ import useSWRMutation from 'swr/mutation';
 import { getPost, updatePost, cacheKey } from '@/api-routes/posts';
 import { createSlug } from '@/utils/createSlug';
 import { removeHTML } from '@/utils/removeHTML';
+import { createPagesServerClient } from '@supabase/auth-helpers-nextjs';
 
 const mockData = {
   title: 'Community-Messaging Fit',
@@ -70,3 +71,38 @@ export default function EditBlogPost() {
     </>
   );
 }
+
+export const getServerSideProps = async (ctx) => {
+  const supabase = createPagesServerClient(ctx);
+
+  const { slug } = ctx.params;
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  const { data } = await supabase
+    .from('posts')
+    .select()
+    .single()
+    .eq('slug', slug);
+
+  console.log(session);
+
+  const isUser = data.user_id === session.user.id;
+
+  console.log(isUser);
+
+  if (!isUser) {
+    return {
+      redirect: {
+        destination: `/blog/${slug}`,
+        permanent: true,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};
