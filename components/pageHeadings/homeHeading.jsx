@@ -12,7 +12,7 @@ const pathVariants = {
   },
   visible: {
     pathLength: 1,
-    strokeWidth: 4,
+    strokeWidth: 2,
     stroke: '#ee5f0c',
     transition: {
       duration: 1,
