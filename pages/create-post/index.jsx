@@ -6,9 +6,13 @@ import useSWRMutation from 'swr/mutation';
 import { addPost, cacheKey } from '@/api-routes/posts';
 import { useRouter } from 'next/router';
 import Message from '@/components/message';
+import { useUser } from '@supabase/auth-helpers-react';
 
 export default function CreatePost() {
   const [msg, setMsg] = useState(false);
+
+  const user = useUser();
+
   const router = useRouter();
   const { trigger: addTrigger, isMutating } = useSWRMutation(cacheKey, addPost);
 
@@ -16,9 +20,11 @@ export default function CreatePost() {
     const slug = createSlug(titleInput);
     const title = titleInput;
     const body = removeHTML(editorContent);
+    const user_id = user.id;
 
-    const newPost = { title, slug, body };
-    console.log({ title, slug, body });
+    const newPost = { title, slug, body, user_id };
+    console.log({ title, slug, body, user_id });
+    console.log('and: user.id : ', user.id);
     console.log('new Post:', newPost);
     addTrigger(newPost);
     setMsg((prev) => !prev);

@@ -13,7 +13,7 @@ const pathVariants = {
   visible: {
     pathLength: 1,
     strokeWidth: 4,
-    stroke: '#ee5f0c6f',
+    stroke: '#ee5f0c',
     transition: {
       duration: 1,
       when: 'afterChildren',

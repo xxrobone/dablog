@@ -3,7 +3,7 @@
     margin: 0 auto;
     margin-top: 10vh;     
     width: 65%;
-    padding: 2rem;
+    padding: 2rem 0;
     height: 100%;
     z-index: 10;
     background: linear-gradient(120deg, #fff 50%, #000 50%);
@@ -12,8 +12,9 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     z-index: -1;
 
-    @media screen and (max-width: 1100px) {
+    @media screen and (max-width: 768px) {
       margin-top: 15vh;
+      width: 80%;
       height: 100%;
       display: grid;
       grid-template-columns: 1fr;
@@ -28,7 +29,7 @@
 .section {
     position: relative;
     margin: 0vh auto 0;
-    padding: 2rem;
+    padding: 2rem 0;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
