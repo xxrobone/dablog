@@ -1,11 +1,13 @@
 import Link from 'next/link';
-import styles from './blog.module.css';
 import Heading from '@components/heading';
 /* import { supabase } from "../../lib/supabaseClient"; */
 import useSWR from 'swr';
 import { getPosts, cacheKey } from '@/api-routes/posts';
 import { convertDate } from '@/utils/convertDate';
 import BlogHeading from '@components/pageHeadings/blogHeading';
+
+// styles
+import styles from './blog.module.scss';
 import { motion } from 'framer-motion';
 
 /* const mockData = [
@@ -39,24 +41,32 @@ export default function Blog() {
       </Heading>
       <motion.section
         className={styles.container}
-        initial={{ y: 1000, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 2, duration: 2 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0, duration: 2 }}
       >
         {data &&
-          data.map((post) => (
-            <Link
+          data.map((post, i) => (
+            <motion.div
               key={post.slug}
-              className={styles.link}
-              href={`/blog/${post.slug}`}
+              /*  initial={{ opacity: 0, x: i % 2 === 0 ? -100 : 100 }} */
+              initial={{ opacity: 0, y: i % 1 === 0 ? -100 : 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: i * 0.2 }}
+              whilehover={{
+                y: -5,
+                transition: { duration: 0.2 },
+              }}
             >
-              <div className='w-full flex flex-col'>
-                <p>{post.title}</p>
-                <time className={styles.date}>
-                  {convertDate(post.created_at)}
-                </time>
-              </div>
-            </Link>
+              <Link className={styles.link} href={`/blog/${post.slug}`}>
+                <div>
+                  <p>{post.title}</p>
+                  <time className={styles.date}>
+                    {convertDate(post.created_at)}
+                  </time>
+                </div>
+              </Link>
+            </motion.div>
           ))}
       </motion.section>
     </div>

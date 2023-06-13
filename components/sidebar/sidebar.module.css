@@ -2,12 +2,13 @@
   position: sticky;
   top: 0vh;
   left: 0vw;
+  z-index: 100;
 }
 
 @media screen and (min-width: 768px) {
   .container {
-    top: 30vh;
-    left: 5vw;
+    top: 20vh;
+    left: 0vw;
     width: 150px;
     flex-shrink: 0;
     margin-right: 0;
@@ -30,15 +31,12 @@
   flex-direction: row;
   align-items: flex-start;
   position: relative;
- padding: 0 1rem;
+ padding: 0 1rem 0 0;
 }
 
 @media (min-width: 768px) {
   .navigation {
     flex-direction: column;
-    padding-left: 0;
-    padding-right: 0;
-    overflow: auto;
     position: relative;
   }
 }
@@ -110,4 +108,5 @@
   background-color: #f5f5f5;
   border-radius: 5px;
   width: 100%;
+  cursor: pointer;
 }

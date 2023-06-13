@@ -5,6 +5,8 @@ import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
+import styles from './login.module.scss';
+
 const Login = () => {
   const supabaseClient = useSupabaseClient();
   const user = useUser();
@@ -20,13 +22,15 @@ const Login = () => {
 
   if (!user)
     return (
-      <Auth
-        redirectTo='http://localhost:3000/'
-        appearance={{ theme: ThemeSupa }}
-        supabaseClient={supabaseClient}
-        providers={[]}
-        socialLayout='horizontal'
-      />
+      <div className={styles.login}>
+        <Auth
+          redirectTo='http://localhost:3000/'
+          appearance={{ theme: ThemeSupa }}
+          supabaseClient={supabaseClient}
+          providers={[]}
+          socialLayout='horizontal'
+        />
+      </div>
     );
 
   return (

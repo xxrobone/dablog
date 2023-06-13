@@ -1,0 +1,10 @@
+.login {
+    margin-top: 20vh;
+    padding: 0 2rem;
+    width: 100%;
+
+    @media (min-width: 768px) {
+        margin: 0 auto;
+        width: 50%;
+    }
+}
