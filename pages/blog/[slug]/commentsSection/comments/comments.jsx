@@ -6,6 +6,7 @@ import Comment from '../comment/comment';
 import { addComment, getComments, editComment } from '@/api-routes/comments';
 import { supabase } from '@/lib/supabaseClient';
 
+
 // styles
 import styles from './comments.module.scss';
 import { motion } from 'framer-motion';
@@ -19,6 +20,8 @@ const Comments = ({ slug, id }) => {
     username: '',
     comment: '',
   });
+
+
   /*   const [editComment, setEditComment] = useState({
     id: "",
     body: "",

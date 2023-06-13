@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { editComment, deleteComment } from '@/api-routes/comments';
 import { cacheKey } from '@/api-routes/posts';
 import useSWRMutation from 'swr/mutation';
+import { useUser } from '@supabase/auth-helpers-react';
 // styles
 import styles from './comment.module.scss';
 const Comment = ({ username, comment, time, id, slug }) => {
@@ -9,6 +10,8 @@ const Comment = ({ username, comment, time, id, slug }) => {
     id: '',
     body: '',
   });
+
+  const user = useUser();
 
   const { trigger: updateTrigger } = useSWRMutation(
     `${cacheKey}${slug}`,
@@ -34,7 +37,9 @@ const Comment = ({ username, comment, time, id, slug }) => {
   const handleDeleteComment = (id) => {
     console.log('ID from handle delete: ', id);
     console.log('comment deleted');
-    deleteComment({ id });
+    if (user) {
+      deleteComment({ id });
+    }
   };
 
   return (
@@ -42,50 +47,54 @@ const Comment = ({ username, comment, time, id, slug }) => {
       <h4>{username} says</h4>
       <p className={styles.timestamp}>{time}</p>
       {/* <p>{comment}</p> */}
-      <div className={styles.edit_section}>
-        {id === editedComment.id ? (
-          <input
-            type='text'
-            value={editedComment.body}
-            onChange={onChangeEditComment}
-            className=''
-          />
-        ) : (
-          <p className='font-light'>{comment}</p>
-        )}
-        {editedComment.id === id ? (
-          <div className=''>
-            <button type='button' onClick={confirmEdit} className='0'>
-              Confirm
-            </button>
-            <button
-              type='button'
-              onClick={() => setEditedComment({ id: '', body: '' })}
+      {user ? (
+        <div className={styles.edit_section}>
+          {id === editedComment.id ? (
+            <input
+              type='text'
+              value={editedComment.body}
+              onChange={onChangeEditComment}
               className=''
-            >
-              Cancel
-            </button>
-          </div>
-        ) : (
-          <>
-            <button
-              type='button'
-              onClick={() => setEditComment({ id: id, body: comment })}
-              className=''
-              disabled
-            >
-              Edit
-            </button>
-            <button
-              type='button'
-              onClick={() => handleDeleteComment(id)}
-              className=''
-            >
-              Delete
-            </button>
-          </>
-        )}
-      </div>
+            />
+          ) : (
+            <p className='font-light'>{comment}</p>
+          )}
+          {editedComment.id === id ? (
+            <div className=''>
+              <button type='button' onClick={confirmEdit} className='0'>
+                Confirm
+              </button>
+              <button
+                type='button'
+                onClick={() => setEditedComment({ id: '', body: '' })}
+                className=''
+              >
+                Cancel
+              </button>
+            </div>
+          ) : (
+            <>
+              <button
+                type='button'
+                onClick={() => setEditComment({ id: id, body: comment })}
+                className=''
+                disabled
+              >
+                Edit
+              </button>
+              <button
+                type='button'
+                onClick={() => handleDeleteComment(id)}
+                className=''
+              >
+                Delete
+              </button>
+            </>
+          )}
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 };
