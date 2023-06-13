@@ -57,7 +57,7 @@ export const deleteComment = async ({ id }) => {
   const { data, error } = await supabase
     .from('comments')
     .delete()
-    .match({ id: id });
+    .eq( "id", id );
   if (!error && data) {
     window.alert('Deleted Comment :)');
   } else {

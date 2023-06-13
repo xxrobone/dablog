@@ -58,6 +58,7 @@ const Comments = ({ slug, id }) => {
     const newComment = { username, comment, post_id: id };
     addTrigger(newComment);
     console.log('comment added to supabase, success: ', username, comment, id);
+    setPostComments([...postComments, newComment ]);
     setState({
       username: '',
       comment: '',
