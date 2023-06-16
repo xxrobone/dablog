@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useUser } from '@supabase/auth-helpers-react';
-import styles from './blog-post.module.css';
+import styles from './blog-post.module.scss';
 /* import Comments from './partials/comments';
 import AddComment from './partials/add-comment'; */
 import Button from '@components/button';
@@ -68,7 +68,7 @@ export default function BlogPost() {
   return (
     <>
       <section className={styles.container}>
-        <Heading>{title}</Heading>
+        <h2>{title}</h2>
         {post?.image && <BlogImageBanner src={post.image} alt={post.title} />}
         <div className={styles.dateContainer}>
           <time className={styles.date}>{convertDate(created_at)}</time>{' '}

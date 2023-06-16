@@ -46,28 +46,34 @@ export default function Blog() {
         transition={{ delay: 0, duration: 2 }}
       >
         {data &&
-          data.map((post, i) => (
-            <motion.div
-              key={post.slug}
-              /*  initial={{ opacity: 0, x: i % 2 === 0 ? -100 : 100 }} */
-              initial={{ opacity: 0, y: i % 1 === 0 ? -100 : 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: i * 0.2 }}
-              whilehover={{
-                y: -5,
-                transition: { duration: 0.2 },
-              }}
-            >
-              <Link className={styles.link} href={`/blog/${post.slug}`}>
-                <div>
-                  <p>{post.title}</p>
-                  <time className={styles.date}>
-                    {convertDate(post.created_at)}
-                  </time>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+          data
+            .sort((a, b) => {
+              const aDate = new Date(a.created_at);
+              const bDate = new Date(b.created_at);
+              return +aDate - +bDate;
+            })
+            .map((post, i) => (
+              <motion.div
+                key={post.slug}
+                /*  initial={{ opacity: 0, x: i % 2 === 0 ? -100 : 100 }} */
+                initial={{ opacity: 0, y: i % 1 === 0 ? -100 : 100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: i * 0.2 }}
+                whilehover={{
+                  y: -5,
+                  transition: { duration: 0.2 },
+                }}
+              >
+                <Link className={styles.link} href={`/blog/${post.slug}`}>
+                  <div>
+                    <p>{post.title}</p>
+                    <time className={styles.date}>
+                      {convertDate(post.created_at)}
+                    </time>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
       </motion.section>
     </div>
   );

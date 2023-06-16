@@ -1,14 +1,14 @@
 .comment {
     position: relative;
     padding: 10px 20px;
-    background: #efefef;
+    background: #f8f8f8;
     border-radius: 10px;
     margin-bottom: 15px;
     border: 1px solid transparent;
     transition: all 0.2s ease-in-out;
 
     .timestamp {
-      color: #777;
+      color: #888;
       position: absolute;
       right: 20px;
       top: 10px;
@@ -16,6 +16,12 @@
 
     h4, p {
     margin: 10px;
+} 
+
+.button_section {
+  margin-left: 0.75rem;
+  display: flex;
+  gap: 5px;
 }
 
 &:hover {

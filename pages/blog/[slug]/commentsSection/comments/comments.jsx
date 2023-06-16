@@ -6,7 +6,6 @@ import Comment from '../comment/comment';
 import { addComment, getComments, editComment } from '@/api-routes/comments';
 import { supabase } from '@/lib/supabaseClient';
 
-
 // styles
 import styles from './comments.module.scss';
 import { motion } from 'framer-motion';
@@ -15,12 +14,11 @@ const cacheKey = '/api/blog';
 
 const Comments = ({ slug, id }) => {
   // if adding typescript useState<string>("")
-  const [postComments, setPostComments] = useState(null);
+  const [postComments, setPostComments] = useState([]);
   const [state, setState] = useState({
     username: '',
     comment: '',
   });
-
 
   /*   const [editComment, setEditComment] = useState({
     id: "",
@@ -61,7 +59,7 @@ const Comments = ({ slug, id }) => {
     const newComment = { username, comment, post_id: id };
     addTrigger(newComment);
     console.log('comment added to supabase, success: ', username, comment, id);
-    setPostComments([...postComments, newComment ]);
+      setPostComments([newComment, ...postComments ]);
     setState({
       username: '',
       comment: '',
@@ -122,16 +120,22 @@ const Comments = ({ slug, id }) => {
         <h2>Comments ;)</h2>
         {!postComments
           ? ''
-          : postComments.map((c, i) => (
-              <div
-                key={c.id + i}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -100 : 100 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: i * 0.2 }}
-              >
-                <Comment {...c} slug={slug} />
-              </div>
-            ))}
+          : postComments
+              .sort((a, b) => {
+                const aDate = new Date(a.created_at);
+                const bDate = new Date(b.created_at);
+                return +bDate - +aDate;
+              })
+              .map((c, i) => (
+                <div
+                  key={c.id + i}
+                  initial={{ opacity: 0, x: i % 2 === 0 ? -100 : 100 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: i * 0.2 }}
+                >
+                  <Comment {...c} slug={slug} />
+                </div>
+              ))}
       </ul>
       {/*   <div className={styles.edit_section}>
             {comment.id === editComment.id ? (

@@ -20,20 +20,24 @@ export default function CreatePost() {
     const slug = createSlug(titleInput);
     const title = titleInput;
     const body = removeHTML(editorContent);
+   /*  const body = editorContent; */
     const user_id = user.id;
 
     const newPost = { title, slug, body, user_id };
-    console.log({ title, slug, body, user_id });
-    console.log('and: user.id : ', user.id);
-    console.log('new Post:', newPost);
-    addTrigger(newPost);
-    setMsg((prev) => !prev);
-    setTimeout(() => {
-      setMsg(false);
-    }, 1990);
-    setTimeout(() => {
-      router.push('/blog');
-    }, 2000);
+
+    if (user) {
+      addTrigger(newPost);
+      console.log('post created successfully');
+      setMsg((prev) => !prev);
+      setTimeout(() => {
+        setMsg(false);
+      }, 1990);
+      setTimeout(() => {
+        router.push('/blog');
+      }, 2000);
+    } else {
+      console.log('no user authenticated, can´t post');
+    }
   };
 
   return (

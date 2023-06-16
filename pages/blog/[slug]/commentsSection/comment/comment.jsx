@@ -3,9 +3,12 @@ import { editComment, deleteComment } from '@/api-routes/comments';
 import { cacheKey } from '@/api-routes/posts';
 import useSWRMutation from 'swr/mutation';
 import { useUser } from '@supabase/auth-helpers-react';
+import { timeAgo } from '@/utils/timeAgo';
+
+import Button from '@/components/button'
 // styles
 import styles from './comment.module.scss';
-const Comment = ({ username, comment, time, id, slug }) => {
+const Comment = ({ username, comment, created_at, id, slug }) => {
   const [editedComment, setEditedComment] = useState({
     id: '',
     body: '',
@@ -45,7 +48,7 @@ const Comment = ({ username, comment, time, id, slug }) => {
   return (
     <div className={styles.comment}>
       <h4>{username} says</h4>
-      <p className={styles.timestamp}>{time}</p>
+      <p className={styles.timestamp}>{timeAgo(created_at)}</p>
       {/* <p>{comment}</p> */}
       {user ? (
         <div className={styles.edit_section}>
@@ -60,36 +63,36 @@ const Comment = ({ username, comment, time, id, slug }) => {
             <p className='font-light'>{comment}</p>
           )}
           {editedComment.id === id ? (
-            <div className=''>
-              <button type='button' onClick={confirmEdit} className='0'>
+            <div className={styles.button_section}>
+              <Button type='button' onClick={confirmEdit} className='0'>
                 Confirm
-              </button>
-              <button
+              </Button>
+              <Button
                 type='button'
                 onClick={() => setEditedComment({ id: '', body: '' })}
                 className=''
               >
                 Cancel
-              </button>
+              </Button>
             </div>
           ) : (
-            <>
-              <button
+            <div className={styles.button_section}>
+              <Button
                 type='button'
                 onClick={() => setEditComment({ id: id, body: comment })}
                 className=''
                 disabled
               >
                 Edit
-              </button>
-              <button
+              </Button>
+              <Button
                 type='button'
                 onClick={() => handleDeleteComment(id)}
                 className=''
               >
                 Delete
-              </button>
-            </>
+              </Button>
+            </div>
           )}
         </div>
       ) : (
