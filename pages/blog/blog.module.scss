@@ -18,8 +18,20 @@
 
 }
 
-.link_Wrapper {
-  position: absolute;
+.link_wrapper {
+  padding: 10px 20px;
+  background: #f8f8f8;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.4);
+    border: 1px solid rgba(0,0,0,.125);
+    cursor: pointer;
+}
 }
 
 .link {
@@ -34,9 +46,9 @@
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    cursor: pointer;
+   /*  cursor: pointer;
     background-color: #222428;
-    color: #fafafa;
+    color: #fafafa; */
     border-bottom: 1px solid #ee5f0c;
   }
 
