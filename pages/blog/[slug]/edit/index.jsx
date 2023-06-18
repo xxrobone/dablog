@@ -6,62 +6,53 @@ import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { getPost, updatePost, cacheKey } from '@/api-routes/posts';
 import { createSlug } from '@/utils/createSlug';
-import { removeHTML } from '@/utils/removeHTML';
 import { createPagesServerClient } from '@supabase/auth-helpers-nextjs';
 
-const mockData = {
-  title: 'Community-Messaging Fit',
-  body: '<p>This is a good community fit!</p>',
-  image:
-    'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/16:9/w_2123,h_1194,c_limit/phonepicutres-TA.jpg',
-};
 export default function EditBlogPost() {
   const [msg, setMsg] = useState(false);
   const router = useRouter();
+  const { slug } = router.query;
 
   const { trigger: updateTrigger, isMutating } = useSWRMutation(
     cacheKey,
     updatePost
   );
 
-  /* Use this slug to fetch the post from the database */
-  const { slug } = router.query;
-
-  const { data: { data = [] } = {} } = useSWR(
-    slug ? `${cacheKey}${slug}/edit` : null,
+  const { data: { data: post = {} } = {} } = useSWR(
+    slug ? `${cacheKey}${slug}` : null,
     () => getPost({ slug })
   );
 
-  const { title, body, id } = data;
+  const { title, body, id } = post;
 
   const handleOnSubmit = async ({ editorContent, titleInput, image }) => {
     console.log('from submit', titleInput, editorContent, id);
-    const newSlug = await titleInput;
-    const slug = createSlug(newSlug);
-    const title = titleInput;
-    const newBody = await editorContent;
-    const body = removeHTML(newBody);
+    const newSlug = createSlug(slug);
 
-    console.log({ title, slug, body, id });
-    const editedPost = { title, slug, body, id };
+    const editedPost = {
+      title: titleInput,
+      slug: newSlug,
+      body: editorContent,
+      image,
+      id,
+    };
+
     updateTrigger(editedPost);
     setMsg((prev) => !prev);
     setTimeout(() => {
       setMsg(false);
     }, 1990);
     setTimeout(() => {
-      router.push('/blog');
+      router.push(`/blog/${newSlug}`);
     }, 2000);
   };
-
-  // for the inpust and id
 
   return (
     <>
       <BlogEditor
         heading='Edit blog post'
         title={title}
-        src={mockData.image}
+        src={post?.image}
         alt={title}
         content={body}
         buttonText='Save changes'

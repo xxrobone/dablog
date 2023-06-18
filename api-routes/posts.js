@@ -60,12 +60,25 @@ export const deletePost = async (_, { arg: id }) => {
   return { data, error, status };
 };
 
-export const updatePost = async (_, { arg: { title, slug, body, id } }) => {
+export const updatePost = async (_, { arg: editedPost }) => {
+  let image = editedPost?.image ?? '';
+
+  const isNewImage = typeof image === 'object' && image !== null;
+
+  if (isNewImage) {
+    const { publicUrl, error } = await uploadImage(editedPost?.image);
+
+    if (!error) {
+      image = publicUrl;
+    }
+  }
+
   const { data, error, status } = await supabase
     .from('posts')
-    .update({ title, slug, body })
-    .eq('id', id)
-    .single();
+    .update({ ...editedPost, image })
+    .select()
+    .single()
+    .eq('id', editedPost.id);
 
-  return { data, error, status };
+  return { error, status, data };
 };
