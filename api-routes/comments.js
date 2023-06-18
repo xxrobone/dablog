@@ -28,7 +28,7 @@ export const addComment = async (_, { arg: newComment }) => {
 };
 
 export const editComment = async (_, { arg: edited }) => {
-  console.log('edited comment:', edited.comment, edited.id);
+  /*  console.log('edited comment:', edited.comment, edited.id); */
   const { data, error } = await supabase
     .from('comments')
     .update({
@@ -37,9 +37,9 @@ export const editComment = async (_, { arg: edited }) => {
     })
     .eq('id', edited.id);
   if (!error && data) {
-    window.alert('Edited Comment!');
+    return { data, error };
   } else {
-    window.alert(error?.message);
+    console.log(error?.message);
   }
 };
 

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import {
   editComment,
   deleteComment,
@@ -11,13 +12,14 @@ import { timeAgo } from '@/utils/timeAgo';
 import Button from '@/components/button';
 // styles
 import styles from './comment.module.scss';
-const Comment = ({ username, comment, created_at, id }) => {
+const Comment = ({ username, comment, created_at, id, slug }) => {
   const [editedComment, setEditedComment] = useState({
     id: '',
     body: '',
   });
 
   const user = useUser();
+  const router = useRouter();
 
   const { trigger: updateTrigger } = useSWRMutation(
     commentsCacheKey,
@@ -32,24 +34,28 @@ const Comment = ({ username, comment, created_at, id }) => {
   const onChangeEditComment = (e) => {
     const body = e.target.value;
     setEditedComment({ ...editedComment, body });
-    console.log('from change', editedComment.body, editedComment.id);
+    /* console.log('from change', editedComment.body, editedComment.id); */
   };
 
   // confirming edit
   const confirmEdit = async () => {
-    console.log('Confirm edit comment', editedComment.body, editedComment.id);
+    /* console.log('Confirm edit comment', editedComment.body, editedComment.id); */
     const edited = {
       comment: editedComment.body,
       id: editedComment.id,
     };
     if (user) {
       updateTrigger(edited);
+      setTimeout(() => {
+        setEditedComment({ id: '', body: '' });
+        router.push(`/blog/${slug}`);
+      }, 2000);
     }
   };
 
   const handleDeleteComment = async () => {
     console.log('ID from handle delete: ', id);
-    const ok = window.confirm('Delete comment?');
+    /* const ok = window.confirm('Delete comment?'); */
 
     if (ok) {
       deleteTrigger(id);

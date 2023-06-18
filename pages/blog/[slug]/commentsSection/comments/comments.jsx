@@ -85,7 +85,7 @@ const Comments = ({ slug, id }) => {
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: i * 0.2 }}
             >
-              <Comment {...c} />
+              <Comment {...c} slug={slug} />
             </div>
           ))}
       </ul>
