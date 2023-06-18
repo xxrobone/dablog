@@ -3,16 +3,26 @@
   min-height: 100svh;
 
   .search_wrapper {
-    margin-left: 20vw;
+    padding: 0 2rem;
+    margin-left: 0vw;
+    margin-top: 20vh;
+    z-index: 100;
+
+    @media screen and (min-width: 769px) {
+      padding: 0;
+      margin-left: 20vw;
+      margin-bottom: 4rem;
+    }
   }
 
   .container {
     margin: 0 auto;
-    margin-top: 20vh;
+    margin-top: 0vh;
     margin-left: 20vw;
     width: 65%;
     padding-bottom: 40px;
     border-bottom: 1px solid #525252;
+
   @media screen and (max-width: 768px) {
     margin-left: 0vw;
     width: 100%;
