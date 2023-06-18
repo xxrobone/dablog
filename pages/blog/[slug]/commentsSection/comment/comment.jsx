@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { editComment, deleteComment } from '@/api-routes/comments';
+import { editComment, deleteComment, commentsCacheKey } from '@/api-routes/comments';
 import { cacheKey } from '@/api-routes/posts';
 import useSWRMutation from 'swr/mutation';
 import { useUser } from '@supabase/auth-helpers-react';
@@ -8,7 +8,7 @@ import { timeAgo } from '@/utils/timeAgo';
 import Button from '@/components/button';
 // styles
 import styles from './comment.module.scss';
-const Comment = ({ username, comment, created_at, id, slug }) => {
+const Comment = ({ username, comment, created_at, id }) => {
   const [editedComment, setEditedComment] = useState({
     id: '',
     body: '',
@@ -17,12 +17,12 @@ const Comment = ({ username, comment, created_at, id, slug }) => {
   const user = useUser();
 
   const { trigger: updateTrigger } = useSWRMutation(
-    `${cacheKey}${slug}`,
+    commentsCacheKey,
     editComment
   );
 
   const { trigger: deleteTrigger } = useSWRMutation(
-    `${cacheKey}${slug}`,
+    commentsCacheKey,
     deleteComment
   );
   // edit change handler

@@ -17,7 +17,7 @@ export default function Blog() {
 
   console.log(posts) */
 
-  console.log(posts)
+  console.log(posts);
 
   return (
     <div className={styles.blog}>
@@ -35,7 +35,7 @@ export default function Blog() {
             .sort((a, b) => {
               const aDate = new Date(a.created_at);
               const bDate = new Date(b.created_at);
-              return +aDate - +bDate;
+              return bDate - aDate;
             })
             .map((post, i) => (
               <motion.div

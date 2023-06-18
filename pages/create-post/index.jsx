@@ -1,6 +1,6 @@
 import BlogEditor from '@/components/blog-editor';
 import { createSlug } from '@/utils/createSlug';
-import { removeHTML } from '@/utils/removeHTML';
+/* import { removeHTML } from '@/utils/removeHTML'; */
 import { useState } from 'react';
 import useSWRMutation from 'swr/mutation';
 import { addPost, cacheKey } from '@/api-routes/posts';

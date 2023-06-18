@@ -2,7 +2,7 @@ import { supabase } from '@/lib/supabaseClient';
 
 export const commentsCacheKey = 'api/comments';
 
-export const getComments = async ({ id }) => {
+export const getComments = async (id) => {
   // now just getting all the comments, then will have to get comments related to the post
   const { data, error } = await supabase
     .from('comments')
@@ -18,11 +18,11 @@ export const getComments = async ({ id }) => {
 
 export const addComment = async (
   _,
-  { arg: { username, comment, post_id } }
+  { arg: newComment }
 ) => {
   const { data, error, status } = await supabase
     .from('comments')
-    .insert({ username, comment, post_id });
+    .insert(newComment);
   if (error) {
     console.log(error, status);
   }

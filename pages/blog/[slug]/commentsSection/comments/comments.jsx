@@ -1,48 +1,33 @@
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
-import CommentList from '../commentList/commentList';
 import Comment from '../comment/comment';
-import { addComment, getComments, editComment } from '@/api-routes/comments';
-import { supabase } from '@/lib/supabaseClient';
+import {
+  addComment,
+  getComments,
+  commentsCacheKey,
+} from '@/api-routes/comments';
 
 // styles
 import styles from './comments.module.scss';
-import { motion } from 'framer-motion';
-
-const cacheKey = '/api/blog';
 
 const Comments = ({ slug, id }) => {
+  commentsCacheKey;
   // if adding typescript useState<string>("")
-  const [postComments, setPostComments] = useState([]);
   const [state, setState] = useState({
     username: '',
     comment: '',
   });
 
-  /*   const [editComment, setEditComment] = useState({
-    id: "",
-    body: "",
-  }); */
-
-  console.log('the post id: ', id);
-
-  const { trigger: addTrigger, isMutating } = useSWRMutation(
-    `${cacheKey}${slug}`,
-    addComment
+  const { data: { data: postComments = [] } = {} } = useSWR(
+    id ? commentsCacheKey : null,
+    () => getComments(id)
   );
 
-  /* const { trigger: updateTrigger } = useSWRMutation(
-    `${cacheKey}${slug}`,
-    editComment
-  ); */
-
-  // gettind the comment by sending the id for the post as a parameter
-  // the post id is connected to the  comments done with the post_id in the comments
-  /* const { data: { data = [] } = {} } = useSWR(
-      slug ? `${cacheKey}${slug}` : null,
-      () => getComments({id})
-    ); */
+  const { trigger: addTrigger, isMutating } = useSWRMutation(
+    commentsCacheKey,
+    addComment
+  );
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -50,7 +35,6 @@ const Comments = ({ slug, id }) => {
       ...state,
       [e.target.name]: value,
     });
-    console.log(state);
   };
 
   // if adding for type script e: ChangeEvent<HTMLInputElement>
@@ -58,8 +42,7 @@ const Comments = ({ slug, id }) => {
     e.preventDefault();
     const newComment = { username, comment, post_id: id };
     addTrigger(newComment);
-    console.log('comment added to supabase, success: ', username, comment, id);
-    setPostComments([newComment, ...postComments]);
+   /*  isMutating(commentsCacheKey, [...postComments, newComment]); */
     setState({
       username: '',
       comment: '',
@@ -77,7 +60,7 @@ const Comments = ({ slug, id }) => {
     window.alert("Confirm edit comment");
     updateTrigger(editComment);
   }; */
-  useEffect(() => {
+  /* useEffect(() => {
     const getData = async () => {
       const { data, error } = await supabase
         .from('comments')
@@ -92,9 +75,15 @@ const Comments = ({ slug, id }) => {
         setPostComments(data);
       }
       return { data, error, status };
-    };
-    getData();
-  }, [id]);
+      const data = await getComments(id);
+      if (data) {
+        setPostComments(data);
+      } else {
+        setPostComments([]);
+      }
+    }; */
+  /*   getData();
+  }, [id]); */
 
   return (
     <div className={styles.comments_wrapper}>
@@ -120,7 +109,7 @@ const Comments = ({ slug, id }) => {
       </form>
       <ul className={styles.comment_list}>
         <h2>Comments ;)</h2>
-        {!postComments
+        {/* {!postComments
           ? ''
           : postComments
               .sort((a, b) => {
@@ -137,7 +126,23 @@ const Comments = ({ slug, id }) => {
                 >
                   <Comment {...c} slug={slug} />
                 </div>
-              ))}
+              ))} */}
+        {(postComments ?? [])
+          .sort((a, b) => {
+            const aDate = new Date(a.created_at);
+            const bDate = new Date(b.created_at);
+            return bDate - aDate;
+          })
+          .map((c, i) => (
+            <div
+              key={c.id + i}
+              initial={{ opacity: 0, x: i % 2 === 0 ? -100 : 100 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: i * 0.2 }}
+            >
+              <Comment {...c} />
+            </div>
+          ))}
       </ul>
       {/*   <div className={styles.edit_section}>
             {comment.id === editComment.id ? (
