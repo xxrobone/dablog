@@ -25,10 +25,10 @@ export const getPost = async ({ slug }) => {
   return { data, error, status };
 };
 
-export const addPost = async (_, { arg: { title, slug, body, user_id } }) => {
+export const addPost = async (_, { arg: newPost }) => {
   const { data, error, status } = await supabase
     .from('posts')
-    .insert([{ title, slug, body, user_id }])
+    .insert(newPost)
     .single();
   if (error) {
     console.log(error, status);

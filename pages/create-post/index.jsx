@@ -17,11 +17,13 @@ export default function CreatePost() {
   const { trigger: addTrigger, isMutating } = useSWRMutation(cacheKey, addPost);
 
   const handleOnSubmit = ({ editorContent, titleInput, image }) => {
-    const title = titleInput;
-    const slug = createSlug(titleInput);
-    const body = editorContent;
-    const user_id = user.id;
-    const newPost = { title, slug, body, user_id };
+    const newPost = {
+      title: titleInput,
+      slug: createSlug(titleInput),
+      body: editorContent,
+      user_id: user.id,
+      image,
+    };
 
     if (user) {
       addTrigger(newPost);
