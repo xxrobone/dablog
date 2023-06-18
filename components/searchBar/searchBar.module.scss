@@ -6,6 +6,14 @@
     align-items: center;
     border-radius: 30px;
     background-color: #646E6D33;
+    box-shadow: 0 6px 8px rgba(0,0,0,0.4);
+
+    &:hover {
+        transform: translateY(-3px);
+        
+        border: 1px solid rgba(0,0,0,.125);
+        cursor: pointer;
+    }
 
 @media screen and (min-width: 769px) {
     width: 29.5rem;
@@ -17,12 +25,11 @@
     padding: 1rem;
     position: relative;
     background: transparent;
-    color: #ffffff;
+    color: #313131;
     border: 0;
     border-radius: 50%;
     outline: none;
     font-size: 1.6rem;
-    filter: drop-shadow(1px 1px 4px #121212);
 
     /* :hover,
     :focus {
@@ -33,14 +40,14 @@
 
 .input {
     margin: 0;
-padding: 4px 6px;
-font-size: 0.75rem;
-border: 0;
-border-radius: 5px;
-height: 100%;
-outline: none;
-color: #fff;
-background-color: transparent;
+    padding: 4px 6px;
+    font-size: 0.75rem;
+    border: 0;
+    border-radius: 5px;
+    height: 100%;
+    outline: none;
+    color: #fff;
+    background-color: transparent;
 
 &::placeholder {
     color: #fff;   

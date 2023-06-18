@@ -14,13 +14,16 @@ import { motion } from 'framer-motion';
 
 export default function Blog() {
   const [query, setQuery] = useState('');
+  const [p, setP] = useState([]);
   const { data: { data: posts = [] } = {} } = useSWR(cacheKey, getPosts);
 
-  /* const filtered = filteredPosts(query, posts); */
-
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
     setQuery(e.target.value);
+
+    const filtered = await filteredPosts(query, p);
+
+    setP(filtered);
   };
 
   const handleOnChange = (e) => {
@@ -29,7 +32,11 @@ export default function Blog() {
   };
 
   console.log(posts);
-/*   console.log(filtered); */
+  /*   console.log(filtered); */
+
+  useEffect(() => {
+    setP(posts);
+  }, [posts]);
 
   return (
     <div className={styles.blog}>
@@ -50,8 +57,8 @@ export default function Blog() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0, duration: 2 }}
       >
-        {posts &&
-          posts
+        {p &&
+          p
             .sort((a, b) => {
               const aDate = new Date(a.created_at);
               const bDate = new Date(b.created_at);
