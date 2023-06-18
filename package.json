@@ -37,6 +37,7 @@
     "react-modal": "^3.16.1",
     "sass": "^1.63.2",
     "swr": "^2.1.5",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "uuid": "^9.0.0"
   }
 }

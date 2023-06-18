@@ -38,7 +38,7 @@ export default function BlogPost() {
 
   console.log(post);
 
-  const { title, body, created_at, id } = post;
+  const { title, body, created_at, id, image } = post;
 
   const handleDeletePost = async () => {
     /*  deletePost({ id }); */
