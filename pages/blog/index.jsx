@@ -35,7 +35,17 @@ export default function Blog() {
   /*   console.log(filtered); */
 
   useEffect(() => {
-    setP(posts);
+    const getPs = async () => {
+      const data = await getPosts();
+
+      if (data) {
+        setP(posts);
+      } else {
+        setP([]);
+      }
+    }
+    getPs()
+    
   }, [posts]);
 
   return (
