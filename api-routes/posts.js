@@ -1,5 +1,5 @@
 import { supabase } from '@/lib/supabaseClient';
-
+import { uploadImage } from '/utils/uploadImage';
 export const cacheKey = '/api/blogs';
 
 export const getPosts = async () => {
@@ -26,14 +26,25 @@ export const getPost = async ({ slug }) => {
 };
 
 export const addPost = async (_, { arg: newPost }) => {
+  let image = '';
+
+  if (newPost?.image) {
+    const { publicUrl, error } = await uploadImage(newPost?.image);
+
+    if (!error) {
+      image = publicUrl;
+    }
+  }
+
   const { data, error, status } = await supabase
     .from('posts')
-    .insert(newPost)
+    .insert({ ...newPost, image })
+    .select()
     .single();
+
   if (error) {
     console.log(error, status);
   }
-  /* console.log({ data }); */
   return { data, error, status };
 };
 
