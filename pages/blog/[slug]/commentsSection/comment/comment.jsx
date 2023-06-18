@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { editComment, deleteComment, commentsCacheKey } from '@/api-routes/comments';
+import {
+  editComment,
+  deleteComment,
+  commentsCacheKey,
+} from '@/api-routes/comments';
 import useSWRMutation from 'swr/mutation';
 import { useUser } from '@supabase/auth-helpers-react';
 import { timeAgo } from '@/utils/timeAgo';
@@ -26,14 +30,21 @@ const Comment = ({ username, comment, created_at, id }) => {
   );
   // edit change handler
   const onChangeEditComment = (e) => {
-    const comment = e.target.value;
-    setEditedComment({ ...editedComment, comment });
+    const body = e.target.value;
+    setEditedComment({ ...editedComment, body });
+    console.log('from change', editedComment.body, editedComment.id);
   };
 
   // confirming edit
-  const confirmEdit = () => {
-    window.alert('Confirm edit comment');
-    updateTrigger(editedComment);
+  const confirmEdit = async () => {
+    console.log('Confirm edit comment', editedComment.body, editedComment.id);
+    const edited = {
+      comment: editedComment.body,
+      id: editedComment.id,
+    };
+    if (user) {
+      updateTrigger(edited);
+    }
   };
 
   const handleDeleteComment = async () => {
@@ -53,7 +64,7 @@ const Comment = ({ username, comment, created_at, id }) => {
             type='text'
             value={editedComment.body}
             onChange={onChangeEditComment}
-            className=''
+            className={styles.edit_comment}
           />
         ) : (
           <>
@@ -64,7 +75,7 @@ const Comment = ({ username, comment, created_at, id }) => {
         )}
         {editedComment.id === id ? (
           <div className={styles.button_section}>
-            <Button type='button' onClick={confirmEdit} className='0'>
+            <Button type='button' onClick={confirmEdit} className=''>
               Confirm
             </Button>
             <Button
@@ -81,9 +92,8 @@ const Comment = ({ username, comment, created_at, id }) => {
               <>
                 <Button
                   type='button'
-                  onClick={() => setEditComment({ id: id, body: comment })}
+                  onClick={() => setEditedComment({ id: id, body: comment })}
                   className=''
-                  disabled
                 >
                   Edit
                 </Button>

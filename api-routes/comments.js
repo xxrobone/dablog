@@ -16,10 +16,7 @@ export const getComments = async (id) => {
   return { data, error, status };
 };
 
-export const addComment = async (
-  _,
-  { arg: newComment }
-) => {
+export const addComment = async (_, { arg: newComment }) => {
   const { data, error, status } = await supabase
     .from('comments')
     .insert(newComment);
@@ -30,13 +27,15 @@ export const addComment = async (
   return { data, error, status };
 };
 
-export const editComment = async (_, { arg: { editComment } }) => {
+export const editComment = async (_, { arg: edited }) => {
+  console.log('edited comment:', edited.comment, edited.id);
   const { data, error } = await supabase
     .from('comments')
     .update({
-      comment: editComment.body,
+      comment: edited.comment,
+      id: edited.id,
     })
-    .match({ id: editComment.id });
+    .eq('id', edited.id);
   if (!error && data) {
     window.alert('Edited Comment!');
   } else {

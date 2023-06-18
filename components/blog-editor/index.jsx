@@ -25,7 +25,7 @@ export default function BlogEditor({
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    event.stopPropagation()
+    event.stopPropagation();
 
     onSubmit({ editorContent, titleInput, image });
   };
