@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Heading from '@components/heading';
 /* import { supabase } from "../../lib/supabaseClient"; */
@@ -5,19 +6,30 @@ import useSWR from 'swr';
 import { getPosts, cacheKey } from '@/api-routes/posts';
 import { convertDate } from '@/utils/convertDate';
 import BlogHeading from '@components/pageHeadings/blogHeading';
-
+import SearchBar from '@/components/searchBar';
+import { filteredPosts } from '@/utils/filteredPosts';
 // styles
 import styles from './blog.module.scss';
 import { motion } from 'framer-motion';
 
 export default function Blog() {
+  const [query, setQuery] = useState('');
   const { data: { data: posts = [] } = {} } = useSWR(cacheKey, getPosts);
 
-  /* const { data: posts } = await supabase.from('posts').select('*');
+  /* const filtered = filteredPosts(query, posts); */
 
-  console.log(posts) */
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    setQuery(e.target.value);
+  };
+
+  const handleOnChange = (e) => {
+    setQuery(e.target.value);
+    console.log(e.target.value);
+  };
 
   console.log(posts);
+/*   console.log(filtered); */
 
   return (
     <div className={styles.blog}>
@@ -25,11 +37,12 @@ export default function Blog() {
         <BlogHeading />
       </Heading>
       <section className={styles.search_wrapper}>
-        {
-          {
-            /* Search bar */
-          }
-        }
+        <SearchBar
+          handleOnChange={handleOnChange}
+          handleOnSubmit={handleOnSubmit}
+          setQuery={setQuery}
+          query={query}
+        />
       </section>
       <motion.section
         className={styles.container}
