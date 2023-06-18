@@ -59,7 +59,7 @@ const Comments = ({ slug, id }) => {
     const newComment = { username, comment, post_id: id };
     addTrigger(newComment);
     console.log('comment added to supabase, success: ', username, comment, id);
-      setPostComments([newComment, ...postComments ]);
+    setPostComments([newComment, ...postComments]);
     setState({
       username: '',
       comment: '',
@@ -88,7 +88,9 @@ const Comments = ({ slug, id }) => {
         console.log(error, status);
       }
       console.log('data from supabase in api get comments: ', { data });
-      setPostComments(data);
+      if (data) {
+        setPostComments(data);
+      }
       return { data, error, status };
     };
     getData();

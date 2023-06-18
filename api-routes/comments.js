@@ -1,5 +1,7 @@
 import { supabase } from '@/lib/supabaseClient';
 
+export const commentsCacheKey = 'api/comments';
+
 export const getComments = async ({ id }) => {
   // now just getting all the comments, then will have to get comments related to the post
   const { data, error } = await supabase
@@ -13,17 +15,7 @@ export const getComments = async ({ id }) => {
   console.log('data from supabase in api get comments: ', { data });
   return { data, error, status };
 };
-/* 
-export const addComment = async (comment) => {
-  const { data, error, status } = await supabase.from('comments').insert({
-    username: 'Rob One',
-    comment: comment,
-  });
-  if (error) {
-    console.log(error, status);
-  }
-  return { data, error, status };
-}; */
+
 export const addComment = async (
   _,
   { arg: { username, comment, post_id } }
@@ -52,12 +44,16 @@ export const editComment = async (_, { arg: { editComment } }) => {
   }
 };
 
-export const deleteComment = async ({ id }) => {
-  console.log('fram deleteComment in comments api:', id);
-  const { data, error } = await supabase.from('comments').delete().eq('id', id);
-  if (!error && data) {
-    window.alert('Deleted Comment :)');
-  } else {
-    window.alert(error?.message);
+export const deleteComment = async (_, { arg: id }) => {
+  console.log('from deleteComment in comments api:', id);
+  const { data, error, status } = await supabase
+    .from('comments')
+    .delete()
+    .single()
+    .eq('id', id);
+  if (error) {
+    console.log(error);
   }
+
+  return { data, error, status };
 };
