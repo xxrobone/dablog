@@ -24,6 +24,13 @@ export default function Blog() {
       <Heading>
         <BlogHeading />
       </Heading>
+      <section className={styles.search_wrapper}>
+        {
+          {
+            /* Search bar */
+          }
+        }
+      </section>
       <motion.section
         className={styles.container}
         initial={{ opacity: 0 }}

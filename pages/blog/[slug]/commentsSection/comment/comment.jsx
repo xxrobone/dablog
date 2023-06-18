@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { editComment, deleteComment, commentsCacheKey } from '@/api-routes/comments';
-import { cacheKey } from '@/api-routes/posts';
 import useSWRMutation from 'swr/mutation';
 import { useUser } from '@supabase/auth-helpers-react';
 import { timeAgo } from '@/utils/timeAgo';
