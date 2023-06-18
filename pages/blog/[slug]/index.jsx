@@ -9,29 +9,11 @@ import Heading from '@components/heading';
 import BlogImageBanner from '@components/blog-image-banner';
 import Message from '@components/message';
 import useSWR from 'swr';
+import useSWRMutation from 'swr/mutation'
 import { getPost, cacheKey, deletePost } from '@/api-routes/posts';
 import { convertDate } from '@/utils/convertDate';
 import { timeAgo } from '@/utils/timeAgo';
 import Comments from './commentsSection/comments/comments';
-
-const post = {
-  id: '1234',
-  title: 'Why you should use a react framework',
-  author: 'John Doe',
-  slug: 'why-you-should-use-react-framework',
-  createdAt: '2022-02-12',
-  body: `
-  <p>With the History extension the Editor will keep track of your changes. And if you think you made a mistake, you can redo your changes. Try it out, change the content and hit the undo button!</p>
-  <p>And yes, you can also use a keyboard shortcut to undo changes (Control/Cmd Z) or redo changes (Control/Cmd Shift Z).</p>
-  <p>Wow, this editor has support for links to the whole <a href="https://en.wikipedia.org/wiki/World_Wide_Web">world wide web</a>. We tested a lot of URLs and I think you can add *every URL* you want. Isn’t that cool? Let’s try <a href="https://statamic.com/">another one!</a> Yep, seems to work.</p>
-  <p>By default every link will get a <code>rel="noopener noreferrer nofollow"</code> attribute. It’s configurable though.</p>
-  <p><strong>This is bold.</strong></p>
-  <p><u>This is underlined though.</u></p>
-  <p><em>This is italic.</em></p>
-  <p><s>But that’s striked through.</s></p>
-  <p><code>This is code.</code></p>
-  `,
-};
 
 export default function BlogPost() {
   const [msg, setMsg] = useState(false);
@@ -39,26 +21,40 @@ export default function BlogPost() {
   const router = useRouter();
   /* Use this slug to fetch the post from the database */
   const { slug } = router.query;
-  console.log(slug);
+  const {trigger: deleteTrigger, isMutating} = useSWRMutation(cacheKey, deletePost, {
+    onError: (error) => {
+      console.log(error)
+    }
+  })
 
-  const { data: { data = [] } = {} } = useSWR(
+  const { data: { data: post = {} } = {} } = useSWR(
     slug ? `${cacheKey}${slug}` : null,
     () => getPost({ slug })
   );
 
-  console.log(data);
+  console.log(post);
 
-  const { title, body, created_at, id } = data;
+  const { title, body, created_at, id } = post;
 
-  const handleDeletePost = (id) => {
-    deletePost({ id });
-    setMsg((prev) => !prev);
+  const handleDeletePost = async () => {
+    /*  deletePost({ id }); */
+    const postID = await id
+    console.log('delete id:', postID)
+    const { status, error } = await deleteTrigger(postID);
+    
+    if (!error) {
+      setMsg((prev) => !prev);
     setTimeout(() => {
       setMsg(false);
     }, 1990);
     setTimeout(() => {
       router.push('/blog');
     }, 2000);
+    } else {
+      console.log(error)
+    }
+    
+    
   };
 
   const handleEditPost = () => {
@@ -69,7 +65,7 @@ export default function BlogPost() {
     <>
       <section className={styles.container}>
         <h2>{title}</h2>
-        {post?.image && <BlogImageBanner src={post.image} alt={post.title} />}
+        {post?.image && <BlogImageBanner src={image} alt={title} />}
         <div className={styles.dateContainer}>
           <time className={styles.date}>{convertDate(created_at)}</time>{' '}
           <span>&nbsp;&nbsp;</span>

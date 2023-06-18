@@ -19,8 +19,8 @@ export default function CreatePost() {
   const handleOnSubmit = ({ editorContent, titleInput, image }) => {
     const slug = createSlug(titleInput);
     const title = titleInput;
-    const body = removeHTML(editorContent);
-   /*  const body = editorContent; */
+    /*  const body = removeHTML(editorContent); */
+    const body = editorContent;
     const user_id = user.id;
 
     const newPost = { title, slug, body, user_id };

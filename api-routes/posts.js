@@ -37,7 +37,7 @@ export const addPost = async (_, { arg: { title, slug, body, user_id } }) => {
   return { data, error, status };
 };
 
-export const deletePost = async ({ id }) => {
+export const deletePost = async (_, { arg: id }) => {
   const { data, error, status } = await supabase
     .from('posts')
     .delete()
