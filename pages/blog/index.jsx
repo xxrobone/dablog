@@ -10,29 +10,14 @@ import BlogHeading from '@components/pageHeadings/blogHeading';
 import styles from './blog.module.scss';
 import { motion } from 'framer-motion';
 
-/* const mockData = [
-  {
-    id: "123",
-    title: "Community-Messaging Fit",
-    slug: "community-messaging-fit",
-    createdAt: "2022-02-15",
-    body: "<p>This is a good community fit!</p>",
-  },
-  {
-    id: "1234",
-    title: "Why you should use a react framework",
-    slug: "why-you-should-use-react-framework",
-    createdAt: "2022-02-12",
-    body: "<p>This is a good community fit!</p>",
-  },
-]; */
-
 export default function Blog() {
-  const { data: { data = [] } = {} } = useSWR(cacheKey, getPosts);
+  const { data: { data: posts = [] } = {} } = useSWR(cacheKey, getPosts);
 
   /* const { data: posts } = await supabase.from('posts').select('*');
 
   console.log(posts) */
+
+  console.log(posts)
 
   return (
     <div className={styles.blog}>
@@ -45,8 +30,8 @@ export default function Blog() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0, duration: 2 }}
       >
-        {data &&
-          data
+        {posts &&
+          posts
             .sort((a, b) => {
               const aDate = new Date(a.created_at);
               const bDate = new Date(b.created_at);
@@ -64,9 +49,16 @@ export default function Blog() {
                 <Link className={styles.link} href={`/blog/${post.slug}`}>
                   <div>
                     <p>{post.title}</p>
-                    <time className={styles.date}>
-                      {convertDate(post.created_at)}
-                    </time>
+                    <div className={styles.bottom_row}>
+                      <time className={styles.date}>
+                        {convertDate(post.created_at)}
+                      </time>
+                      {post?.author && (
+                        <span className={styles.author}>
+                          Written by: {post.author}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </Link>
               </motion.div>

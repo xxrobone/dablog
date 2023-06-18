@@ -54,10 +54,7 @@ export const editComment = async (_, { arg: { editComment } }) => {
 
 export const deleteComment = async ({ id }) => {
   console.log('fram deleteComment in comments api:', id);
-  const { data, error } = await supabase
-    .from('comments')
-    .delete()
-    .eq( "id", id );
+  const { data, error } = await supabase.from('comments').delete().eq('id', id);
   if (!error && data) {
     window.alert('Deleted Comment :)');
   } else {

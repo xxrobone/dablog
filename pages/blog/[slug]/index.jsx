@@ -9,7 +9,7 @@ import Heading from '@components/heading';
 import BlogImageBanner from '@components/blog-image-banner';
 import Message from '@components/message';
 import useSWR from 'swr';
-import useSWRMutation from 'swr/mutation'
+import useSWRMutation from 'swr/mutation';
 import { getPost, cacheKey, deletePost } from '@/api-routes/posts';
 import { convertDate } from '@/utils/convertDate';
 import { timeAgo } from '@/utils/timeAgo';
@@ -21,11 +21,15 @@ export default function BlogPost() {
   const router = useRouter();
   /* Use this slug to fetch the post from the database */
   const { slug } = router.query;
-  const {trigger: deleteTrigger, isMutating} = useSWRMutation(cacheKey, deletePost, {
-    onError: (error) => {
-      console.log(error)
+  const { trigger: deleteTrigger, isMutating } = useSWRMutation(
+    cacheKey,
+    deletePost,
+    {
+      onError: (error) => {
+        console.log(error);
+      },
     }
-  })
+  );
 
   const { data: { data: post = {} } = {} } = useSWR(
     slug ? `${cacheKey}${slug}` : null,
@@ -38,23 +42,21 @@ export default function BlogPost() {
 
   const handleDeletePost = async () => {
     /*  deletePost({ id }); */
-    const postID = await id
-    console.log('delete id:', postID)
+    const postID = await id;
+    console.log('delete id:', postID);
     const { status, error } = await deleteTrigger(postID);
-    
+
     if (!error) {
       setMsg((prev) => !prev);
-    setTimeout(() => {
-      setMsg(false);
-    }, 1990);
-    setTimeout(() => {
-      router.push('/blog');
-    }, 2000);
+      setTimeout(() => {
+        setMsg(false);
+      }, 1990);
+      setTimeout(() => {
+        router.push('/blog');
+      }, 2000);
     } else {
-      console.log(error)
+      console.log(error);
     }
-    
-    
   };
 
   const handleEditPost = () => {
@@ -75,7 +77,9 @@ export default function BlogPost() {
           <div className={styles.border} />
         </div>
         <div dangerouslySetInnerHTML={{ __html: body }} />
-        <span className={styles.author}>Author: {post.author}</span>
+        {post?.author && (
+          <span className={styles.author}>Author: {post.author}</span>
+        )}
 
         {/* The Delete & Edit part should only be showed if you are authenticated and you are the author */}
 
