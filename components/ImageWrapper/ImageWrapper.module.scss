@@ -36,22 +36,6 @@
             width: 300px;
             height: 220px;
         }
-
-        &:hover,
-        &:active {
-            padding: 0;
-            box-shadow: 0 6px 8px rgba(0,0,0,0.4);
-            border: 1px solid rgba(0,0,0,.125);
-            cursor: pointer;
-            transition: all 0.4 ease;
-
-            + h4 {
-                color: white;
-                + p {
-                    color: white;
-                }
-            }
-        }
     }
 
 
@@ -77,8 +61,20 @@
         left: 0;
         width: 100%;
         height: 100%;
-    }
+    }       
+}
 
-   
-       
+.isHovered {
+    padding: 0;
+    box-shadow: 0 6px 8px rgba(0,0,0,0.4);
+    border: 1px solid rgba(0,0,0,.125);
+    cursor: pointer;
+    transition: all 0.4 ease;
+
+    + h4 {
+        color: white;
+        + p {
+            color: white;
+        }
+    }
 }
