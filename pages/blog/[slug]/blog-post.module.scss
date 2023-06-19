@@ -1,6 +1,6 @@
 .container {
   padding: 0 2rem;
-  margin-top: 20vh;
+  margin-top: 10vh;
   padding-bottom: 20px;
   border-bottom: 1px solid black;
 
@@ -45,15 +45,11 @@
 }
 
 .dateContainer {
+  width: 100%;
   display: flex;
-  align-items: center;
-  margin-bottom: 40px;
-}
-
-.border {
-  height: 1px;
-  background: black;
-  flex: 1 1 0;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 1rem 0;
 }
 
 .buttonContainer {

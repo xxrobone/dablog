@@ -12,6 +12,10 @@
       position: absolute;
       right: 20px;
       top: 10px;
+
+      @media screen and (max-width: 768px) {
+        font-size: 0.8rem;
+      }
     }
 
     h4, p {

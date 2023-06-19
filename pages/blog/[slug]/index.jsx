@@ -72,9 +72,9 @@ export default function BlogPost() {
           <time className={styles.date}>{convertDate(created_at)}</time>{' '}
           <span>&nbsp;&nbsp;</span>
           <time className={styles.date}>
-            Post created: {timeAgo(created_at)}
+            Post created: <br />
+            {timeAgo(created_at)}
           </time>
-          <div className={styles.border} />
         </div>
         <div dangerouslySetInnerHTML={{ __html: body }} />
         {post?.author && (

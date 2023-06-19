@@ -75,7 +75,7 @@ const Comment = ({ username, comment, created_at, id, slug }) => {
           />
         ) : (
           <>
-            <h4>{username} says</h4>
+            <h4>{username}</h4>
             <p className={styles.timestamp}>{timeAgo(created_at)}</p>
             <p className='font-light'>{comment}</p>
           </>
