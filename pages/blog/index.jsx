@@ -3,7 +3,8 @@ import Link from 'next/link';
 import Heading from '@components/heading';
 /* import { supabase } from "../../lib/supabaseClient"; */
 import useSWR from 'swr';
-import { getPosts, cacheKey } from '@/api-routes/posts';
+import useSWRMutation from 'swr/mutation';
+import { getPosts, cacheKey, searchPosts } from '@/api-routes/posts';
 import { convertDate } from '@/utils/convertDate';
 import BlogHeading from '@components/pageHeadings/blogHeading';
 import SearchBar from '@/components/searchBar';
@@ -17,11 +18,13 @@ export default function Blog() {
   const [results, setResults] = useState([]);
   const { data: { data: posts = [] } = {} } = useSWR(cacheKey, getPosts);
 
+  /* const { trigger: searchTrigger, isMutating } = useSWRMutation(cacheKey, searchPosts); */
+
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     setQuery(e.target.value);
-
-    const filtered = await filteredPosts(query, posts);
+     const filtered = await filteredPosts(query, posts); 
+    /* const filtered = await searchTrigger(query) */
 
     setResults(filtered);
   };

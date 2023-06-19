@@ -82,3 +82,15 @@ export const updatePost = async (_, { arg: editedPost }) => {
 
   return { error, status, data };
 };
+
+// will do the search on client side 
+/* export const searchPosts = async (query) => {
+  const { data, error, status } = await supabase
+    .from('posts')
+    .select('*')
+    .textSearch('title', query, {
+      type: 'websearch',
+    });
+
+  return { error, status, data };
+}; */
