@@ -1,5 +1,7 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import IMG1 from '/public/images/coffee.jpg';
+import { convertDate } from '@/utils/convertDate'
 
 // styles
 import styles from './ImageWrapper.module.scss';
@@ -11,12 +13,13 @@ import styles from './ImageWrapper.module.scss';
   desc: '& Code',
 }; */
 
-const ImageWrapper = ({ title, desc, img }) => {
+const ImageWrapper = ({ title, created_at, image, slug }) => {
   return (
     <div className={styles.imageWrapper}>
-      <Image className={styles.img} src={img} alt={title} fill></Image>
+      <Image className={styles.img} src={image ? image : IMG1} alt={title} fill></Image>
       <h4>{title}</h4>
-      <p>{desc}</p>
+      <p>{convertDate(created_at)}</p>
+      <Link href={`/blog/${slug}`}></Link>
     </div>
   );
 };

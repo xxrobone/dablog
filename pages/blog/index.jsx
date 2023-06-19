@@ -4,7 +4,7 @@ import Heading from '@components/heading';
 /* import { supabase } from "../../lib/supabaseClient"; */
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
-import { getPosts, cacheKey, searchPosts } from '@/api-routes/posts';
+import { getPosts, cacheKey } from '@/api-routes/posts';
 import { convertDate } from '@/utils/convertDate';
 import BlogHeading from '@components/pageHeadings/blogHeading';
 import SearchBar from '@/components/searchBar';
@@ -38,7 +38,6 @@ export default function Blog() {
   /*   console.log(filtered); */
 
   useEffect(() => {
-
     if (posts) {
       setResults(posts);      
     }

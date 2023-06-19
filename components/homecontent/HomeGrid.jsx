@@ -1,5 +1,7 @@
 'use client';
 import React from 'react';
+import useSWR from 'swr'
+import { getPosts, cacheKey } from '@/api-routes/posts';
 import { motion } from 'framer-motion';
 import IMG1 from '/public/images/coffee.jpg';
 import IMG2 from '/public/images/knowledge.jpg';
@@ -30,19 +32,19 @@ const imgData = [
     id: 1,
     img: IMG1,
     title: 'Coffee',
-    desc: '& Code',
+    created_at: '& Code',
   },
   {
     id: 2,
     img: IMG2,
     title: 'Knowledge',
-    desc: 'is power',
+    created_at: 'is power',
   },
   {
     id: 3,
     img: IMG3,
     title: 'Music',
-    desc: 'is life',
+    created_at: 'is life',
   },
 ];
 const imgData2 = [
@@ -50,31 +52,38 @@ const imgData2 = [
     id: 5,
     img: IMG4,
     title: 'Rain',
-    desc: 'fresh air',
+    created_at: 'fresh air',
   },
   {
     id: 6,
     img: IMG5,
     title: 'Ace Duce',
-    desc: 'got the props',
+    created_at: 'got the props',
   },
   {
     id: 7,
     img: IMG6,
     title: 'Big City',
-    desc: 'streets',
+    created_at: 'streets',
   },
   {
     id: 8,
     img: IMG7,
     title: 'Disconnected',
-    desc: 'from the matrix',
+    created_at: 'from the matrix',
   },
 ];
 
 // Tanken är att byta ut bilderna till blog posts, så man kan clicka sig till dom även från första sidan
 
 const HomeGrid = () => {
+
+  const { data: { data: posts = [] } = {} } = useSWR(cacheKey, getPosts);
+
+  console.log(posts)
+  const arr1 = posts.slice(0, 3)
+  const arr2 = posts.slice(4,6)
+
   return (
     <motion.div
       className={styles.content_wrapper}
@@ -102,9 +111,9 @@ const HomeGrid = () => {
         </p>
       </section>
       <section className={`${styles.section} ${styles.even}`}>
-        {imgData.map((img) => (
-          <div key={img.title}>
-            <ImageWrapper {...img} />
+        {arr1.map((item) => (
+          <div key={item.title}>
+            <ImageWrapper {...item} />
           </div>
         ))}
       </section>
@@ -131,7 +140,7 @@ const HomeGrid = () => {
         </p>
       </section>
       <section className={`${styles.section} ${styles.slow}`}>
-        {imgData2.map((item) => (
+        {arr2.map((item) => (
           <div key={item.title}>
             <ImageWrapper {...item} />
           </div>

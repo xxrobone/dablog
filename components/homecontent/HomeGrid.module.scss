@@ -4,12 +4,12 @@
     margin-top: 10vh;     
     width: 80%;
     padding: 0;
-    height: 90svh;
+    height: 80svh;
     background: linear-gradient(120deg, #fff 50%, #000 50%);
     color: black;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    z-index: -1;
+    z-index: 1;
     overflow: hidden;
 
     @media screen and (max-width: 768px) {
@@ -57,7 +57,8 @@
       flex-direction: row;
     }
 
-    &:hover {
+    &:hover,
+    &:active {
       animation-play-state: paused;
         cursor: pointer;
     }
@@ -75,7 +76,7 @@
 
   .even {
       transform: translateY(-30%);
-      animation: my-animation-2 120s linear infinite;
+      animation: my-animation-2 60s linear infinite;
 
       @media(min-width: 778px) {
         padding: 0.25rem;
@@ -84,7 +85,7 @@
   }
 
   .slow {
-    animation: my-animation-slow 100s linear infinite;
+    animation: my-animation-slow 80s linear infinite;
     
     @media(min-width: 778px) {
       padding: 0.25rem;
