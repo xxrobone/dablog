@@ -21,6 +21,7 @@ const SearchBar = ({ handleOnChange, handleOnSubmit, query = '' }) => {
         initial={{ x: 300, position: 'absolute', opacity: 0 }}
         animate={{ x: 0, position: 'relative', opacity: 1 }}
         transition={{ delay: 0.6, duration: 0.8 }}
+        onTap={handleOnSubmit}
       >
         <RiSearch2Line />
       </motion.button>
@@ -31,8 +32,8 @@ const SearchBar = ({ handleOnChange, handleOnSubmit, query = '' }) => {
         onChange={(e) => handleOnChange(e)}
         value={query}
         initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1, duration: 1 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
       />
     </motion.form>
   );
