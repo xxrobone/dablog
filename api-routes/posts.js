@@ -83,14 +83,20 @@ export const updatePost = async (_, { arg: editedPost }) => {
   return { error, status, data };
 };
 
-// will do the search on client side 
-/* export const searchPosts = async (query) => {
-  const { data, error, status } = await supabase
-    .from('posts')
-    .select('*')
-    .textSearch('title', query, {
-      type: 'websearch',
-    });
-
-  return { error, status, data };
-}; */
+// https://supabase.com/docs/reference/javascript/like case sensitive
+// https://supabase.com/docs/reference/javascript/ilike case insensitive
+export const searchPosts = async (_, { arg: query }) => {
+  console.log('query is:', query);
+  if (query === '') {
+    const { data, error } = await supabase.from('posts').select('*');
+    return { data, error };
+  } else {
+    const { data, error } = await supabase
+      .from('posts')
+      .select()
+      /* .like('title', `%${query}%`) has to match the typo */
+      /* .ilike('title', `%${query}%`) */
+      .textSearch('title', query);
+    return { data, error };
+  }
+};
