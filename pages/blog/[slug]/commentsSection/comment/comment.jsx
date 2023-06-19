@@ -17,6 +17,7 @@ const Comment = ({ username, comment, created_at, id, slug }) => {
     id: '',
     body: '',
   });
+  /* const [confirm, setConfirm] = useState(false); */
 
   const user = useUser();
   const router = useRouter();
@@ -57,9 +58,9 @@ const Comment = ({ username, comment, created_at, id, slug }) => {
     console.log('ID from handle delete: ', id);
     /* const ok = window.confirm('Delete comment?'); */
 
-    if (ok) {
-      deleteTrigger(id);
-    }
+    // if (ok) {
+    deleteTrigger(id);
+    // }
   };
 
   return (
@@ -117,6 +118,11 @@ const Comment = ({ username, comment, created_at, id, slug }) => {
           </div>
         )}
       </div>
+      {/* <div>
+        <p>Shure you want to delete?</p>
+        <button onClick={() => setConfirm(true)}>yes</button>
+        <button onClick={() => setConfirm(false)}>No</button>
+      </div> */}
     </div>
   );
 };

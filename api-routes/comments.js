@@ -3,7 +3,6 @@ import { supabase } from '@/lib/supabaseClient';
 export const commentsCacheKey = 'api/comments';
 
 export const getComments = async (id) => {
-  // now just getting all the comments, then will have to get comments related to the post
   const { data, error } = await supabase
     .from('comments')
     .select('*')
@@ -23,12 +22,10 @@ export const addComment = async (_, { arg: newComment }) => {
   if (error) {
     console.log(error, status);
   }
-  /* console.log({ data }); */
   return { data, error, status };
 };
 
 export const editComment = async (_, { arg: edited }) => {
-  /*  console.log('edited comment:', edited.comment, edited.id); */
   const { data, error } = await supabase
     .from('comments')
     .update({
