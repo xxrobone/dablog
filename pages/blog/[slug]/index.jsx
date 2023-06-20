@@ -96,10 +96,6 @@ export default function BlogPost() {
       </section>
 
       <Comments slug={slug} id={id} />
-      {/* <Comments postId={post.id} /> */}
-
-      {/* This component should only be displayed if a user is authenticated */}
-      {/*  <AddComment postId={post.id} /> */}
     </>
   );
 }

@@ -3,7 +3,7 @@
     padding: 10px 20px;
     background: #f8f8f8;
     border-radius: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 2rem;
     border: 1px solid transparent;
     transition: all 0.2s ease-in-out;
 
@@ -33,6 +33,23 @@
     box-shadow: 0 6px 8px rgba(0,0,0,0.4);
     border: 1px solid rgba(0,0,0,.125);
     cursor: pointer;
+}
+
+.reply {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 1.25rem;
+  right: auto;font-family: monospace;
+  padding: 10px;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #888;
+    box-shadow: 0 6px 8px rgba(0,0,0,0.4);
+    border: 1px solid rgba(0,0,0,.125);
+    cursor: pointer;
+    z-index: 10;
+}
 }
 }
  

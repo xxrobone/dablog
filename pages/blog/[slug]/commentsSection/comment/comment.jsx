@@ -118,11 +118,14 @@ const Comment = ({ username, comment, created_at, id, slug }) => {
           </div>
         )}
       </div>
-      {/* <div>
-        <p>Shure you want to delete?</p>
-        <button onClick={() => setConfirm(true)}>yes</button>
-        <button onClick={() => setConfirm(false)}>No</button>
-      </div> */}
+      <span
+        className={styles.reply}
+        onClick={() => {
+          console.log('reply?');
+        }}
+      >
+        reply
+      </span>
     </div>
   );
 };

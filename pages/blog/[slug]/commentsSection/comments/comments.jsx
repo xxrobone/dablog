@@ -74,9 +74,9 @@ const Comments = ({ slug, id }) => {
         <h2>Comments ;)</h2>
         {(postComments ?? [])
           .sort((a, b) => {
-            const aDate = new Date(a.created_at);
-            const bDate = new Date(b.created_at);
-            return bDate - aDate;
+            const x = new Date(a.created_at);
+            const y = new Date(b.created_at);
+            return x - y;
           })
           .map((c, i) => (
             <div
@@ -94,55 +94,3 @@ const Comments = ({ slug, id }) => {
 };
 
 export default Comments;
-
-/* 
-if sorting comments...
-.sort((a, b) => {
-            const aDate = new Date(a.created_at);
-            const bDate = new Date(b.created_at);
-            return +aDate - +bDate;
-          })
-*/
-
-// saving for later use
-{
-  /*   <div className={styles.edit_section}>
-            {comment.id === editComment.id ? (
-              <input
-                type="text"
-                value={editComment.body}
-                onChange={onChangeEditComment}
-                className=""
-              />
-            ) : (
-              <p className="font-light">{state.comment}</p>
-            )}
-            {editComment.id === comment.id ? (
-              <div className="">
-                <button type="button" onClick={confirmEdit} className="0">
-                  Confirm
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setEditComment({ id: "", payload: "" })}
-                  className=""
-                >
-                  Cancel
-                </button>
-              </div>
-        ) : (
-            <>
-              <button
-                type="button"
-                onClick={() => setEditComment({ id: comment.id, payload: comment.body })}
-                className=""
-              >
-                Edit
-            </button>
-             <button type="button" onClick={() => confirmDelete(comment.id)} className="">
-             Delete
-              </button>
-              </>
-            )}
-    </div> */
-}
