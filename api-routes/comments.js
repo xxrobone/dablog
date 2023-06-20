@@ -1,6 +1,7 @@
 import { supabase } from '@/lib/supabaseClient';
 
 export const commentsCacheKey = 'api/comments';
+export const replyCacheKey = "api/replies"
 
 export const getComments = async (id) => {
   const { data, error } = await supabase
@@ -51,5 +52,18 @@ export const deleteComment = async (_, { arg: id }) => {
     console.log(error);
   }
 
+  return { data, error, status };
+};
+
+export const getReplies = async (id) => {
+  const { data, error } = await supabase
+    .from('comments')
+    .select('*')
+    .eq('reply_to', id);
+
+  if (error) {
+    console.log(error, status);
+  }
+  console.log('data from supabase in api get comments: ', { data });
   return { data, error, status };
 };

@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useUser } from '@supabase/auth-helpers-react';
 import styles from './blog-post.module.scss';
-/* import Comments from './partials/comments';
-import AddComment from './partials/add-comment'; */
+import Comments from './partials/comments';
+import AddComment from './partials/add-comment';
 import Button from '@components/button';
 import Heading from '@components/heading';
 import BlogImageBanner from '@components/blog-image-banner';
@@ -13,7 +13,7 @@ import useSWRMutation from 'swr/mutation';
 import { getPost, cacheKey, deletePost } from '@/api-routes/posts';
 import { convertDate } from '@/utils/convertDate';
 import { timeAgo } from '@/utils/timeAgo';
-import Comments from './commentsSection/comments/comments';
+/* import Comments from './commentsSection/comments/comments'; */
 
 export default function BlogPost() {
   const [msg, setMsg] = useState(false);
@@ -36,11 +36,9 @@ export default function BlogPost() {
     () => getPost({ slug })
   );
 
-  console.log(post);
-
   const { title, body, created_at, id, image } = post;
 
-  const handleDeletePost = async () => {
+  const handleDeletePost = async (id) => {
     /*  deletePost({ id }); */
     const postID = await id;
     console.log('delete id:', postID);
@@ -96,6 +94,7 @@ export default function BlogPost() {
       </section>
 
       <Comments slug={slug} id={id} />
+      <AddComment id={id} />
     </>
   );
 }

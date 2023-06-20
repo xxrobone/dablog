@@ -56,7 +56,7 @@ export default function Blog() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0, duration: 2 }}
       >
-        {results &&
+        {results ?
           results
             .sort((a, b) => {
               const aDate = new Date(a.created_at);
@@ -88,7 +88,7 @@ export default function Blog() {
                   </div>
                 </Link>
               </motion.div>
-            ))}
+            )) : ''}
       </motion.section>
     </div>
   );

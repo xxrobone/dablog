@@ -24,6 +24,8 @@ const Comments = ({ slug, id }) => {
     () => getComments(id)
   );
 
+  const commentos = postComments.filter((c) => c.reply_to === null);
+
   const { trigger: addTrigger, isMutating } = useSWRMutation(
     commentsCacheKey,
     addComment
@@ -47,6 +49,8 @@ const Comments = ({ slug, id }) => {
       comment: '',
     });
   };
+
+  let da;
 
   return (
     <div className={styles.comments_wrapper}>
@@ -72,22 +76,24 @@ const Comments = ({ slug, id }) => {
       </form>
       <ul className={styles.comment_list}>
         <h2>Comments ;)</h2>
-        {(postComments ?? [])
-          .sort((a, b) => {
-            const x = new Date(a.created_at);
-            const y = new Date(b.created_at);
-            return x - y;
-          })
-          .map((c, i) => (
-            <div
-              key={c.id + i}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -100 : 100 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: i * 0.2 }}
-            >
-              <Comment {...c} slug={slug} />
-            </div>
-          ))}
+        {commentos &&
+          commentos
+            .sort((a, b) => {
+              const x = new Date(a.created_at);
+              const y = new Date(b.created_at);
+              return x - y;
+            })
+            .map((c, i) => (
+              <div
+                key={c.id + i}
+                initial={{ opacity: 0, x: i % 2 === 0 ? -100 : 100 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: i * 0.2 }}
+              >
+                <Comment {...c} slug={slug} />
+                {/* {(da = c.id)} */}
+              </div>
+            ))}
       </ul>
     </div>
   );
