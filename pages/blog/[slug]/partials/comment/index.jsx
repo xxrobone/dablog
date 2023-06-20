@@ -5,7 +5,6 @@ import {
   deleteComment,
   addComment,
   editComment,
-  replyCacheKey,
   getReplies,
 } from '@/api-routes/comments';
 import useSWRMutation from 'swr/mutation';
@@ -13,22 +12,19 @@ import useSWR from 'swr';
 import Input from '@components/input';
 import Label from '@components/label';
 import { useRef } from 'react';
-import {timeAgo} from '@/utils/timeAgo'
+import { timeAgo } from '@/utils/timeAgo';
 
-export default function Comment({
-  comment,
-  created_at,
-  username,
-  id,
-}) {
+export default function Comment({ comment, created_at, username, id, post_id}) {
   const formRef = useRef();
 
   const { data: { data: replies = [] } = {}, error } = useSWR(
-    id ? `${replyCacheKey}/${id}` : null,
+    id ? commentsCacheKey : null,
     () => getReplies(id)
   );
 
-  const { trigger: removeCommentTrigger } = useSWRMutation(
+  console.log('post id?:', post_id)
+  console.log('comment id: ',id)
+  const { trigger: deleteTrigger } = useSWRMutation(
     commentsCacheKey,
     deleteComment,
     {
@@ -38,8 +34,8 @@ export default function Comment({
     }
   );
 
-  const { trigger: addReplyTrigger } = useSWRMutation(
-    `${replyCacheKey}/${id}`,
+  const { trigger: addTrigger } = useSWRMutation(
+    commentsCacheKey,
     addComment,
     {
       onError: (error) => {
@@ -48,7 +44,7 @@ export default function Comment({
     }
   );
 
-  const { trigger: removeReplyTrigger } = useSWRMutation(
+  /* const { trigger: deleteTrigger } = useSWRMutation(
     `${replyCacheKey}/${id}`,
     deleteComment,
     {
@@ -56,31 +52,32 @@ export default function Comment({
         console.log(error);
       },
     }
-  );
+  ); */
 
-  const handleDeleteComment = async () => {
-    const { data, error } = await removeCommentTrigger(id);
-  };
+  /*   const handleDeleteComment = async () => {
+    const { data, error } = await deleteTrigger(id);
+  }; */
 
-  const handleAddReply = async (event) => {
+  const handleReply = async (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    const { replyText } = Object.fromEntries(formData);
+    const { username, comment } = Object.fromEntries(formData);
 
-    const newReply = {
-      body: replyText,
+    const newComment = {
+      username,
+      comment,
+      post_id,
       reply_to: id,
     };
-    const { status, data, error } = await addReplyTrigger(newReply);
+    console.log('add reply id:', id);
+    const { status, data, error } = await addTrigger(newComment);
     formRef.current.reset();
   };
 
-  const handleRemoveReply = async (replyId) => {
-    console.log({ replyId });
-
-    const { data, error } = await removeReplyTrigger(replyId);
-    console.log(replyId);
+  const handleDelete = async (id) => {
+    const { data, error } = await deleteTrigger(id);
+    console.log(id);
   };
 
   return (
@@ -89,25 +86,28 @@ export default function Comment({
       <p>{comment}</p>
       <time className={styles.date}>{timeAgo(created_at)}</time>
 
-      {replies.map((reply) => (
-        <div key={reply.id}>
-          <p className={styles.replyText}>| {reply.comment}</p>
+      {replies && replies.filter((reply) => reply.reply_to === id).map(r => (
+        <div key={r.id}>
+          <p>{r.username}</p>
+          <p className={styles.replyText}>| {r.comment}</p>
           <button
             className={styles.removeReplyButton}
-            onClick={() => handleRemoveReply(reply.id)}
+            onClick={() => handleDelete(r.id)}
           >
-            Remove reply
+            Delete
           </button>
         </div>
       ))}
 
       {/* Add the <form> element and onSubmit event handler */}
-      <form ref={formRef} onSubmit={handleAddReply}>
+      <form ref={formRef} onSubmit={handleReply}>
         <div className={styles.buttonContainer}>
-          <Button onClick={handleDeleteComment}>Delete</Button>
-          <Label htmlFor='replyText'>Reply</Label>
-          <Input id='replyText' name='replyText' />
-          <Button type='submit'>Send</Button>
+          <Button onClick={handleDelete}>Delete</Button>
+          <Label htmlFor='username'>name</Label>
+          <Input id='username' name='username' />
+          <Label htmlFor='comment'>reply</Label>
+          <Input id='comment' name='comment' />
+          <Button type='submit'>Submit</Button>
         </div>
       </form>
     </div>

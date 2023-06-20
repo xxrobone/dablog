@@ -56,6 +56,7 @@ export const deleteComment = async (_, { arg: id }) => {
 };
 
 export const getReplies = async (id) => {
+  console.log('the id from replies: ', id)
   const { data, error } = await supabase
     .from('comments')
     .select('*')

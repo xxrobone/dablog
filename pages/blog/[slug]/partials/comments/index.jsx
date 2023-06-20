@@ -1,7 +1,9 @@
-import styles from "./comments.module.css";
-import Comment from "../comment";
-import { getComments, commentsCacheKey } from "@/api-routes/comments";
-import useSWR from "swr";
+import useSWR from 'swr';
+import Comment from '../comment';
+import { getComments, commentsCacheKey } from '@/api-routes/comments';
+
+// styles
+import styles from './comments.module.scss';
 
 export default function Comments({ id, slug }) {
   /* 
@@ -9,14 +11,15 @@ export default function Comments({ id, slug }) {
   foreign key relation to the post.
   */
 
-  const { data : { data = [] } = {}, error } = useSWR(id ? commentsCacheKey : null, () => 
-  getComments(id)
-);
+  const { data: { data:comments = [] } = {}, error } = useSWR(
+    id ? commentsCacheKey : null,
+    () => getComments(id)
+  );
 
   return (
     <div className={styles.container}>
       <h2>Comments</h2>
-      {data.map((comment) => (
+      {comments && comments.filter(c => c.reply_to === null).map((comment) => (
         <Comment key={comment.id} {...comment} />
       ))}
     </div>
