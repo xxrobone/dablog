@@ -20,12 +20,13 @@
 | JavaScript | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> | High-level programming language that is commonly used to create interactive effects within web browsers |
 | React.js | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a> | JavaScript library for building user interfaces or UI components |
 | Next.js | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original-wordmark.svg" alt="next" width="40" height="40"/> </a> | JavaScript library for building user interfaces or UI components |
+Vercel | <img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white" alt="next" width="40" height="40"/> </a> | Vercel's frontend cloud gives developers the frameworks, workflows, and infrastructure to build a faster, more personalized Web. |
 | postgresql | <img src="https://github.com/devicons/devicon/blob/v2.15.1/icons/postgresql/postgresql-original.svg" alt="postgresql" width="40" height="40"/> </a> | PostgreSQL is a powerful, open source object-relational database system with over 35 years of active development  |
 | Node.js | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="nodejs" width="40" height="40"/> </a> | Open-source, cross-platform, back-end JavaScript runtime environment that runs on the V8 engine and executes JavaScript code outside a web browser |
 | Git | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="git" width="40" height="40"/> </a> | Free and open-source distributed version control system designed to handle everything from small to very large projects |
 | Figma | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="figma" width="40" height="40"/> </a> | Cloud-based design and prototyping tool |
 | Postman |  <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a> | An API platform for building and using APIs.  |
-| Supabase |  <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a> | Supabase project comes with a full Postgres database, a free and open source database.  |
+| Supabase |  <img src="https://icons.iconarchive.com/icons/simpleicons-team/simple/256/supabase-icon.png" alt="postman" width="40" height="40"/> </a> | Supabase project comes with a full Postgres database, a free and open source database.  |
 
 <!--|  Typescript | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/> </a> | Syntactic superset of JavaScript which adds static typing to the language | -->
 
