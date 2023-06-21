@@ -1,36 +1,31 @@
 import { useState } from 'react';
 import useSWR from 'swr';
-import useSWRMutation from 'swr/mutation';
 import Comment from '../comment/comment';
-import {
-  addComment,
-  getComments,
-  commentsCacheKey,
-} from '@/api-routes/comments';
+import { getComments, commentsCacheKey } from '@/api-routes/comments';
 
 // styles
 import styles from './comments.module.scss';
 
 const Comments = ({ slug, id }) => {
   commentsCacheKey;
-  // if adding typescript useState<string>("")
+  /*   // if adding typescript useState<string>("")
   const [state, setState] = useState({
     username: '',
     comment: '',
-  });
+  }); */
 
   const { data: { data: postComments = [] } = {} } = useSWR(
     id ? commentsCacheKey : null,
     () => getComments(id)
   );
 
-  const commentos = postComments.filter((c) => c.reply_to === null);
+  /* const commentos = postComments.filter((c) => c.reply_to === null);
 
   const { trigger: addTrigger, isMutating } = useSWRMutation(
     commentsCacheKey,
     addComment
-  );
-
+  ); */
+  /* 
   const handleChange = (e) => {
     const value = e.target.value;
     setState({
@@ -50,11 +45,11 @@ const Comments = ({ slug, id }) => {
     });
   };
 
-  let da;
+  let da; */
 
   return (
     <div className={styles.comments_wrapper}>
-      <form
+      {/* <form
         onSubmit={(e) => handleOnSubmit(e, state.username, state.comment, id)}
         className={styles.comments_form}
       >
@@ -73,16 +68,17 @@ const Comments = ({ slug, id }) => {
           value={state.comment}
         />
         <button type='submit'>Submit</button>
-      </form>
+      </form> */}
       <ul className={styles.comment_list}>
         <h2>Comments ;)</h2>
-        {commentos &&
-          commentos
+        {postComments &&
+          postComments
             .sort((a, b) => {
               const x = new Date(a.created_at);
               const y = new Date(b.created_at);
-              return x - y;
+              return y - x;
             })
+            .filter((c) => c.reply_to === null)
             .map((c, i) => (
               <div
                 key={c.id + i}

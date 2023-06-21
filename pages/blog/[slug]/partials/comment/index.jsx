@@ -44,19 +44,6 @@ export default function Comment({ comment, created_at, username, id, post_id}) {
     }
   );
 
-  /* const { trigger: deleteTrigger } = useSWRMutation(
-    `${replyCacheKey}/${id}`,
-    deleteComment,
-    {
-      onError: (error) => {
-        console.log(error);
-      },
-    }
-  ); */
-
-  /*   const handleDeleteComment = async () => {
-    const { data, error } = await deleteTrigger(id);
-  }; */
 
   const handleReply = async (event) => {
     event.preventDefault();

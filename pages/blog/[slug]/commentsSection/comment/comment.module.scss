@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;400;900&display=swap");
+
 .comment {
     position: relative;
     padding: 10px 20px;
@@ -36,10 +38,11 @@
 }
 
 .reply {
-  position: absolute;
-  bottom: -1.5rem;
+  position: relative;
+  width: fit-content;
+  bottom: 0;
   left: 1.25rem;
-  right: auto;font-family: monospace;
+  font-family: monospace;
   padding: 10px;
   border-radius: 5px;
 
@@ -50,6 +53,34 @@
     cursor: pointer;
     z-index: 10;
 }
+}
+
+.comment_reply {
+    position: relative;
+    padding: 10px 40px;
+    background: #e6e6e6;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    transition: all 0.2s ease-in-out;
+
+    h4 {
+      font-weight: 600;
+      color: #121212;
+      font-family: monospace;
+    }
+
+    p {
+      font-family: monospace;
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 8px rgba(0,0,0,0.4);
+      border: 1px solid rgba(0,0,0,.125);
+      cursor: pointer;
+  }
+  
 }
 }
  

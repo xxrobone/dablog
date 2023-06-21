@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import useSWRMutation from 'swr/mutation';
 import { addComment, commentsCacheKey } from '@/api-routes/comments';
 
-import styles from './addComment.module.scss';
+import styles from './AddReply.module.scss';
 
-const AddComment = ({ id }) => {
+const AddReply = ({ post_id, reply_to, setIsReply }) => {
   const [state, setState] = useState({
     username: '',
     comment: '',
@@ -22,26 +22,27 @@ const AddComment = ({ id }) => {
       ...state,
       [e.target.name]: value,
     });
-
-    console.log(state);
   };
 
-  const handleOnSubmit = async (e, username, comment, id) => {
+  const handleOnSubmit = async (e, username, comment, post_id, reply_to) => {
     e.preventDefault();
-    const newComment = { username, comment, post_id: id };
-    const { status, error } = await addTrigger(newComment);
+    e.stopPropagation();
+    const newComment = { username, comment, post_id, reply_to };
+    addTrigger(newComment);
     setState({
       username: '',
       comment: '',
     });
-    /* setAdd(!add); */
+    setIsReply((prev) => !prev);
   };
 
   return (
     <div>
       <form
-        onSubmit={(e) => handleOnSubmit(e, state.username, state.comment, id)}
-        className={styles.comments_form}
+        onSubmit={(e) =>
+          handleOnSubmit(e, state.username, state.comment, post_id, reply_to)
+        }
+        className={styles.reply_form}
       >
         <input
           type='text'
@@ -63,4 +64,4 @@ const AddComment = ({ id }) => {
   );
 };
 
-export default AddComment;
+export default AddReply;
