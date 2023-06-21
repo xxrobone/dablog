@@ -1,11 +1,9 @@
+import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useUser } from '@supabase/auth-helpers-react';
 import styles from './blog-post.module.scss';
-/* import Comments from './partials/comments';
-import AddComment from './partials/add-comment'; */
 import Button from '@components/button';
-import Heading from '@components/heading';
 import BlogImageBanner from '@components/blog-image-banner';
 import Message from '@components/message';
 import useSWR from 'swr';
@@ -13,6 +11,7 @@ import useSWRMutation from 'swr/mutation';
 import { getPost, cacheKey, deletePost } from '@/api-routes/posts';
 import { convertDate } from '@/utils/convertDate';
 import { timeAgo } from '@/utils/timeAgo';
+import { removeHTML } from '@/utils/removeHTML';
 import Comments from './commentsSection/comments/comments';
 import AddComment from './commentsSection/addComment/AddComment';
 
@@ -64,6 +63,15 @@ export default function BlogPost() {
 
   return (
     <>
+      <Head lang='en'>
+        <title>Da Blog - {title}</title>
+        {/* Creating a little excerpt from the body :D and removing html */}
+        <meta
+          name='description'
+          content={body ? removeHTML(body).split(' ', 6).join(' ') + '...' : ''}
+        />
+        <meta property='og:title' content='Da blog by Rob' />
+      </Head>
       <section className={styles.container}>
         <h2>{title}</h2>
         {post?.image && <BlogImageBanner src={image} alt={title} />}

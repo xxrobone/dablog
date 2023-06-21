@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Heading from '@components/heading';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -7,6 +8,14 @@ import AboutHeading from '../../components/pageHeadings/aboutHeading';
 export default function About() {
   return (
     <div className={styles.about}>
+       <Head lang='en'>
+        <title>Da Blog - About me myself and I</title>
+        <meta
+          name='description'
+          content='About developer Robert Wägar'
+        />
+        <meta property='og:title' content='Da blog by Rob' />
+      </Head>
       <Heading>
         <AboutHeading />
       </Heading>

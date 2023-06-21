@@ -25,7 +25,6 @@ const Variants = {
 const HomeGrid = () => {
   const { data: { data: posts = [] } = {} } = useSWR(cacheKey, getPosts);
 
-  console.log(posts);
   const arr1 = posts.slice(0, 3);
   const arr2 = posts.slice(4, 6);
 

@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Heading from '@components/heading';
@@ -39,6 +40,14 @@ export default function Blog() {
 
   return (
     <div className={styles.blog}>
+       <Head lang='en'>
+        <title>Da Blog - Posts</title>
+        <meta
+          name='description'
+          content='A collection of posts from Da Blog by Rob'
+        />
+        <meta property='og:title' content='Da blog by Rob' />
+      </Head>
       <Heading>
         <BlogHeading />
       </Heading>
