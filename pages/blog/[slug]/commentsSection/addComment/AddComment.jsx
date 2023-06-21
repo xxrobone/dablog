@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import useSWRMutation from 'swr/mutation';
 import { addComment, commentsCacheKey } from '@/api-routes/comments';
 
-import styles from './addComment.module.scss';
+import styles from './AddComment.module.scss';
 
 const AddComment = ({ id }) => {
   const [state, setState] = useState({
