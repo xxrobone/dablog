@@ -3,6 +3,16 @@
 
 ## Assignment in webbservers and databases at CME 😀
 
+This was a fun project and very useful, I've done some earlier backend stuff using wordpress and mySql first, then SQL doing a C# course.
+I've also worked with mongoDB and Firebase and must say thing Supabase made some stuff easy to use and very good documentation over the plattform
+They have a very nice free tier to learn the basics, and good youtube tutorials too. 
+Using supabase with NEXT.js was awesome.
+
+Ive done some minor animtations using Framer-motion and created SVG texts in Figma
+
+Used Trello to have sprints and have log
+
+I will continue to build on this project and do a few more using nextjs and supabase, it is in my opinion a very powerful combination. 🚀 BIG LIKE
 
 ### You can read all the assignment qualifications on the assignment.md file
 <a href="https://github.com/xxrobone/dablog/blob/main/Assignment.md" target="blank">Assignment read me</a>
@@ -11,7 +21,7 @@
 ## Tech Used in this project 💻
 <details>
 
-<summary>🛠 The Languages and Tools I use 🚀</summary>
+<summary>🛠 The Languages and Tools I use </summary>
 
 |  Language/Tool  |  Icon  |  Description  |
 | --- | --- | --- |
