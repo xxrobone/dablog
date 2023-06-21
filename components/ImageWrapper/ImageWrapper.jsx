@@ -2,18 +2,11 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import IMG1 from '/public/images/coffee.jpg';
+import IMG1 from '/public/images/astroProjects.jpg';
 import { convertDate } from '@/utils/convertDate';
 
 // styles
 import styles from './ImageWrapper.module.scss';
-
-/* const one = {
-  id: 1,
-  img: IMG1,
-  title: 'Coffee',
-  desc: '& Code',
-}; */
 
 const ImageWrapper = ({ title, created_at, image, slug }) => {
   const imgRef = useRef();

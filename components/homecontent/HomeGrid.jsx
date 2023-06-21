@@ -1,15 +1,8 @@
 'use client';
 import React from 'react';
-import useSWR from 'swr'
+import useSWR from 'swr';
 import { getPosts, cacheKey } from '@/api-routes/posts';
 import { motion } from 'framer-motion';
-import IMG1 from '/public/images/coffee.jpg';
-import IMG2 from '/public/images/knowledge.jpg';
-import IMG3 from '/public/images/casette.jpg';
-import IMG4 from '/public/images/rainy.jpg';
-import IMG5 from '/public/images/acecards.jpg';
-import IMG6 from '/public/images/street.jpg';
-import IMG7 from '/public/images/disconnected.jpg';
 import ImageWrapper from '../ImageWrapper/ImageWrapper';
 // styles
 import styles from './HomeGrid.module.scss';
@@ -27,62 +20,14 @@ const Variants = {
   },
 };
 
-const imgData = [
-  {
-    id: 1,
-    img: IMG1,
-    title: 'Coffee',
-    created_at: '& Code',
-  },
-  {
-    id: 2,
-    img: IMG2,
-    title: 'Knowledge',
-    created_at: 'is power',
-  },
-  {
-    id: 3,
-    img: IMG3,
-    title: 'Music',
-    created_at: 'is life',
-  },
-];
-const imgData2 = [
-  {
-    id: 5,
-    img: IMG4,
-    title: 'Rain',
-    created_at: 'fresh air',
-  },
-  {
-    id: 6,
-    img: IMG5,
-    title: 'Ace Duce',
-    created_at: 'got the props',
-  },
-  {
-    id: 7,
-    img: IMG6,
-    title: 'Big City',
-    created_at: 'streets',
-  },
-  {
-    id: 8,
-    img: IMG7,
-    title: 'Disconnected',
-    created_at: 'from the matrix',
-  },
-];
-
 // Tanken är att byta ut bilderna till blog posts, så man kan clicka sig till dom även från första sidan
 
 const HomeGrid = () => {
-
   const { data: { data: posts = [] } = {} } = useSWR(cacheKey, getPosts);
 
-  console.log(posts)
-  const arr1 = posts.slice(0, 3)
-  const arr2 = posts.slice(4,6)
+  console.log(posts);
+  const arr1 = posts.slice(0, 3);
+  const arr2 = posts.slice(4, 6);
 
   return (
     <motion.div
@@ -111,11 +56,15 @@ const HomeGrid = () => {
         </p>
       </section>
       <section className={`${styles.section} ${styles.even}`}>
-        {arr1.map((item) => (
-          <div key={item.title}>
-            <ImageWrapper {...item} />
-          </div>
-        ))}
+        {arr1.length > 0 ? (
+          arr1.map((item) => (
+            <div key={item.title}>
+              <ImageWrapper {...item} />
+            </div>
+          ))
+        ) : (
+          <span></span>
+        )}
       </section>
       <section className={`${styles.section} ${styles.clr}`}>
         <p>
@@ -140,11 +89,15 @@ const HomeGrid = () => {
         </p>
       </section>
       <section className={`${styles.section} ${styles.slow}`}>
-        {arr2.map((item) => (
-          <div key={item.title}>
-            <ImageWrapper {...item} />
-          </div>
-        ))}
+        {arr2.length > 0 ? (
+          arr2.map((item) => (
+            <div key={item.title}>
+              <ImageWrapper {...item} />
+            </div>
+          ))
+        ) : (
+          <span></span>
+        )}
       </section>
     </motion.div>
   );
