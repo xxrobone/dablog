@@ -46,7 +46,7 @@ Vercel | <img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-t
 
 |  Schema  |  Supabase  |  postgresql  |
 | --- | --- | --- |
-| Schema | <img src="https://github.com/xxrobone/dablog/blob/main/readmeimages/blog_schema.png" alt="schema" width="100%" height="600"/> </a> | Users, Posts, Comments (& replies), !auth not shown! |
+| Schema | <img src="https://github.com/xxrobone/dablog/blob/main/readmeimages/blog_schema.png" alt="schema" width="600" height="600"/> </a> | Users, Posts, Comments (& replies), !auth not shown! |
 
 </details>
  
