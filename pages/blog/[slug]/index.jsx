@@ -18,6 +18,7 @@ import AddComment from './commentsSection/addComment/AddComment';
 export default function BlogPost() {
   const [msg, setMsg] = useState(false);
   const user = useUser();
+
   const router = useRouter();
   /* Use this slug to fetch the post from the database */
   const { slug } = router.query;
@@ -36,7 +37,7 @@ export default function BlogPost() {
     () => getPost({ slug })
   );
 
-  const { title, body, created_at, id, image } = post;
+  const { title, body, created_at, id, image, user_id } = post;
 
   const handleDeletePost = async (id) => {
     /*  deletePost({ id }); */
@@ -87,19 +88,23 @@ export default function BlogPost() {
         {post?.author && (
           <span className={styles.author}>Author: {post.author}</span>
         )}
-
-        {/* The Delete & Edit part should only be showed if you are authenticated and you are the author */}
-
         {user ? (
-          <div className={styles.buttonContainer}>
-            <Button onClick={() => handleDeletePost(id)}>Delete</Button>
-            <Button onClick={handleEditPost}>Edit</Button>
-          </div>
+          <>
+            <div className={styles.buttonContainer}>
+              {user.id === user_id ? (
+                <>
+                  <Button onClick={() => handleDeletePost(id)}>Delete</Button>
+                  <Button onClick={handleEditPost}>Edit</Button>
+                </>
+              ) : (
+                ''
+              )}
+            </div>
+            {msg ? <Message>Post deleted successfully</Message> : null}
+          </>
         ) : (
-          ''
+          <span></span>
         )}
-
-        {msg ? <Message>Post deleted successfully</Message> : null}
       </section>
       <AddComment id={id} />
       <Comments slug={slug} id={id} />
