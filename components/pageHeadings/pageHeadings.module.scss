@@ -1,10 +1,10 @@
 .heading_text {
     position: absolute;
-    max-width: 320px;
+    max-width: 260px;
     z-index: 1000;
 
-    @media screen and (max-width: 768px) {
-      max-width: 260px;
+    @media screen and (min-width: 980px) {
+      max-width: 320px;
     }
 
   }

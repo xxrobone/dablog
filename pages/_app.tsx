@@ -1,4 +1,4 @@
-import '@/styles/globals.css';
+import '@/styles/globals.scss';
 import type { AppProps } from 'next/app';
 import RootLayout from '../components/root-layout';
 import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs';

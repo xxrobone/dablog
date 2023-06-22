@@ -13,20 +13,20 @@ const pathVariants = {
   visible: {
     pathLength: 1,
     strokeWidth: 2,
-    stroke: '#ee5f0c',
+    stroke: '#ec4d37',
     transition: {
       duration: 1,
       when: 'afterChildren',
-      staggerChildren: 0.3,
+      staggerChildren: 0.2,
       ease: 'easeInOut',
     },
     fill: [
-      '#fafafa00',
-      '#fafafa00',
-      '#fafafa00',
-      '#fafafa00',
-      '#2c2c2b25',
-      '#3636364d',
+      '#1b1b1b00',
+      '#1b1b1b00',
+      '#1b1b1b00',
+      '#1b1b1b00',
+      '#1b1b1b25',
+      '#1b1b1b4d',
       '#13131380',
       '#0c0c0cbe',
       '#030303',
@@ -70,7 +70,7 @@ const HomeHeading = () => {
               0, 0, 0, 0, 0, 0, -100, -230, -200, 335, 335, 325, 325, 325, 335,
               0, 0,
             ],
-            fill: '#d6764d',
+            fill: '#e62b12',
             stroke: '#fafafa',
           }}
           transition={{ duration: 2.8, delay: 1.2 }}

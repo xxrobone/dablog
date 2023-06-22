@@ -20,7 +20,7 @@
 
         marquee {
            width: 80%;
-            color: #888;
+            color: #cccccc;
         }
       }
 
@@ -68,7 +68,7 @@
       flex-direction: column;
       justify-content: space-evenly;
       align-items: center;   
-      color: #121212;
+      color: #ececec;
 
       @media(max-width: 960px) {
         margin: 30vh auto;
@@ -90,7 +90,7 @@
                     0 0 25px #eba37ab6,
                     0 0 50px #eb9e7a6e,
                     0 0 100px #eba37a34;
-         -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+         -webkit-box-reflect:below 1px linear-gradient(transparent, rgba(0, 0, 0, 0.205));
 
          &:hover {
             background: #ffffffc7;
@@ -114,10 +114,10 @@
         section:first-of-type {
 
             p {
-                padding: 1rem 2rem;
+                padding: 2rem 2rem 1rem;
                 margin-top: 2rem;
-                color: white;
-                background-color: black;
+                color: rgb(17, 17, 17);
+                background-color: #fafafa;
             }
         }
   

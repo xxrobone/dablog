@@ -1,10 +1,10 @@
 .container {
   position: absolute;
-  left: 1rem;
-  top: 5vh;
+  left: 10vw;
+  top: 2vh;
   font-size: 40px;
 
-  @media screen and (min-width: 768px) {
-    top: 0vh;;
+  @media screen and (min-width: 980px) {
+    top: 0vh;
   }
 }

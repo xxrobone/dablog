@@ -1,14 +1,14 @@
 .imageWrapper  {
     margin: 2rem 0;
     position: relative;
-    width: 400px;
-    height: 400px;
+    width: 340px;
+    height: 260px;
     object-fit: cover;
     object-position: center center;
 
-    @media (max-width: 1185px) {
-        width: 340px;
-        height: 260px;
+    @media (min-width: 1185px) {
+        width: calc((100svw - 20svw) / 3);
+        height: calc(100svh / 3);
     }
 
     h4 {

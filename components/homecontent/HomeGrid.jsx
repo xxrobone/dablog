@@ -26,7 +26,6 @@ const HomeGrid = () => {
   const { data: { data: posts = [] } = {} } = useSWR(cacheKey, getPosts);
 
   const arr1 = posts.slice(0, 3);
-  const arr2 = posts.slice(4, 6);
 
   return (
     <motion.div
@@ -64,6 +63,7 @@ const HomeGrid = () => {
         ) : (
           <span></span>
         )}
+        <p>They see me rollin they... <br/>sing it!</p>
       </section>
       <section className={`${styles.section} ${styles.clr}`}>
         <p>
@@ -86,17 +86,6 @@ const HomeGrid = () => {
           Enim quisquam consequuntur commodi.
           <br />
         </p>
-      </section>
-      <section className={`${styles.section} ${styles.slow}`}>
-        {arr2.length > 0 ? (
-          arr2.map((item) => (
-            <div key={item.title}>
-              <ImageWrapper {...item} />
-            </div>
-          ))
-        ) : (
-          <span></span>
-        )}
       </section>
     </motion.div>
   );
