@@ -2,7 +2,7 @@
   position: sticky;
   top: 0vh;
   left: 0vw;
-  z-index: 100;
+  z-index: 1000;
 }
 
 @media screen and (min-width: 980px) {
