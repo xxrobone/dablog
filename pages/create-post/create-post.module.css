@@ -8,12 +8,6 @@
   }
 }
 
-.editor {
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 5px;
-}
-
 .uploadButton {
   margin-top: 10px;
   padding: 10px 10px !important;

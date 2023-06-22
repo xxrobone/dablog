@@ -35,11 +35,7 @@ const Login = () => {
 
   return (
     <>
-      <button onClick={() => supabaseClient.auth.signOut()}>Sign out</button>
-      <p>user:</p>
-      <pre>{console.log(JSON.stringify(user, null, 2))}</pre>
-      {/* <p>client-side data fetching with RLS</p>
-      <pre>{JSON.stringify(data, null, 2)}</pre> */}
+      <p>Loading...</p>
     </>
   );
 };

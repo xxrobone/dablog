@@ -3,6 +3,7 @@
   left: 10vw;
   top: 2vh;
   font-size: 40px;
+  color: white;
 
   @media screen and (min-width: 980px) {
     top: 0vh;

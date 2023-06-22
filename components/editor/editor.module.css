@@ -7,7 +7,7 @@
   display: flex;
   border-radius: 5px;
   padding: 10px;
-  border: 1px solid black;
+  border: 1px solid rgb(248, 248, 248);
   background-color: white;
   gap: 5px;
 }

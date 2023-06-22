@@ -13,11 +13,12 @@ import { timeAgo } from '@/utils/timeAgo';
 
 // components
 import Button from '@/components/button';
-import { useRef } from 'react';
 
 // styles
 import styles from './comment.module.scss';
 import AddReply from '../addReply/AddReply';
+
+import SyntaxError from '@/components/syntaxError/SyntaxError';
 
 const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
   const [editedComment, setEditedComment] = useState({
@@ -25,7 +26,7 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
     body: '',
   });
   const [isReply, setIsReply] = useState(false);
-  const formRef = useRef();
+  const [err, setErr] = useState(false);
 
   const { data: { data: replies = [] } = {}, error } = useSWR(
     id ? commentsCacheKey : null,
@@ -79,10 +80,7 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
 
   const handleDelete = async (id) => {
     console.log('ID from handle delete: ', id);
-    /* const ok = window.confirm('Delete comment?'); */
-    // if (ok) {
-    const { data, error } = await deleteTrigger(id);
-    console.log(id);
+      const { data, error } = await deleteTrigger(id);
     // }
   };
 
@@ -104,9 +102,9 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
             {/* reply button */}
             <p
               className={styles.reply}
-                onClick={(e) => {
-                  e.preventDefault()
-                  e.stopPropagation()
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 console.log('reply?');
                 setIsReply((prev) => !prev);
               }}
@@ -115,7 +113,11 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
             </p>
             {isReply ? (
               <>
-                  <AddReply post_id={post_id} reply_to={id} setIsReply={setIsReply} />
+                <AddReply
+                  post_id={post_id}
+                  reply_to={id}
+                  setIsReply={setIsReply}
+                />
               </>
             ) : (
               <span></span>
@@ -126,13 +128,26 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
                   .filter((reply) => reply.reply_to === id)
                   .map((r) => (
                     <div key={r.id} className={styles.comment_reply}>
+                      {err ? (
+                        <div className={styles.syntax_err}>
+                          <SyntaxError />
+                        </div>
+                      ) : (
+                        ''
+                      )}
                       <h4>- {r.username}</h4>
-                      <p className={styles.timestamp}>{timeAgo(r.created_at)}</p>
+                      <p className={styles.timestamp}>
+                        {timeAgo(r.created_at)}
+                      </p>
                       <p className={''}>{r.comment}</p>
                       <Button
                         type='button'
                         onClick={() => handleDelete(r.id)}
                         className=''
+                        onMouseEnter={
+                          !user ? () => setErr((prev) => !prev) : null
+                        }
+                        onMouseLeave={!user ? () => setErr(false) : null}
                       >
                         Delete
                       </Button>
@@ -165,7 +180,11 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
                 >
                   Edit
                 </Button>
-                <Button type='button' onClick={() => handleDelete(id)} className=''>
+                <Button
+                  type='button'
+                  onClick={() => handleDelete(id)}
+                  className=''
+                >
                   Delete
                 </Button>
               </>
