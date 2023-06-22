@@ -12,7 +12,15 @@ import { timeAgo } from '@/utils/timeAgo';
 import Button from '@/components/button';
 // styles
 import styles from './comment.module.scss';
-const CommentReply = ({ username, comment, created_at, id, slug, reply_to }) => {
+const CommentReply = ({
+  username,
+  comment,
+  created_at,
+  id,
+  slug,
+  user_id,
+  reply_to,
+}) => {
   const [editedComment, setEditedComment] = useState({
     id: '',
     body: '',
@@ -53,12 +61,14 @@ const CommentReply = ({ username, comment, created_at, id, slug, reply_to }) => 
   };
 
   const handleDeleteComment = async () => {
+    e.stopImmidatePropagation();
     console.log('ID from handle delete: ', id);
     /* const ok = window.confirm('Delete comment?'); */
-
-    // if (ok) {
+     if (user === user_id) {
     deleteTrigger(id);
-    // }
+     } else {
+       console.log('you are not the user')
+     }
   };
 
   return (
@@ -106,6 +116,8 @@ const CommentReply = ({ username, comment, created_at, id, slug, reply_to }) => 
                   type='button'
                   onClick={handleDeleteComment}
                   className=''
+                  onMouseEnter={() => console.log('mouse')}
+                  onMouseLeave={() => console.log}
                 >
                   Delete
                 </Button>
