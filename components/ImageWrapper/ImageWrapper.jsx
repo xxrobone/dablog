@@ -31,6 +31,7 @@ const ImageWrapper = ({ title, created_at, image, slug }) => {
         src={image ? image : IMG1}
         alt={title}
         fill
+        priority
         sizes="(max-width: 768px) 100%, (max-width: 1200px) 50vw, 33vw"
       ></Image>
       <h4>{title}</h4>
