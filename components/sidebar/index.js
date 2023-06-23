@@ -47,7 +47,7 @@ export default function Navbar() {
   const sidebarRef = useRef();
 
   useEffect(() => {
-    if (window.innerWidth > 959) {
+   /*  if (window.innerWidth > 959) { */
       let prevScrollpos = window.pageYOffset;
 
       const handleScroll = () => {
@@ -66,7 +66,7 @@ export default function Navbar() {
       return () => {
         window.removeEventListener('scroll', handleScroll);
       };
-    }
+    /* } */
   }, []);
 
   return (
