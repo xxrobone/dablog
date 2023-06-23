@@ -1,7 +1,9 @@
+'use client';
+import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import styles from './sidebar.module.css';
+import styles from './sidebar.module.scss';
 import classNames from 'classnames';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 
@@ -27,8 +29,8 @@ const navItems = {
     name: 'Logout',
     requiresAuth: true,
     onClick: async (supabaseClient, router) => {
-     await supabaseClient.auth.signOut()
-      router.push('/')
+      await supabaseClient.auth.signOut();
+      router.push('/');
     },
   },
 };
@@ -39,52 +41,76 @@ export default function Navbar() {
     pathname = '/blog';
   }
 
-  const router = useRouter()
+  const router = useRouter();
   const supabaseClient = useSupabaseClient();
   const user = useUser();
+  const sidebarRef = useRef();
+
+  useEffect(() => {
+    if (window.innerWidth > 959) {
+      let prevScrollpos = window.pageYOffset;
+
+      const handleScroll = () => {
+        let currentScrollPos = window.pageYOffset;
+
+        if (prevScrollpos > currentScrollPos) {
+          sidebarRef.current.classList.add(`${styles.container && styles.bgorange}`);
+          sidebarRef.current.classList.remove(`${styles.container && styles.hide}`);
+        } else {
+          sidebarRef.current.classList.add(`${styles.hide}`);
+          sidebarRef.current.classList.remove(`${styles.bgorange}`);
+        }
+        prevScrollpos = currentScrollPos;
+      };
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, []);
 
   return (
-    <aside className={styles.container}>
-        <nav className={styles.navigation} id='nav'>
-          <div className={styles.navigationItemWrapper}>
-            {Object.entries(navItems).map(
-              ([path, { name, requiresAuth, onClick }]) => {
-                const isActive = path === pathname;
+    <aside className={`${styles.container} `} ref={sidebarRef}>
+      <nav className={styles.navigation} id='nav'>
+        <div className={styles.navigationItemWrapper}>
+          {Object.entries(navItems).map(
+            ([path, { name, requiresAuth, onClick }]) => {
+              const isActive = path === pathname;
 
-                if ((requiresAuth && !user) || (path === '/login' && user)) {
-                  return null;
-                }
+              if ((requiresAuth && !user) || (path === '/login' && user)) {
+                return null;
+              }
 
-                if (path === '/logout') {
-                  return (
-                    <button
-                      key={name}
-                      className={classNames(styles.navBtn, {
-                        [styles.textNeutral]: !isActive,
-                        [styles.fontBold]: isActive,
-                      })}
-                      onClick={() => onClick(supabaseClient, router)}
-                    >
-                      {name}
-                    </button>
-                  );
-                }
+              if (path === '/logout') {
                 return (
-                  <Link
+                  <button
                     key={name}
-                    href={path}
-                    className={classNames(styles.navigationItem, {
+                    className={classNames(styles.navBtn, {
                       [styles.textNeutral]: !isActive,
                       [styles.fontBold]: isActive,
                     })}
+                    onClick={() => onClick(supabaseClient, router)}
                   >
-                    <span className={styles.linkName}>{name}</span>
-                  </Link>
+                    {name}
+                  </button>
                 );
               }
-            )}
-          </div>
-        </nav>
+              return (
+                <Link
+                  key={name}
+                  href={path}
+                  className={classNames(styles.navigationItem, {
+                    [styles.textNeutral]: !isActive,
+                    [styles.fontBold]: isActive,
+                  })}
+                >
+                  <span className={styles.linkName}>{name}</span>
+                </Link>
+              );
+            }
+          )}
+        </div>
+      </nav>
     </aside>
   );
 }

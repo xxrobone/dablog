@@ -130,6 +130,7 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
                     <div key={r.id} className={styles.comment_reply}>
                       {err ? (
                         <div className={styles.syntax_err}>
+                          {/* probably should not even put this here, but I can remove it...  */}
                           <SyntaxError />
                         </div>
                       ) : (

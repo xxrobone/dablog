@@ -1,23 +1,29 @@
 .logo {
-      position: absolute;
+      position: fixed;
       top: 1rem;
       bottom: auto;
       right: 2rem;    
       height: 125px;
       width: 125px;    
       -webkit-transition-delay: 0.5s;    
-           -o-transition-delay: 0.5s;    
-              transition-delay: 0.5s;
+        -o-transition-delay: 0.5s;    
+          transition-delay: 0.5s;
       -webkit-transition: all 1s ease;
       -o-transition: all 1s ease;
       transition: all 1s ease;
       -webkit-perspective: 30em;
-              perspective: 30em;
-      z-index: 20;
+        perspective: 30em;
+      z-index: 1000;
       object-fit: cover;
       object-position: center;
+      pointer-events: none;
 
-pointer-events: none;
+      .logo_text {
+        padding: 0.23rem 0.75rem;
+        background-color: white;
+        position: absolute;
+        left: -40px;
+      }
 
       .rob_png {
         width: 100%;
@@ -32,10 +38,6 @@ pointer-events: none;
           left: auto;
           right: 0rem;
       }
-    }
-
-    .logo_text {
-      position: absolute;
     }
 
     .dot {

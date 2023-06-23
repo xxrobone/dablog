@@ -15,22 +15,23 @@ const SyntaxError = () => {
         alt={`syntax error`}
         unoptimized={true}
       />
-      <motion.span
+      <motion.p
         className={styles.user_error}
         initial={{ opacity: 0, height: 0 }}
         animate={{ opacity: [1, 0], height: 100 }}
         transition={{ delay: 1.6, duration: 1.2 }}
       >
-        Anonymous User!
-      </motion.span>
-      <motion.span
+        SYNTAX ERROR!
+      </motion.p>
+      <motion.p
         className={styles.user_error}
         initial={{ opacity: 0, height: 0 }}
         animate={{ opacity: 1, height: 100 }}
         transition={{ delay: 3, duration: 1.2 }}
       >
-        Unable to delete!!! Not Logged in
-      </motion.span>
+        Dont get stressed Its not a hack <br />
+        izz a joke
+      </motion.p>
     </div>
   );
 };

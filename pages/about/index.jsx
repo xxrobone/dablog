@@ -8,21 +8,18 @@ import AboutHeading from '../../components/pageHeadings/aboutHeading';
 export default function About() {
   return (
     <div className={styles.about}>
-       <Head lang='en'>
+      <Head lang='en'>
         <title>Da Blog - About me myself and I</title>
-        <meta
-          name='description'
-          content='About developer Robert Wägar'
-        />
+        <meta name='description' content='About developer Robert Wägar' />
         <meta property='og:title' content='Da blog by Rob' />
       </Head>
       <Heading>
         <AboutHeading />
       </Heading>
-      <motion.article
+      {/*   <motion.article
         className={styles.content_wrapper}
-        initial={{ y: 1000, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{ x: 1000, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 2, duration: 2 }}
       >
         <marquee bgcolor='#ffffff' direction='left' width='65%'>
@@ -42,12 +39,12 @@ export default function About() {
         <marquee bgcolor='#000000' width='50%'>
           100% coffee & code
         </marquee>
-      </motion.article>
+      </motion.article> */}
       <div className={styles.about_hero}>
         <div className={styles.overlay}></div>
       </div>
       <div className={styles.about_wrapper}>
-        <p>My name is</p>
+        
         <h2>Robert &apos;Rob-One&apos; Wägar</h2>
         <section>
           <p>
@@ -70,8 +67,12 @@ export default function About() {
             Is to build smart user interfaces & useful interactions and develop
             functionality of web pages with Javascript, React, Next.js with
             sass, styled-components, tailwind, framer-motion, anime.js, MERN
-            stack, currently learning supabase and typescript always on the lookout for whats new in tech.<br />I have also done smaller and mid scale projects. Below you can see an example of a project I did for a customer in LA / US
-            (upgrading from wordpress to nextjs, still using wp as a headless cms)
+            stack, currently learning supabase and typescript always on the
+            lookout for whats new in tech.
+            <br />I have also done smaller and mid scale projects. Below you can
+            see an example of a project I did for a customer in LA / US
+            (upgrading from wordpress to nextjs, still using wp as a headless
+            cms)
             <br />
             <a
               href='https://www.lockerlegends.org/'

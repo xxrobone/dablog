@@ -1,9 +1,10 @@
 .about {   
     margin: 0 ;
     padding: 0;
+    overflow: hidden;
 
-    .content_wrapper {
-      position: absolute;
+   /*  .content_wrapper {
+      position: fixed;
       top: 20vh;
       left: 5%;
       width: 90%;
@@ -22,7 +23,7 @@
            width: 80%;
             color: #cccccc;
         }
-      }
+      } */
 
 .about_hero {
     margin: 0;
@@ -59,9 +60,9 @@
   }
   
   .about_wrapper {
-      margin: 20vh auto;
+      margin: 25vh auto;
       padding: 0;
-      width: 65%;
+      width: 50%;
       min-height: 100vh;
       position: relative;
       display: flex;
@@ -114,8 +115,9 @@
         section:first-of-type {
 
             p {
+                width: 90%;
                 padding: 2rem 2rem 1rem;
-                margin-top: 2rem;
+                margin: 2rem auto 0;
                 color: rgb(17, 17, 17);
                 background-color: #fafafa;
             }
