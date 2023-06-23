@@ -8,15 +8,15 @@ import ImageWrapper from '../ImageWrapper/ImageWrapper';
 import styles from './HomeGrid.module.scss';
 
 const Variants = {
-  open: {
-    y: 0,
-    transition: {
-      duration: 1.5,
-      delay: 4,
-    },
+  hide: {
+    opacity: 0,
   },
-  closed: {
-    y: 1500,
+  show: {
+    opacity: 1,
+    transition: {
+      duration: 4,
+      delay: 2,
+    },
   },
 };
 
@@ -31,9 +31,14 @@ const HomeGrid = () => {
     <motion.div
       className={styles.content_wrapper}
       variants={Variants}
-      initial='closed'
-      animate='open'
+      initial='hide'
+      animate='show'
     >
+      <p className={styles.info}>
+        Now I just done an css keyframe animation, what I´ve should have done,
+        and will change to is like a automatic slider that will animate each
+        element as it is next up, so that it will have continous flow...
+      </p>
       <section className={`${styles.section} ${styles.top}`}>
         <p>
           I&apos;m a developer with focus on creating smart user interfaces &
@@ -53,7 +58,7 @@ const HomeGrid = () => {
           <br />
         </p>
       </section>
-      <section className={`${styles.section} ${styles.even}`}>
+      <section className={`${styles.section} ${styles.images}`}>
         {arr1.length > 0 ? (
           arr1.map((item) => (
             <div key={item.title}>
@@ -63,7 +68,10 @@ const HomeGrid = () => {
         ) : (
           <span></span>
         )}
-        <p>They see me rollin they... <br/>sing it!</p>
+        <p>
+          They see me rollin they... <br />
+          sing it!
+        </p>
       </section>
       <section className={`${styles.section} ${styles.clr}`}>
         <p>

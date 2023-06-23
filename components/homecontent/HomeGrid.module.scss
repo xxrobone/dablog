@@ -1,5 +1,5 @@
 .content_wrapper {   
-  position: relative;
+    position: relative;
     margin: 0 auto;
     margin-top: 10vh;     
     width: 100%;
@@ -13,9 +13,9 @@
     overflow: hidden;
 
     @media screen and (min-width: 1185px) {
-      margin-top: 0vh;
-      width: 70svw;
-      padding: 2rem 2rem;
+      margin-top: 0;
+      width: 66svw;
+      padding: 2rem;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
     }
@@ -25,6 +25,15 @@
         font-size: clamp(2rem, 3vw, 4rem);
     }
    
+    .info {
+      color: black;
+      opacity: 0.3;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 1;
+      }
+    }
     
 .section {
     position: relative;
@@ -68,7 +77,7 @@
       padding: 0 0.5rem;
          }
 
-  .even {
+  .images {
       animation: my-animation-2 40s linear infinite;
 
       @media(min-width: 778px) {
@@ -105,23 +114,32 @@
     transform: translateY(100%);
   }
   to {
-    -moz-transform: translateY(-100%);
-    -webkit-transform: translateY(-100%);
-    transform: translateY(-100%);
+    -moz-transform: translateY(0%);
+    -webkit-transform: translateY(0%);
+    transform: translateY(0%);
   }
 }
   
 @keyframes my-animation-2 {
-  from {
-    -moz-transform: translateY(-100%);
-    -webkit-transform: translateY(-100%);
-    transform: translateY(-100%);
+
+  0% {
+    -moz-transform: translateY(0%);
+    -webkit-transform: translateY(0%);
+    transform: translateY(-20%);
   }
-  to {
+
+  95% {
     -moz-transform: translateY(100%);
     -webkit-transform: translateY(100%);
     transform: translateY(100%);
+    opacity: 0.8;
   }
+
+  100% {
+    opacity: 0;
+  }
+
+  
 }
 
 
@@ -134,7 +152,7 @@
       transform: translateX(100%);
     }
     to {
-      -moz-transform: translateX(-800%);
+      -moz-transform: translateX(-80%);
       -webkit-transform: translateX(-80%);
       transform: translateX(-80%);
     }
@@ -142,8 +160,8 @@
     
   @keyframes my-animation-2 {
     from {
-      -moz-transform: translateX(-80%);
-      -webkit-transform: translateX(-80%);
+      -moz-transform: translateX(0%);
+      -webkit-transform: translateX(0%);
       transform: translateX(-80%);
     }
     to {
