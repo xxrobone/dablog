@@ -19,10 +19,15 @@
       pointer-events: none;
 
       .logo_text {
-        padding: 0.23rem 0.75rem;
+        width: 70px;
+        height: 1.75rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
         background-color: white;
         position: absolute;
         left: -40px;
+        border-radius: 10px;
+        text-transform: uppercase;
       }
 
       .rob_png {
