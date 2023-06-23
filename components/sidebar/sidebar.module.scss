@@ -13,6 +13,7 @@
     transform: translateY(-54px);
 
     @media screen and (min-width: 980px) {
+      width: 150px;
       transform: translateY(0) translateX(calc(-130px));
       border-bottom: 10px solid transparent;
       border-right: 20px solid  #db491c;
