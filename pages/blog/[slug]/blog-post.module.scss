@@ -86,14 +86,15 @@
   }
 
   @media screen and (max-width: 1024px) {
-    top: 15%;
-    margin-left: 0;
+    top: 10%;
+    margin-left: 0px;
     border-bottom: 4px solid #ee4e34;
     border-right: 4px solid #ee4e34;
    }
   @media screen and (max-width: 680px) {
     top: 75px;
-    left: 0;
+    margin-left: 0;
+    left: 2%;
   
   }
 }

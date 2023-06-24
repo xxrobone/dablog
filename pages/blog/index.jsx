@@ -13,6 +13,7 @@ import { filteredPosts } from '@/utils/filteredPosts';
 // styles
 import styles from './blog.module.scss';
 import { motion } from 'framer-motion';
+import BlogSlugCard from './blogSlugCard';
 
 export default function Blog() {
   const [query, setQuery] = useState('');
@@ -81,7 +82,8 @@ export default function Blog() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: i * 0.2 }}
               >
-                <Link className={styles.link} href={`/blog/${post.slug}`}>
+                <BlogSlugCard {...post} />
+               {/*  <Link className={styles.link} href={`/blog/${post.slug}`}>
                   <div>
                     <p>{post.title}</p>
                     <div className={styles.bottom_row}>
@@ -95,7 +97,7 @@ export default function Blog() {
                       )}
                     </div>
                   </div>
-                </Link>
+                </Link> */}
               </motion.div>
             )) : ''}
       </motion.section>
