@@ -58,3 +58,42 @@
   display: flex;
   gap: 5px;
 }
+
+.go_back {
+  padding: 0.5rem 1rem;
+  color: #282828;
+  background-color: #f8f8f8;
+  text-decoration: none;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  top: 20vh;
+  margin-left: -100px;
+  transition: all 0.4s ease;
+  z-index: 100;
+  cursor: pointer;
+
+> svg {
+  font-size: 1.4rem;
+  margin-right: 0.5rem;
+}
+
+  &:hover {
+    background-color: #ee4e34;
+    color: white;
+  }
+
+  @media screen and (max-width: 1024px) {
+    top: 15%;
+    margin-left: 0;
+    border-bottom: 4px solid #ee4e34;
+    border-right: 4px solid #ee4e34;
+   }
+  @media screen and (max-width: 680px) {
+    top: 75px;
+    left: 0;
+  
+  }
+}

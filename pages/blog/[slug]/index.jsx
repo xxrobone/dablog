@@ -14,6 +14,7 @@ import { timeAgo } from '@/utils/timeAgo';
 import { removeHTML } from '@/utils/removeHTML';
 import Comments from './commentsSection/comments/comments';
 import AddComment from './commentsSection/addComment/AddComment';
+import { RiArrowLeftCircleFill } from 'react-icons/ri'
 
 export default function BlogPost() {
   const [msg, setMsg] = useState(false);
@@ -74,6 +75,9 @@ export default function BlogPost() {
         <meta property='og:title' content='Da blog by Rob' />
       </Head>
       <section className={styles.container}>
+        <span className={styles.go_back} onClick={() => router.back()}>
+          <RiArrowLeftCircleFill /> Go Back
+        </span>
         <h2>{title}</h2>
         {post?.image && <BlogImageBanner src={image} alt={title} />}
         <div className={styles.dateContainer}>

@@ -17,8 +17,8 @@ import Button from '@/components/button';
 // styles
 import styles from './comment.module.scss';
 import AddReply from '../addReply/AddReply';
-
-import SyntaxError from '@/components/syntaxError/SyntaxError';
+/* import SyntaxError from '@/components/syntaxError/SyntaxError'; */
+import Message from '@components/message';
 
 const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
   const [editedComment, setEditedComment] = useState({
@@ -26,7 +26,8 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
     body: '',
   });
   const [isReply, setIsReply] = useState(false);
-  const [err, setErr] = useState(false);
+  /*  const [err, setErr] = useState(false); */
+  const [msg, setMsg] = useState(false);
 
   const { data: { data: replies = [] } = {}, error } = useSWR(
     id ? commentsCacheKey : null,
@@ -80,7 +81,7 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
 
   const handleDelete = async (id) => {
     console.log('ID from handle delete: ', id);
-      const { data, error } = await deleteTrigger(id);
+    const { data, error } = await deleteTrigger(id);
     // }
   };
 
@@ -128,11 +129,8 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
                   .filter((reply) => reply.reply_to === id)
                   .map((r) => (
                     <div key={r.id} className={styles.comment_reply}>
-                      {err ? (
-                        <div className={styles.syntax_err}>
-                          {/* probably should not even put this here, but I can remove it...  */}
-                          <SyntaxError />
-                        </div>
+                      {msg ? (
+                        <Message>Have to be signed in to delete</Message>
                       ) : (
                         ''
                       )}
@@ -146,9 +144,9 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
                         onClick={() => handleDelete(r.id)}
                         className=''
                         onMouseEnter={
-                          !user ? () => setErr((prev) => !prev) : null
+                          !user ? () => setMsg((prev) => !prev) : null
                         }
-                        onMouseLeave={!user ? () => setErr(false) : null}
+                        onMouseLeave={!user ? () => setMsg(false) : null}
                       >
                         Delete
                       </Button>
@@ -200,3 +198,12 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
 };
 
 export default Comment;
+
+/* 
+saving it for later fun
+<div className={styles.syntax_err}>
+probably should not even put this here, but I can remove it...  
+Nah removed it for now... will do a simple cant delete msg 
+<SyntaxError />
+</div>
+*/
