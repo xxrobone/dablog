@@ -10,6 +10,22 @@ import HomeHeading from '@components/pageHeadings/homeHeading';
 // styles
 import styles from './Homepage.module.scss';
 
+const TitleEfx = (title) => {
+  let text = title;
+  let word = text.split('');
+  /*   console.log(word); */
+
+  return (
+    <>
+      {word.map((l, i) => (
+        <span key={i} className={styles.letter}>
+          {l}
+        </span>
+      ))}
+    </>
+  );
+};
+
 const Home = () => {
   const { data: { data: posts = [] } = {} } = useSWR(cacheKey, getPosts);
 
@@ -32,7 +48,7 @@ const Home = () => {
           {posts.length > 0 ? (
             posts.map((item) => (
               <div className={styles.box} key={item.title}>
-                <span className={styles.title}>{item.title}</span>
+                <span className={styles.title}>{TitleEfx(item.title)}</span>
                 {item.image ? (
                   <Image
                     className={styles.img}

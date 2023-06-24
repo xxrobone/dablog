@@ -10,7 +10,8 @@
 .container {
     position: relative;
     width: 1000px;
-    margin: 20vh auto 10vh;
+    min-height: 100%;
+    margin: 20vh auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
@@ -20,30 +21,53 @@
   .container .box {
     position: relative;
     width: 100%;
-    margin-bottom: 10px;
+    max-height: 300px;
+    margin-bottom: 1rem;
     break-inside: avoid;
+    border-radius: 10px;
+    background-color: transparent;
+    background: #db491cc7;
+        color: #ffffff;
+        overflow: hidden;
   }
 
   .container .box:hover {
+    transition: all 0.4s ease-in-out;
     border-radius: 10px;
     transform: translateY(-3px);
-    box-shadow: 3px 6px 2px rgb(240, 73, 7);
+    box-shadow: 3px 6px 2px rgba(240, 73, 7, 0.267);
     border: 1px solid rgba(0,0,0,.125);
     cursor: pointer;
+
+    box-shadow: 0 0 5px #d46d44c9,
+                    0 0 15px #c56a36b6,
+                    0 0 25px #a33f106e,
+                    0 0 50px #61260434;
+         -webkit-box-reflect:below 1px linear-gradient(to bottom, transparent 10%, rgba(0, 0, 0, 0.205) 40%);
+         z-index: 100;
   }
   
   .container .box img {
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
     border-radius: 10px;
     object-fit: cover;
     object-position: center;
+    filter: grayscale(1);
+    
+  }
+
+  .container .box:hover img {
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    mix-blend-mode: color-dodge;
+    scale: 1.2;
   }
 
   .container .box a {
     position: absolute;
     left: 0;
     top: 0;
-    z-index: 100;
+    z-index: 99;
     width: 100%;
     height: 100%;
   }
@@ -78,6 +102,7 @@
     background-image: linear-gradient(315deg, #ee9417be 0%, #fe5858cb 74%);
     width: 100%;
     height: 100%;
+    min-height: 300px;
     margin-bottom: 10px;
     font-family: monospace;
     font-size: 1.2rem;
@@ -91,6 +116,7 @@
 
   .container .box .title {
     position: absolute;
+    z-index: 100;
     top: 1vh;
     left: 0.25rem;
     padding: 0.5rem 1rem;
@@ -98,4 +124,55 @@
     color: #fe5858;
     border-radius: 10px;
   }
-  
+
+  .title > .letter {
+    display: inline-block;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+
+.container .box:hover > .title > .letter {
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.container .box:hover > .title > .letter:nth-child(1) {
+    transform: translate(-40%, -50%) rotate(10deg);
+    
+}
+.container .box:hover > .title > .letter:nth-child(2n) {
+    transform: translate(0%, -10%) rotate(-6deg);
+}
+.container .box:hover > .title > .letter:nth-child(3n) {
+    transform: translate(0%, 20%) rotate(5deg);
+}
+.container .box:hover > .title > .letter:nth-child(4n) {
+    transform: translate(0%, -30%) rotate(-5deg);
+}
+.container .box:hover > .title > .letter:nth-child(5n) {
+    transform: translate(0%, 10%) rotate(8deg);
+} 
+.container .box:hover > .title > .letter:nth-child(6n) {
+    transform: translate(0%, -30%) rotate(-12deg);
+}
+.container .box:hover > .title > .letter:nth-child(7n) {
+    transform: translate(0%, 60%) rotate(10deg);
+}
+.container .box:hover > .title > .letter:nth-child(8n) {
+    transform: translate(0%, -15%) rotate(-12deg);
+}
+.container .box:hover > .title > .letter:nth-child(9n) {
+    transform: translate(0%, 8%) rotate(15deg);
+}
+.container .box:hover > .title > .letter:nth-child(10n) {
+    transform: translate(0%, -10%) rotate(-9deg);
+}
+.container .box:hover > .title > .letter:nth-child(11n) {
+    transform: translate(0%, 42%) rotate(6deg);
+}
+.container .box:hover > .title > .letter:nth-child(12n) {
+    transform: translate(0%, -17%) rotate(-5deg);
+}
+.container .box:hover > .title > .letter:nth-child(13n) {
+    transform: translate(60%, 70%) rotate(-10deg);
+}
