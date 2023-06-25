@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import {
   editComment,
@@ -36,6 +36,8 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
 
   const user = useUser();
   const router = useRouter();
+
+  const msgRef = useRef();
 
   const { trigger: updateTrigger } = useSWRMutation(
     commentsCacheKey,
@@ -79,9 +81,15 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
     }
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (e, id) => {
+    if (!user) {
+      setMsg((prev) => !prev);
+    }
     console.log('ID from handle delete: ', id);
     const { data, error } = await deleteTrigger(id);
+    setTimeout(() => {
+      setMsg(false);
+    }, 2000);
     // }
   };
 
@@ -112,6 +120,7 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
             >
               reply
             </p>
+            {msg ? <Message>Unable to delete! sorry! Have to be signed in to delete</Message> : ''}
             {isReply ? (
               <>
                 <AddReply
@@ -129,11 +138,6 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
                   .filter((reply) => reply.reply_to === id)
                   .map((r) => (
                     <div key={r.id} className={styles.comment_reply}>
-                      {msg ? (
-                        <Message>Have to be signed in to delete</Message>
-                      ) : (
-                        ''
-                      )}
                       <h4>- {r.username}</h4>
                       <p className={styles.timestamp}>
                         {timeAgo(r.created_at)}
@@ -141,12 +145,8 @@ const Comment = ({ username, comment, created_at, id, slug, post_id }) => {
                       <p className={''}>{r.comment}</p>
                       <Button
                         type='button'
-                        onClick={() => handleDelete(r.id)}
+                        onClick={(e) => handleDelete(e, r.id)}
                         className=''
-                        onMouseEnter={
-                          !user ? () => setMsg((prev) => !prev) : null
-                        }
-                        onMouseLeave={!user ? () => setMsg(false) : null}
                       >
                         Delete
                       </Button>

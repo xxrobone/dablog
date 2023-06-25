@@ -5,6 +5,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    z-index: 1000;
     transform: translate(-50%, -40%);
     background: linear-gradient(180deg, #111, #181818, #121212, #000);
     border: 1px solid #888;
