@@ -55,6 +55,7 @@ const Home = () => {
           <HomeHeading />
         </Heading>
         {/*  <HomeGrid /> */}
+        <h2 className={styles.latest}>Latest posts: </h2>
         <div className={styles.container}>
           {posts.length > 0 ? (
             posts.map((item) => (

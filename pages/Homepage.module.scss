@@ -7,11 +7,24 @@
     justify-content: center;
 }
 
+.latest {
+    width: 1000px;
+    margin: 20vh auto 10vh;
+    font-weight: 200;
+    color: #fafafa;
+
+    @media screen and (max-width: 960px) {
+      margin-top: 20vh;
+      margin-bottom: 5vh;
+      width: 80%;
+}
+}
+
 .container {
     position: relative;
     width: 1000px;
     min-height: 100%;
-    margin: 20vh auto;
+    margin: 0vh auto 20vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
