@@ -125,54 +125,66 @@
     border-radius: 10px;
   }
 
-  .title > .letter {
-    display: inline-block;
+  .title {
+    display: inline-flex;
+  }
+
+.title > .word {
+  display: flex;
+  padding: 0 0.2rem;
+}
+
+  .word > .letter {
+    
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 
-.container .box:hover > .title > .letter {
+.container .box:hover > .title {
     letter-spacing: 1px;
-    color: #ffffff;
+    text-shadow: 1px 1px 1px #fe5858;
+    background-color: #fafafa;
+      color: #121212;
 }
 
-.container .box:hover > .title > .letter:nth-child(1) {
-    transform: translate(-40%, -50%) rotate(10deg);
+.container .box:hover .title .word .letter:nth-child(1) {
+  position: absolute;
+    transform: translate(-110%, -100%) rotate(10deg);
     
 }
-.container .box:hover > .title > .letter:nth-child(2n) {
+.container .box:hover .title .word .letter:nth-child(2n) {
     transform: translate(0%, -10%) rotate(-6deg);
 }
-.container .box:hover > .title > .letter:nth-child(3n) {
+.container .box:hover .title .word .letter:nth-child(3n) {
     transform: translate(0%, 20%) rotate(5deg);
 }
-.container .box:hover > .title > .letter:nth-child(4n) {
+.container .box:hover .title .word .letter:nth-child(4n) {
     transform: translate(0%, -30%) rotate(-5deg);
 }
-.container .box:hover > .title > .letter:nth-child(5n) {
+.container .box:hover .title .word .letter:nth-child(5n) {
     transform: translate(0%, 10%) rotate(8deg);
 } 
-.container .box:hover > .title > .letter:nth-child(6n) {
+.container .box:hover .title .word .letter:nth-child(6n) {
     transform: translate(0%, -30%) rotate(-12deg);
 }
-.container .box:hover > .title > .letter:nth-child(7n) {
+.container .box:hover .title .word .letter:nth-child(7n) {
     transform: translate(0%, 60%) rotate(10deg);
 }
-.container .box:hover > .title > .letter:nth-child(8n) {
+.container .box:hover .title .word .letter:nth-child(8n) {
     transform: translate(0%, -15%) rotate(-12deg);
 }
-.container .box:hover > .title > .letter:nth-child(9n) {
+.container .box:hover .title .word .letter:nth-child(9n) {
     transform: translate(0%, 8%) rotate(15deg);
 }
-.container .box:hover > .title > .letter:nth-child(10n) {
+.container .box:hover .title .word .letter:nth-child(10n) {
     transform: translate(0%, -10%) rotate(-9deg);
 }
-.container .box:hover > .title > .letter:nth-child(11n) {
+.container .box:hover .title .word .letter:nth-child(11n) {
     transform: translate(0%, 42%) rotate(6deg);
 }
-.container .box:hover > .title > .letter:nth-child(12n) {
+.container .box:hover .title .word .letter:nth-child(12n) {
     transform: translate(0%, -17%) rotate(-5deg);
 }
-.container .box:hover > .title > .letter:nth-child(13n) {
-    transform: translate(60%, 70%) rotate(-10deg);
+.container .box:hover .title .word .letter:nth-child(13n) {
+    transform: translate(120%, 110%) rotate(-10deg);
 }

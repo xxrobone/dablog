@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRef } from 'react';
 import Heading from '@components/heading';
 /* import HomeGrid from '@components/homecontent/HomeGrid'; */
 import useSWR from 'swr';
@@ -11,17 +12,27 @@ import HomeHeading from '@components/pageHeadings/homeHeading';
 import styles from './Homepage.module.scss';
 
 const TitleEfx = (title) => {
-  let text = title;
-  let word = text.split('');
-  /*   console.log(word); */
-
   return (
     <>
-      {word.map((l, i) => (
-        <span key={i} className={styles.letter}>
-          {l}
-        </span>
-      ))}
+      {title.split(' ').map((word, idx) => {
+        return (
+          <div key={idx} className={styles.word}>
+            {word.split('').map((letter, i) => {
+              return (
+                <div
+                  className={styles.letter}
+                  key={i}
+                  /*  ref={(el) => {
+                  itemsRef.current[i] = el;
+                }} */
+                >
+                  {letter}
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
     </>
   );
 };
