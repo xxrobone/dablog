@@ -76,7 +76,7 @@ const Home = () => {
               </div>
             ))
           ) : (
-            <span></span>
+            <span style={{ color: '#fafafa' }}>Loading...</span>
           )}
         </div>
       </div>

@@ -12,6 +12,11 @@ Ive done some minor animtations using Framer-motion and created SVG texts in Fig
 
 Used Trello to have sprints and have log
 
+## Bugs and fixes
+- Need to check why comments dont appear each time loading page
+- some stuttering on homepage on scroll... even if removing animations
+- supabase issues with users, needs to be checked and fixed
+
 I will continue to build on this project and do a few more using nextjs and supabase, it is in my opinion a very powerful combination. 🚀 BIG LIKE
 
 ### You can read all the assignment qualifications on the assignment.md file
