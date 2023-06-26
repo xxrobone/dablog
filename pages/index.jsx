@@ -11,6 +11,7 @@ import HomeHeading from '@components/pageHeadings/homeHeading';
 // styles
 import styles from './Homepage.module.scss';
 
+// title for the posts, will create a separate component out of this!
 const TitleEfx = (title) => {
   return (
     <>
@@ -55,7 +56,17 @@ const Home = () => {
           <HomeHeading />
         </Heading>
         {/*  <HomeGrid /> */}
-        <h2 className={styles.latest}>Latest posts: </h2>
+       {/*  <h2 className={styles.latest}>Latest posts: </h2> */}
+        <div className={`${styles.latest}`}>
+          <h2 className={styles.sub_title}>
+          <span className={`${styles.p} ${styles.first}`}>
+            Check out the latest post right here!
+          </span>
+          <span className={`${styles.p} ${styles.second}`}>
+            Check out the latest post right here!
+          </span>
+          </h2>
+        </div>
         <div className={styles.container}>
           {posts.length > 0 ? (
             posts.map((item) => (
