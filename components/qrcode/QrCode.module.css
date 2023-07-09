@@ -1,0 +1,45 @@
+.qrcode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem auto 0;
+    padding: 2rem;
+    height: 100%;
+}
+
+.qrcode > img  {
+    filter: drop-shadow(4px 4px rgba(0,0,0,0.3));
+}
+
+.qr {
+    z-index: 1000;
+}
+
+.ticket {
+    margin-top:20px;
+    font-size: 1rem;
+}
+
+.time {
+    margin: 2rem auto;
+    font-size:  2rem;
+    font-weight: 600;
+}
+
+.playerimg {
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.playername {
+    color: #Fafafa;
+    margin-bottom: 2rem;
+    z-index: 1000;
+    text-shadow: 1px 1px rgba(0,0,0.225);
+    padding: 1rem;
+    border: 1px solid #888;
+    border-radius: 25px;
+}
