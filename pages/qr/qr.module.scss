@@ -1,9 +1,11 @@
 .qr {
-    width: 100%;
-    height: 100vh;
+    width: 80%;
+    height: 80vh;
     display: grid;
     place-content: center;
     background: linear-gradient(180deg, #1F1930 0%, #8D21FF 30%,#120A1C 100% );
+    border-radius: 25px;
+    margin: 2rem auto;
 }
 
 .playerimg {
