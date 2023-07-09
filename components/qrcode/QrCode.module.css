@@ -2,13 +2,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 2rem auto 0;
-    padding: 2rem;
+    margin: 30vh auto 0;
+    padding: 2rem 1rem 2rem;
     height: 100%;
 }
 
 .qrcode > img  {
-    filter: drop-shadow(4px 4px rgba(0,0,0,0.3));
+    filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.3));
 }
 
 .qr {
@@ -16,20 +16,20 @@
 }
 
 .ticket {
-    margin-top:20px;
+    margin-top:10px;
     font-size: 1rem;
 }
 
 .time {
-    margin: 2rem auto;
+    margin: 1rem auto;
     font-size:  2rem;
     font-weight: 600;
 }
 
 .playerimg {
     position: absolute;
-    height: 300px;
-    width: 300px;
+    height: 200px;
+    width: 200px;
     object-fit: cover;
     object-position: center;
 }
@@ -37,10 +37,9 @@
 .playername {
     width: 80%;
     color: #Fafafa;
-    margin-bottom: 2rem;
     z-index: 1000;
-    text-shadow: 1px 1px rgba(0,0,0.225);
-    padding: 1rem;
-    border: 1px solid #888;
+    text-shadow: 1px 1px rgba(0,0,0.325);
+    padding: 0.5rem;
+    border: 1px solid #88888879;
     border-radius: 10px;
 }

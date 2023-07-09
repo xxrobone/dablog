@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import Panda from '/public/images/hypepanda.png';
+import Panda from '/public/images/robban.png';
 import styles from './qr.module.scss';
 import QrCode from '../../components/qrcode/QrCode';
 
@@ -11,9 +11,9 @@ const qr = () => {
       <QrCode
         text={`Date: ${
           new Date().toLocaleString() + ' '
-        } \n Player name: HypedPanda69 \n Gamer-ID: 345678 5644 \n All Access`}
+        } \n Player name: CanonIceSlurper \n Gamer-ID: 001 001 002 \n All Access`}
         /* image={Panda} */
-              name='HypedPanda69'
+        name='CanonIceSlurper'
               game='Fortnite'
       />
       <Image src={Panda} alt='player' className={styles.playerimg} />

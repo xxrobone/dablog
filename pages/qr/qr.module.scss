@@ -1,11 +1,11 @@
 .qr {
     width: 80%;
-    height: 80vh;
+    height: 100vh;
     display: grid;
     place-content: center;
     background: linear-gradient(180deg, #1F1930 0%, #8D21FF 30%,#120A1C 100% );
     border-radius: 25px;
-    margin: 2rem auto;
+    margin: 1rem auto;
 }
 
 .playerimg {
@@ -15,6 +15,7 @@
     left: 50%;
     top: 30%;
     z-index: 1000;
+    filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.225));
 }
 
 @media screen and (max-width: 769px) {
