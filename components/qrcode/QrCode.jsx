@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import QRCode from 'qrcode';
 import styles from './QrCode.module.css';
 
-const QrCode = ({ text, name }) => {
+const QrCode = ({ text, name, game }) => {
   const [qrSrc, setQrSrc] = useState('');
 
   useEffect(() => {
@@ -17,6 +17,7 @@ const QrCode = ({ text, name }) => {
       {/*  {text} */} <br />
       <span className={styles.ticket}></span>
       <p className={styles.playername}>Player name: {name}</p>
+      <p className={styles.playername}>Game: {game}</p>
       {/* <div className={styles.time}>{new Date().toLocaleString()}</div> */}
     </div>
   );
