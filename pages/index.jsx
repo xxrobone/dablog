@@ -12,6 +12,8 @@ import HomeHeading from '@components/pageHeadings/homeHeading';
 // styles
 import styles from './Homepage.module.scss';
 
+// removed efx and theme btn
+
 // title for the posts, will create a separate component out of this!
 /* const TitleEfx = (title) => {
   return (
