@@ -1,8 +1,9 @@
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef } from 'react';
 import Heading from '@components/heading';
+import cx from 'classnames';
 /* import HomeGrid from '@components/homecontent/HomeGrid'; */
 import useSWR from 'swr';
 import { getPosts, cacheKey } from '@/api-routes/posts';
@@ -11,6 +12,8 @@ import HomeHeading from '@components/pageHeadings/homeHeading';
 // styles
 import styles from './Homepage.module.scss';
 
+import { useTheme } from '@/hooks/useTheme';
+import ThemeSelector from '@/styles/themes/themeSelector';
 // title for the posts, will create a separate component out of this!
 const TitleEfx = (title) => {
   return (
@@ -40,6 +43,7 @@ const TitleEfx = (title) => {
 
 const Home = () => {
   const { data: { data: posts = [] } = {} } = useSWR(cacheKey, getPosts);
+  const theme = useTheme();
 
   return (
     <>
@@ -51,20 +55,21 @@ const Home = () => {
         />
         <meta property='og:title' content='Da blog by Rob' />
       </Head>
-      <div className={styles.home}>
+      <div className={`${styles.home}`}>
         <Heading>
           <HomeHeading />
         </Heading>
+        <ThemeSelector />
         {/*  <HomeGrid /> */}
-       {/*  <h2 className={styles.latest}>Latest posts: </h2> */}
+        {/*  <h2 className={styles.latest}>Latest posts: </h2> */}
         <div className={`${styles.latest}`}>
           <h2 className={styles.sub_title}>
-          <span className={`${styles.p} ${styles.first}`}>
-            Check out the latest post right here!
-          </span>
-          <span className={`${styles.p} ${styles.second}`}>
-            Check out the latest post right here!
-          </span>
+            <span className={`${styles.p} ${styles.first}`}>
+              Check out the latest post right here!
+            </span>
+            <span className={`${styles.p} ${styles.second}`}>
+              Check out the latest post right here!
+            </span>
           </h2>
         </div>
         <div className={styles.container}>

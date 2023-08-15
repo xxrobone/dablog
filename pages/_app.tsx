@@ -4,6 +4,7 @@ import RootLayout from '../components/root-layout';
 import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider, Session } from '@supabase/auth-helpers-react';
 import { useState } from 'react';
+import { ThemeProvider } from '@/context/ThemeContext'
 
 import { supabase } from '@/lib/supabaseClient'
 
@@ -21,10 +22,12 @@ export default function App({
       supabaseClient={supabase}
       initialSession={pageProps.initialSession}
     >
+      <ThemeProvider>
       <RootLayout>
         <Component {...pageProps} />
         <div id='root'></div>
       </RootLayout>
+      </ThemeProvider>
     </SessionContextProvider>
   );
 }

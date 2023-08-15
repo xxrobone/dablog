@@ -1,0 +1,37 @@
+.theme_selector {
+    position: fixed;
+    top: 2rem;
+    right: 2.5rem;
+    z-index: 1000;
+
+    @media screen and (min-width: 960) {
+        left: 3rem;
+        right: auto;
+        flex-direction: row;
+         }  
+
+    @media screen and (min-width: 1185px) {
+        left: 2rem;
+        right: auto;
+        flex-direction: row;
+        bottom: auto;
+        top: 2rem;
+         }    
+
+         >p {
+            position: absolute;
+            top: 2px;
+            right: -5px;
+         }
+}
+
+.theme_toggle {
+    margin-right: auto;
+
+    .toggle_icon {
+        margin-left: 15px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+}
