@@ -43,6 +43,7 @@ const AddComment = ({ id }) => {
         onSubmit={(e) => handleOnSubmit(e, state.username, state.comment, id)}
         className={styles.comments_form}
       >
+        <h2>Leave a comment :D</h2>
         <input
           type='text'
           name='username'

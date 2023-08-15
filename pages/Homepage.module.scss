@@ -35,15 +35,9 @@
     transition: all 0.4s ease-in-out;
     border-radius: 10px;
     transform: translateY(-3px);
-    box-shadow: 3px 6px 2px rgba(240, 73, 7, 0.267);
+    box-shadow: 3px 6px 2px rgba(24, 24, 24, 0.567);
     border: 1px solid rgba(0,0,0,.125);
     cursor: pointer;
-
-    box-shadow: 0 0 5px #d46d44c9,
-                    0 0 15px #c56a36b6,
-                    0 0 25px #a33f106e,
-                    0 0 50px #61260434;
-         -webkit-box-reflect:below 1px linear-gradient(to bottom, transparent 10%, rgba(0, 0, 0, 0.205) 40%);
          z-index: 100;
   }
   
@@ -59,8 +53,8 @@
 
   .container .box:hover img {
     transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-    mix-blend-mode: color-dodge;
-    scale: 1.2;
+    transform: scale(115%);
+    filter: grayscale(0);
   }
 
   .container .box a {

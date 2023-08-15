@@ -110,8 +110,10 @@ export default function BlogPost() {
           <span></span>
         )}
       </section>
+      <section className={styles.commentContainer}>
       <AddComment id={id} />
       <Comments slug={slug} id={id} />
+      </section>
     </>
   );
 }

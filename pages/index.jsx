@@ -12,10 +12,8 @@ import HomeHeading from '@components/pageHeadings/homeHeading';
 // styles
 import styles from './Homepage.module.scss';
 
-import { useTheme } from '@/hooks/useTheme';
-import ThemeSelector from '@/styles/themes/themeSelector';
 // title for the posts, will create a separate component out of this!
-const TitleEfx = (title) => {
+/* const TitleEfx = (title) => {
   return (
     <>
       {title.split(' ').map((word, idx) => {
@@ -26,9 +24,6 @@ const TitleEfx = (title) => {
                 <div
                   className={styles.letter}
                   key={i}
-                  /*  ref={(el) => {
-                  itemsRef.current[i] = el;
-                }} */
                 >
                   {letter}
                 </div>
@@ -39,11 +34,10 @@ const TitleEfx = (title) => {
       })}
     </>
   );
-};
+}; */
 
 const Home = () => {
   const { data: { data: posts = [] } = {} } = useSWR(cacheKey, getPosts);
-  const theme = useTheme();
 
   return (
     <>
@@ -59,7 +53,6 @@ const Home = () => {
         <Heading>
           <HomeHeading />
         </Heading>
-        <ThemeSelector />
         {/*  <HomeGrid /> */}
         {/*  <h2 className={styles.latest}>Latest posts: </h2> */}
         <div className={`${styles.latest}`}>
@@ -76,7 +69,7 @@ const Home = () => {
           {posts.length > 0 ? (
             posts.map((item) => (
               <div className={styles.box} key={item.title}>
-                <span className={styles.title}>{TitleEfx(item.title)}</span>
+                <span className={styles.title}>{item.title}</span>
                 {item.image ? (
                   <Image
                     className={styles.img}

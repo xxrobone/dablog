@@ -49,6 +49,7 @@ const Comments = ({ slug, id }) => {
 
   return (
     <div className={styles.comments_wrapper}>
+      <h2>Comments: </h2>
       {/* <form
         onSubmit={(e) => handleOnSubmit(e, state.username, state.comment, id)}
         className={styles.comments_form}
@@ -70,7 +71,6 @@ const Comments = ({ slug, id }) => {
         <button type='submit'>Submit</button>
       </form> */}
       <ul className={styles.comment_list}>
-        <h2>Comments ;)</h2>
         {postComments &&
           postComments
             .sort((a, b) => {
